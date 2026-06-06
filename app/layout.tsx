@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "Aurelius — Velocity Meets Clarity in Modern Conflict",
   description:
     "AI-native mission engineering. Aurelius turns the hardest military planning problems into decision advantage — mission plans in minutes, not months.",
-  icons: { icon: "/logo-mark.png" },
   openGraph: {
     title: "Aurelius — AI-Native Mission Engineering",
     description: "Decision advantage at machine speed. Mission plans in minutes, not months.",

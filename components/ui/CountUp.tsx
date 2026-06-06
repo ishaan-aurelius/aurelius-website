@@ -19,6 +19,8 @@ export function CountUp({
     if (!inView) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
+      // Intentional one-time set when motion is disabled — show the final value, no animation.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setN(value);
       return;
     }

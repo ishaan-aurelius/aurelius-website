@@ -2,7 +2,6 @@ import { whyUs } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/ui/Reveal";
-import { BrandMark } from "@/components/ui/BrandMark";
 
 export function WhyUs() {
   return (
@@ -32,16 +31,18 @@ export function WhyUs() {
         </div>
       </div>
 
-      {/* credentials — distinct: 3 larger cards w/ peak mark */}
+      {/* credentials — distinct treatment from Solution pillars: left gold rule, indexed, no glyph */}
       <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
         {whyUs.credentials.map((c, i) => (
           <Reveal
             key={c.title}
             style={{ transitionDelay: `${i * 80}ms` }}
-            className="border border-t-2 border-light-border border-t-gold bg-light-card p-8 shadow-sm"
+            className="border-l-2 border-light-border border-l-gold bg-light-card p-8 shadow-sm"
           >
-            <BrandMark className="h-7 w-7 text-gold-textL" />
-            <h3 className="mt-5 font-display text-base font-bold tracking-wide text-light-hi">{c.title}</h3>
+            <span className="font-display text-xs font-bold tracking-[0.2em] text-gold-textL">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 className="mt-4 font-display text-base font-bold tracking-wide text-light-hi">{c.title}</h3>
             <p className="mt-3 font-body text-sm leading-relaxed text-light-mid">{c.body}</p>
           </Reveal>
         ))}

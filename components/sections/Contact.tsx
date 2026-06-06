@@ -22,6 +22,7 @@ export function Contact() {
 
   const field =
     "w-full border border-light-border bg-light-card px-4 py-3 font-body text-sm text-light-hi outline-none focus:border-gold";
+  const labelCls = "mb-2 block font-display text-xs font-bold uppercase tracking-[0.15em] text-light-low";
   const set =
     (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm({ ...form, [k]: e.target.value });
@@ -37,20 +38,26 @@ export function Contact() {
       {sent ? (
         <p className="mx-auto mt-10 max-w-[640px] text-center font-body text-light-hi">Thanks — we&apos;ll be in touch shortly.</p>
       ) : (
-        <form onSubmit={submit} noValidate className="mx-auto mt-10 max-w-[640px] space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <form onSubmit={submit} noValidate className="mx-auto mt-10 max-w-[640px] space-y-5 text-left">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
-              <input className={field} placeholder="Name" value={form.name} onChange={set("name")} aria-label="Name" />
+              <label htmlFor="c-name" className={labelCls}>Name</label>
+              <input id="c-name" className={field} value={form.name} onChange={set("name")} />
               {errors.name && <p className="mt-1 font-body text-xs text-alert-l">{errors.name}</p>}
             </div>
-            <input className={field} placeholder="Organization" value={form.org} onChange={set("org")} aria-label="Organization" />
+            <div>
+              <label htmlFor="c-org" className={labelCls}>Organization</label>
+              <input id="c-org" className={field} value={form.org} onChange={set("org")} />
+            </div>
           </div>
           <div>
-            <input className={field} placeholder="Email" value={form.email} onChange={set("email")} aria-label="Email" />
+            <label htmlFor="c-email" className={labelCls}>Email</label>
+            <input id="c-email" type="email" className={field} value={form.email} onChange={set("email")} />
             {errors.email && <p className="mt-1 font-body text-xs text-alert-l">{errors.email}</p>}
           </div>
           <div>
-            <textarea className={field} rows={5} placeholder="Message" value={form.message} onChange={set("message")} aria-label="Message" />
+            <label htmlFor="c-message" className={labelCls}>Message</label>
+            <textarea id="c-message" rows={5} className={field} value={form.message} onChange={set("message")} />
             {errors.message && <p className="mt-1 font-body text-xs text-alert-l">{errors.message}</p>}
           </div>
           <button

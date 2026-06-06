@@ -9,6 +9,8 @@ export function useInView<T extends HTMLElement>(opts: IntersectionObserverInit 
     if (!el) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
+      // Intentional one-time set on mount when motion is disabled — reveal immediately.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setInView(true);
       return;
     }
@@ -23,6 +25,8 @@ export function useInView<T extends HTMLElement>(opts: IntersectionObserverInit 
     );
     obs.observe(el);
     return () => obs.disconnect();
+    // Observe once on mount; `opts` is treated as fixed for the element's lifetime.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { ref, inView };
 }
