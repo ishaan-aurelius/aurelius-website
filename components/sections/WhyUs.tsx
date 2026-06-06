@@ -3,6 +3,22 @@ import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/ui/Reveal";
 
+// Render any "10^26" in a string as a properly typeset 10²⁶ with a real superscript.
+function withExponents(text: string): React.ReactNode {
+  const parts = text.split("10^26");
+  if (parts.length === 1) return text;
+  return parts.flatMap((part, i) =>
+    i === 0
+      ? [part]
+      : [
+          <span key={i} className="whitespace-nowrap">
+            10<sup className="align-super text-[0.7em]">26</sup>
+          </span>,
+          part,
+        ],
+  );
+}
+
 export function WhyUs() {
   return (
     <Section id="why-us" theme="light">
@@ -16,14 +32,17 @@ export function WhyUs() {
         <div className="space-y-5">
           {whyUs.narrative.map((para, i) => (
             <p key={i} className="font-body text-[15.5px] leading-relaxed text-light-mid">
-              {para}
+              {withExponents(para)}
             </p>
           ))}
         </div>
         <div className="self-start border border-light-border bg-light-card p-7 shadow-sm">
           {whyUs.proof.map((p, i) => (
             <div key={p.label} className={`py-5 ${i !== whyUs.proof.length - 1 ? "border-b border-light-border" : ""}`}>
-              <div className={`font-display text-3xl font-bold leading-tight ${p.gold ? "text-gold-textL" : "text-teal-l"}`}>{p.big}</div>
+              <div className={`font-display text-3xl font-bold leading-tight ${p.gold ? "text-gold-textL" : "text-teal-l"}`}>
+                {p.big}
+                {p.exp && <sup className="align-super text-[0.55em]">{p.exp}</sup>}
+              </div>
               <div className="mt-1 font-display text-xs uppercase tracking-[0.15em] text-gold-textL">{p.label}</div>
               <div className="mt-1 font-body text-xs text-light-low">{p.note}</div>
             </div>

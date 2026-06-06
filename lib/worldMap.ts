@@ -10,3 +10,17 @@ export const worldMapSvg = map.getSVG({
   shape: "circle",
   backgroundColor: "transparent",
 });
+
+// The SVG renders inside this viewBox; nodes placed on the map use the same space.
+export const mapViewBox = { width: 119, height: 60 };
+
+// Land-dot coordinates (normalized to 0..1 of the viewBox), sampled down from the
+// full ~3000 dots to keep the client bundle light. The hero network picks a random
+// subset of these so its nodes always sit on actual landmasses.
+export const landPoints: { x: number; y: number }[] = (() => {
+  const all = map.getPoints();
+  const stride = Math.ceil(all.length / 500);
+  return all
+    .filter((_, i) => i % stride === 0)
+    .map((p) => ({ x: p.x / mapViewBox.width, y: p.y / mapViewBox.height }));
+})();

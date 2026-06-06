@@ -18,17 +18,17 @@ export function WhyNow() {
         {whyNow.stats.map((s, i) => (
           <div
             key={s.caption}
-            className={`p-7 ${i % 2 !== 0 ? "border-l border-dark-border" : ""} ${i >= 2 ? "border-t border-dark-border" : ""} lg:border-t-0 ${i !== 0 ? "lg:border-l lg:border-dark-border" : ""}`}
+            className={`flex flex-col p-7 ${i % 2 !== 0 ? "border-l border-dark-border" : ""} ${i >= 2 ? "border-t border-dark-border" : ""} lg:border-t-0 ${i !== 0 ? "lg:border-l lg:border-dark-border" : ""}`}
           >
-            <div className="font-display text-[34px] font-bold leading-none text-teal-d">
+            <div className="flex items-baseline whitespace-nowrap font-display text-[clamp(26px,2.3vw,34px)] font-bold leading-none text-teal-d">
               {s.value !== null ? (
                 <CountUp value={s.value} suffix={s.suffix ?? ""} />
               ) : (
                 <span className="text-gold">{s.text}</span>
               )}
-              {s.unit && <span className="ml-2 align-baseline text-sm tracking-[0.15em] text-gold">{s.unit}</span>}
+              {s.unit && <span className="ml-2 text-xs tracking-[0.12em] text-gold">{s.unit}</span>}
             </div>
-            <div className="mt-3 font-body text-xs leading-snug text-dark-low">{s.caption}</div>
+            <div className="mt-auto pt-3 font-body text-xs leading-snug text-dark-low">{s.caption}</div>
           </div>
         ))}
       </div>

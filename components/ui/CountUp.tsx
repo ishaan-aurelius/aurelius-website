@@ -34,10 +34,18 @@ export function CountUp({
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [inView, value, durationMs]);
+  // Reserve the final width/height with an invisible sizer so the layout never
+  // reflows as the digit count grows; the live value is overlaid on top.
   return (
-    <span ref={ref} className={className}>
-      {n}
-      {suffix}
+    <span ref={ref} className={`relative inline-block tabular-nums ${className}`}>
+      <span aria-hidden="true" className="invisible">
+        {value.toLocaleString("en-US")}
+        {suffix}
+      </span>
+      <span className="absolute inset-0">
+        {n.toLocaleString("en-US")}
+        {suffix}
+      </span>
     </span>
   );
 }

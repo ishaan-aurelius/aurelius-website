@@ -43,9 +43,9 @@ export const whyNow = {
   title: "Advantage belongs to the fastest decider",
   lede: "The side that can decide, adapt, and act faster than the fight unfolds — wins. Today's battlespace by the numbers:",
   stats: [
-    { value: 2, suffix: "M", unit: "GB / DAY", caption: "Sensor data per theater, per day" },
+    { value: 2000000, suffix: "", unit: "GB / DAY", caption: "Sensor data per theater, per day" },
     { value: 90, suffix: "", unit: "SECONDS", caption: "Mach 5 hypersonic reaction window" },
-    { value: 10, suffix: "K", unit: "STREAMS", caption: "Monitored at once by a command center" },
+    { value: 10000, suffix: "", unit: "STREAMS", caption: "Monitored at once by a command center" },
     { value: null, text: "MONTHS", unit: "", caption: "To plan one mission, in one domain, today" },
   ] as { value: number | null; suffix?: string; text?: string; unit: string; caption: string }[],
   points: [
@@ -67,10 +67,10 @@ export const whyUs = {
     "We are currently bidding for US defense contracts in partnership with a US prime and a major US defense-tech company, and gearing up for NATO opportunities.",
   ],
   proof: [
-    { big: "10²⁶", label: "Possible COAs", note: "100 trillion trillion. Not a typo.", gold: false },
+    { big: "10", exp: "26", label: "Possible COAs", note: "100 trillion trillion. Not a typo.", gold: false },
     { big: "4", label: "Ranked Plans Delivered", note: "Distinct, comparable, actionable.", gold: true },
     { big: "MINUTES", label: "Not Months", note: "From intent to executable plan.", gold: false },
-  ],
+  ] as { big: string; exp?: string; label: string; note: string; gold: boolean }[],
   credentials: [
     { title: "Silicon Valley DNA", body: "Seasoned technologists who launched iconic products used by billions — and led over $200B of M&A across tech and travel." },
     { title: "Military Leadership", body: "Retired 4-star US Generals, members of high-profile US military advisory councils, and leadership roles in US military AI innovation." },
