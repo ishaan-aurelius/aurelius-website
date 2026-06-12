@@ -26,15 +26,15 @@ export function Hero() {
       />
       {/* abstract signal network — decorative, animated; nodes pinned to real land dots */}
       <SignalNetwork points={landPoints} mapAspect={mapViewBox.width / mapViewBox.height} />
-      <div className="relative mx-auto w-full max-w-container px-6 pt-24 md:px-12">
+      <div className="relative mx-auto w-full max-w-container px-6 pt-24 text-center md:px-12">
         <Kicker>{hero.kicker}</Kicker>
-        <h1 className="mt-7 max-w-[16ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
+        <h1 className="mx-auto mt-7 max-w-[24ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
           {hero.headPre}
           <span className="text-gold">{hero.headGold}</span>
           {hero.headPost}
         </h1>
-        <p className="mt-7 max-w-[60ch] font-body text-[clamp(17px,1.7vw,21px)] leading-relaxed text-dark-mid">{hero.sub}</p>
-        <div className="mt-11 flex flex-wrap gap-4">
+        <p className="mx-auto mt-7 max-w-[60ch] font-body text-[clamp(17px,1.7vw,21px)] leading-relaxed text-dark-mid">{hero.sub}</p>
+        <div className="mt-11 flex flex-wrap justify-center gap-4">
           <Button href={hero.primary.href} variant="primary">
             {hero.primary.label}
           </Button>

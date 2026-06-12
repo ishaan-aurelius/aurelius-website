@@ -21,48 +21,45 @@ function withExponents(text: string): React.ReactNode {
 
 export function WhyUs() {
   return (
-    <Section id="why-us" theme="light">
-      <Kicker onLight>{whyUs.kicker}</Kicker>
-      <h2 className="mt-5 max-w-[20ch] font-display text-[clamp(32px,4.2vw,52px)] font-bold leading-[1.1] tracking-tight text-light-hi">
-        {whyUs.title}
-      </h2>
+    <Section id="why-us" theme="dark">
+      <div className="mx-auto max-w-3xl text-center">
+        <Kicker>{whyUs.kicker}</Kicker>
+        <h2 className="mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold leading-[1.1] tracking-tight text-dark-hi">
+          {whyUs.title}
+        </h2>
+      </div>
 
-      {/* narrative + number-strip proof */}
-      <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr]">
+      {/* narrative + supporting image */}
+      <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
         <div className="space-y-5">
           {whyUs.narrative.map((para, i) => (
-            <p key={i} className="font-body text-[15.5px] leading-relaxed text-light-mid">
+            <p key={i} className="font-body text-[15.5px] leading-relaxed text-dark-mid">
               {withExponents(para)}
             </p>
           ))}
         </div>
-        <div className="self-start border border-light-border bg-light-card p-7 shadow-sm">
-          {whyUs.proof.map((p, i) => (
-            <div key={p.label} className={`py-5 ${i !== whyUs.proof.length - 1 ? "border-b border-light-border" : ""}`}>
-              <div className={`font-display text-3xl font-bold leading-tight ${p.gold ? "text-gold-textL" : "text-teal-l"}`}>
-                {p.big}
-                {p.exp && <sup className="align-super text-[0.55em]">{p.exp}</sup>}
-              </div>
-              <div className="mt-1 font-display text-xs uppercase tracking-[0.15em] text-gold-textL">{p.label}</div>
-              <div className="mt-1 font-body text-xs text-light-low">{p.note}</div>
-            </div>
-          ))}
+        {/* TODO: real image — command-center / mission-planning photo */}
+        <div
+          className="flex aspect-[4/3] items-center justify-center self-start overflow-hidden rounded border border-dashed border-dark-border bg-dark-card text-dark-low"
+          aria-hidden="true"
+        >
+          <span className="font-body text-sm">Image placeholder</span>
         </div>
       </div>
 
-      {/* credentials — distinct treatment from Solution pillars: left gold rule, indexed, no glyph */}
+      {/* credentials */}
       <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
         {whyUs.credentials.map((c, i) => (
           <Reveal
             key={c.title}
             style={{ transitionDelay: `${i * 80}ms` }}
-            className="border-l-2 border-light-border border-l-gold bg-light-card p-8 shadow-sm"
+            className="border border-t-2 border-dark-border border-t-gold bg-dark-card p-8 text-center"
           >
-            <span className="font-display text-xs font-bold tracking-[0.2em] text-gold-textL">
+            <span className="font-display text-xs font-bold tracking-[0.2em] text-gold">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <h3 className="mt-4 font-display text-base font-bold tracking-wide text-light-hi">{c.title}</h3>
-            <p className="mt-3 font-body text-sm leading-relaxed text-light-mid">{c.body}</p>
+            <h3 className="mt-4 font-display text-base font-bold tracking-wide text-dark-hi">{c.title}</h3>
+            <p className="mt-3 font-body text-sm leading-relaxed text-dark-mid">{c.body}</p>
           </Reveal>
         ))}
       </div>

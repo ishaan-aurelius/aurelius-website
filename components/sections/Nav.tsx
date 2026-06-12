@@ -31,9 +31,9 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
-          <Button href={nav.secondary.href} variant="secondary">
+          <Link href={nav.secondary.href} className="font-body text-sm text-dark-mid transition-colors hover:text-dark-hi">
             {nav.secondary.label}
-          </Button>
+          </Link>
           <Button href={nav.primary.href} variant="primary">
             {nav.primary.label}
           </Button>
