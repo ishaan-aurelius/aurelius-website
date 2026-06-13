@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main] # deploy whenever main updates
+    branches: [main, feat/landing-page] # deploy whenever either branch updates
   workflow_dispatch: {} # allow manual runs from the Actions tab
 
 permissions:

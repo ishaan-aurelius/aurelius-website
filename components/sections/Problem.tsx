@@ -69,21 +69,6 @@ function Countdown({ start, label }: { start: string; label: string }) {
   );
 }
 
-// Headline reveals with a left→right clip-wipe when it enters the viewport.
-function Headline() {
-  const { ref, inView } = useInView<HTMLHeadingElement>();
-  return (
-    <h2
-      ref={ref}
-      className={`wipe-in ${inView ? "is-shown" : ""} font-display mx-auto max-w-[20ch] text-[clamp(34px,4.6vw,58px)] font-bold leading-[1.06] tracking-tight text-dark-hi`}
-    >
-      {problem.headPre}
-      <span className="text-gold">{problem.headGold}</span>
-      {problem.headPost}
-    </h2>
-  );
-}
-
 const accentClass: Record<string, string> = {
   teal: "text-teal-d",
   gold: "text-gold",
@@ -93,10 +78,10 @@ const accentClass: Record<string, string> = {
 export function Problem() {
   return (
     <Section id="problem" theme="dark" className="relative overflow-hidden">
-      {/* ambient telemetry — faint live-feed texture drifting behind the top of the section */}
+      {/* ambient telemetry — very faint live-feed texture drifting behind the top of the section */}
       <div
         aria-hidden="true"
-        className="font-mono pointer-events-none absolute inset-x-0 top-0 hidden h-[55%] select-none overflow-hidden text-[10px] leading-[2.2] text-dark-card md:block [mask-image:linear-gradient(to_bottom,black_0%,transparent_85%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,transparent_85%)]"
+        className="font-mono pointer-events-none absolute inset-x-0 top-0 hidden h-[45%] select-none overflow-hidden text-[10px] leading-[2.2] text-dark-card opacity-40 md:block [mask-image:linear-gradient(to_bottom,black_0%,transparent_60%)] [-webkit-mask-image:linear-gradient(to_bottom,black_0%,transparent_60%)]"
       >
         <pre className="telemetry-drift whitespace-pre px-6 text-center">
           {[...problem.telemetry, ...problem.telemetry].join("\n")}
@@ -108,9 +93,13 @@ export function Problem() {
           <Kicker>{problem.kicker}</Kicker>
         </Reveal>
 
-        <div className="mt-5">
-          <Headline />
-        </div>
+        <Reveal style={{ transitionDelay: "80ms" }}>
+          <h2 className="wipe-in font-display mx-auto mt-5 max-w-[20ch] text-[clamp(34px,4.6vw,58px)] font-bold leading-[1.06] tracking-tight text-dark-hi">
+            {problem.headPre}
+            <span className="text-gold">{problem.headGold}</span>
+            {problem.headPost}
+          </h2>
+        </Reveal>
 
         <Reveal style={{ transitionDelay: "160ms" }}>
           <span className="mx-auto mt-7 block h-px w-12 bg-gold" />
