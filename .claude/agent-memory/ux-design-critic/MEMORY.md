@@ -1,0 +1,3 @@
+- [Theme rhythm (locked)](theme-rhythm.md) — section dark/light alternation is spec-locked; how to flip a section's theme correctly
+- [Color-on-light gotchas](color-on-light-rules.md) — gold/red/hover token swaps required when a section is light (contrast rules)
+- [Known design debt](design-debt.md) — shipped placeholders + the missing WhyNow stat strip
