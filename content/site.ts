@@ -19,6 +19,44 @@ export const hero = {
   secondary: { label: "Contact Us", href: "#contact" },
 };
 
+export const problem = {
+  kicker: "The Problem",
+  headPre: "An executable strike plan, demanded in ",
+  headGold: "under six hours",
+  headPost: ".",
+  // Generic U.S.-military framing — no named officers, no named adversary/target.
+  brief: {
+    from: "U.S. Department of War HQ",
+    to: "A U.S. Combatant Command",
+    subj: "Execute order — immediate action required",
+    objective: "Maximize effect on a near-peer adversary's critical military infrastructure.",
+    req: "Strike plan required NLT 0800Z.",
+  },
+  clock: { label: "Time to Brief", start: "05:47:12" },
+  // Decorative ambient telemetry (aria-hidden, near-background contrast).
+  telemetry: [
+    "ASSET F-35A // VIPER 01 // LAT 29.4241 // ALT 28,000FT",
+    "THREAT SA-21 // RANGE 400KM // STATUS ACTIVE // SIGINT-7",
+    "ASSET B-2A // GHOST 04 // STATUS STANDBY // VIS 2NM",
+    "SUPPLY 847 UNITS // ETA 0340Z // TRANSIT",
+    "THREAT IADS // 23 NODES ACTIVE // UNRESOLVED // PRIORITY HIGH",
+    "ASSET DDG-84 // BULKELEY // TOMAHAWK 96 READY",
+    "ASSET MQ-9 // REAPER 07 // LOITER 14HRS // FUEL 67%",
+    "CYBER // 4 VECTORS // STATUS UNCONFIRMED // HUMINT-3",
+    "ASSET E-8C // GROUND TRACK // 847 CONTACTS",
+    "EW // JAMMING DETECTED // BEARING 330 DEG",
+  ],
+  stats: [
+    { value: 847, label: "Assets", accent: "teal" },
+    { value: 23, label: "Threat Systems", accent: "hi" },
+    { value: 11, label: "Commands", accent: "gold" },
+    { value: 5, label: "Domains", accent: "hi" },
+  ] as { value: number; label: string; accent: "teal" | "gold" | "hi" }[],
+  punchPre: "Hours demanded. ",
+  punchRed: "Weeks, months, quarters",
+  punchPost: " delivered.",
+};
+
 export const solution = {
   kicker: "The Solution",
   title: "Mission plans in minutes — not months.",
