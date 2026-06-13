@@ -26,6 +26,13 @@ export function Hero() {
       {/* kill-web — decorative, animated; same living-network treatment as the Why Now
           section, masked to the upper-right so the headline stays clean */}
       <KillWeb className="opacity-70 [mask-image:radial-gradient(ellipse_at_72%_42%,black_0%,black_34%,transparent_72%)] [-webkit-mask-image:radial-gradient(ellipse_at_72%_42%,black_0%,black_34%,transparent_72%)]" />
+      {/* legibility scrim — washes the canvas navy back in around the headline so the
+          network reads as backdrop, not competition. Strongest behind the text, gone by the edges. */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "radial-gradient(ellipse 72% 56% at 50% 50%, rgba(14,20,31,0.85) 0%, rgba(14,20,31,0.5) 42%, rgba(14,20,31,0) 76%)" }}
+        aria-hidden="true"
+      />
       <div className="relative mx-auto w-full max-w-container px-6 pt-24 text-center md:px-12">
         <h1 className="mx-auto max-w-[24ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
           {hero.headPre}

@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { nav, solution, whyNow, whyUs, careers } from "@/content/site";
 
 describe("site content", () => {
-  it("nav has the four required links", () => {
-    expect(nav.links.map((l) => l.label)).toEqual(["Why Now", "Solution", "Why Aurelius", "Careers"]);
+  it("nav has the expected links", () => {
+    expect(nav.links.map((l) => l.label)).toEqual(["Why Now", "Solution", "Careers"]);
   });
   it("each grouping has the expected item count", () => {
     expect(solution.steps).toHaveLength(4);

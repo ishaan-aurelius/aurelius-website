@@ -3,7 +3,6 @@ export const nav = {
   links: [
     { label: "Why Now", href: "#why-now" },
     { label: "Solution", href: "#solution" },
-    { label: "Why Aurelius", href: "#why-us" },
     { label: "Careers", href: "#careers" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },
