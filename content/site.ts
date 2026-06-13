@@ -2,7 +2,7 @@
 export const nav = {
   links: [
     { label: "Why Now", href: "#why-now" },
-    { label: "The Way Forward", href: "#solution" },
+    { label: "The Platform", href: "#solution" },
     { label: "Careers", href: "#careers" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },
@@ -13,7 +13,7 @@ export const hero = {
   headPre: "Velocity meets clarity in ",
   headGold: "modern conflict",
   headPost: ".",
-  sub: "The hardest military planning problems, turned into decision advantage — plans in minutes, not months.",
+  sub: "Aurelius turns the hardest military planning problems into decision advantage.",
   primary: { label: "Request a Demo", href: "#contact" },
   secondary: { label: "Contact Us", href: "#contact" },
 };
@@ -32,7 +32,7 @@ export const problem = {
   brief: {
     from: "U.S. Department of War HQ",
     to: "A U.S. Combatant Command",
-    subj: "Execute order — immediate action required",
+    subj: "Execute order: immediate action required",
     objective: "Maximize effect on a near-peer adversary's critical military infrastructure.",
     req: "Strike plan required NLT 0800Z.",
   },
@@ -58,29 +58,29 @@ export const problem = {
   ] as { value: number; label: string; accent: "teal" | "gold" | "hi" }[],
 };
 
-// "The Way Forward" — the solution. Hexagon capabilities + the 01–04 method.
+// "The Platform" — the product. Hexagon capabilities + the 01–04 method.
 export const solution = {
-  kicker: "Aurelius — The Solution",
+  kicker: "The Platform",
   // gold = the thing we solve for.
   headline: { pre: "Solving for ", gold: "complexity & latency", post: "." },
-  lede: "One kill-web-optimized, multi-domain platform — from mission planning to in-mission execution.",
+  lede: "One kill-web-optimized, multi-domain platform that spans mission planning through in-mission execution.",
   // The six capabilities of the hexagon. group drives color: platform = teal, operational = gold.
   capabilities: [
-    { key: "killweb", title: "Kill-Web Architecture", note: "Tens, hundreds, thousands of kill chains — woven into one kill web.", group: "platform" },
-    { key: "multidomain", title: "Multi-Domain & Scalable", note: "Air, land, sea, space, and cyber — planned at once.", group: "platform" },
-    { key: "interop", title: "Inter-Operable", note: "Legacy systems plus next-gen capabilities. Zero rip-and-replace.", group: "platform" },
+    { key: "killweb", title: "Kill-Web Architecture", note: "Tens, hundreds, thousands of kill chains, woven into one kill web.", group: "platform" },
+    { key: "multidomain", title: "Multi-Domain & Scalable", note: "Air, land, sea, space, and cyber, all planned at once.", group: "platform" },
+    { key: "interop", title: "Inter-Operable", note: "Legacy systems plus next-gen capabilities. No rip-and-replace.", group: "platform" },
     { key: "speed", title: "Speed of Decisions", note: "Mission plans from months and days down to minutes.", group: "operational" },
     { key: "strategic", title: "Strategic to Operational", note: "Closes the gap from strategic direction to tactical execution.", group: "operational" },
-    { key: "clarity", title: "Cross-Domain Clarity", note: "Commanders see what matters — no overload. The human stays in the loop.", group: "operational" },
+    { key: "clarity", title: "Cross-Domain Clarity", note: "Commanders see what matters, without the overload. The human stays in the loop.", group: "operational" },
   ] as { key: string; title: string; note: string; group: "platform" | "operational" }[],
   methodKicker: "From intent to executable plan",
   steps: [
     { n: "01", title: "Understand the Mission", body: "LLMs turn commander intent and doctrine into structured planning logic." },
-    { n: "02", title: "Model the Options", body: "Optimization computes courses of action at combinatorial scale — every domain, asset, and constraint." },
+    { n: "02", title: "Model the Options", body: "Optimization computes courses of action at combinatorial scale, across every domain, asset, and constraint." },
     { n: "03", title: "Evaluate the Scenarios", body: "Stack-ranked, pareto-optimal options, with trade-offs surfaced in real time." },
-    { n: "04", title: "Empower the Commander", body: "Commanders stay in control — armed with clarity, speed, and foresight." },
+    { n: "04", title: "Empower the Commander", body: "Commanders stay in control, with the clarity and speed to decide before the window closes." },
   ],
-  bridge: "Kill-web optimized, multi-domain — mission planning to in-mission.",
+  bridge: "Kill-web optimized and multi-domain, from first plan to live mission.",
 };
 
 // Two acts: the scale of the data problem, then the macro drivers ("why now").
@@ -94,7 +94,7 @@ export const whyNow = {
     { value: 10000, comma: true, unit: "Data Streams", caption: "Per command post", accent: "gold" },
   ] as { value: number; comma?: boolean; unit: string; caption: string; accent: "teal" | "hi" | "red" | "gold" }[],
   punch1: { pre: "Most of it is ", em: "never processed", post: "." },
-  punch2: { pre: "The window of decision advantage is ", em: "narrowing. Fast.", post: "" },
+  punch2: { pre: "The window of decision advantage is ", em: "narrowing fast.", post: "" },
   whyKicker: "Why Now",
   // Rendered as the section's big headline, over the kill-web visual.
   headline: { pre: "Modern defense has become a giant ", em: "network problem", post: "." },
@@ -105,7 +105,7 @@ export const whyNow = {
     { n: "03", title: "FY26 Budgets Prioritize AI & Autonomy" },
     { n: "04", title: "The Pentagon Backs Non-Traditional Tech" },
   ],
-  bridge: "The Pentagon wants kill-web-optimized, multi-domain ops — mission planning to in-mission.",
+  bridge: "The Pentagon wants exactly this: kill-web-optimized, multi-domain operations from planning through execution.",
 };
 
 // "Why Aurelius" — the thesis, the moat, the proof.
@@ -113,13 +113,13 @@ export const whyUs = {
   kicker: "Why Aurelius",
   // The technical thesis (the one point worth keeping from the "GenAI isn't enough" slide).
   headline: { pre: "GenAI alone can't decide. ", gold: "We fuse it with deep optimization", post: "." },
-  lede: "Building optimizers at massive scale is incredibly hard — and we have every key network node covered.",
+  lede: "Few teams can build optimizers at this scale. We cover every key node in the network.",
   // The moat. group drives the card's top-rule color: platform = teal, operational = gold.
   moat: [
     { tag: "Deep Data Access", title: "Zero Legacy", points: [
-      "Ground-up, AI-first architecture — not reverse-engineered after the fact.",
+      "Built ground-up and AI-first, not reverse-engineered after the fact.",
       "Runs across on-prem, cloud, and edge.",
-      "Layered data — no need to rip and replace legacy systems.",
+      "Layered data, so there's no need to rip and replace legacy systems.",
     ], group: "platform" },
     { tag: "Deep Talent Access", title: "Scarce Talent", points: [
       "AI, math, and physics talent with ex-Google product depth.",
@@ -160,14 +160,14 @@ export const careers = {
     { title: "Zero Bureaucracy", body: "Small, fast, high-autonomy teams. No layers." },
     { title: "Dual-Use Future", body: "Pioneer decision intelligence for defense and beyond." },
   ],
-  closing: "No defense experience required — just intellectual firepower and operational focus.",
+  closing: "No defense experience required. Just intellectual firepower and operational focus.",
   cta: { label: "Join Us", href: "#contact" },
 };
 
 export const contact = {
   kicker: "Contact",
   title: "Start the conversation",
-  lede: "Investors, partners, and builders — reach out.",
+  lede: "Investors, partners, and builders: reach out.",
   email: "contact@aurelius.guru",
 };
 

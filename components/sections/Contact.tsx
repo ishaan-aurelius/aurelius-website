@@ -65,7 +65,7 @@ export function Contact() {
       </div>
 
       {sent ? (
-        <p className="mx-auto mt-10 max-w-[640px] text-center font-body text-dark-hi">Thanks — we&apos;ll be in touch shortly.</p>
+        <p className="mx-auto mt-10 max-w-[640px] text-center font-body text-dark-hi">Thanks. We&apos;ll be in touch shortly.</p>
       ) : (
         <form onSubmit={submit} noValidate className="mx-auto mt-10 max-w-[640px] space-y-5 text-left">
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

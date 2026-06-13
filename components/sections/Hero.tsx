@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { hero } from "@/content/site";
 import { Button } from "@/components/ui/Button";
 import { KillWeb } from "@/components/ui/KillWeb";
@@ -34,6 +35,14 @@ export function Hero() {
         aria-hidden="true"
       />
       <div className="relative mx-auto w-full max-w-container px-6 pt-24 text-center md:px-12">
+        <Image
+          src="/aurelius-website/logo-mark.png"
+          alt="Aurelius"
+          width={84}
+          height={70}
+          priority
+          className="mx-auto mb-8 h-16 w-auto"
+        />
         <h1 className="mx-auto max-w-[24ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
           {hero.headPre}
           <span className="text-gold">{hero.headGold}</span>
