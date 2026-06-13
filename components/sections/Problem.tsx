@@ -4,38 +4,12 @@ import { problem } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/ui/Reveal";
+import { CountUp } from "@/components/ui/CountUp";
 import { useInView } from "@/lib/useInView";
 
 const prefersReduced = () =>
   typeof window !== "undefined" &&
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-// Count-up on scroll-into-view; jumps straight to the target under reduced-motion.
-function CountUp({ target }: { target: number }) {
-  const { ref, inView } = useInView<HTMLSpanElement>();
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    if (prefersReduced()) {
-      // One-time set when motion is disabled — show the final value, no animation.
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setVal(target);
-      return;
-    }
-    let raf = 0;
-    const start = performance.now();
-    const dur = 1100;
-    const tick = (now: number) => {
-      const p = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic — weighted, no overshoot
-      setVal(Math.round(target * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, target]);
-  return <span ref={ref}>{val}</span>;
-}
 
 const toSecs = (hms: string) => {
   const [h, m, s] = hms.split(":").map(Number);
@@ -94,47 +68,46 @@ export function Problem() {
         </Reveal>
 
         <Reveal style={{ transitionDelay: "80ms" }}>
-          <h2 className="wipe-in font-display mx-auto mt-5 max-w-[20ch] text-[clamp(34px,4.6vw,58px)] font-bold leading-[1.06] tracking-tight text-dark-hi">
-            {problem.headPre}
-            <span className="text-gold">{problem.headGold}</span>
-            {problem.headPost}
+          <h2 className="wipe-in font-display mx-auto mt-5 max-w-[24ch] text-[clamp(28px,3.8vw,48px)] font-bold leading-[1.1] tracking-tight text-dark-hi">
+            {problem.head.pre}
+            <span className="text-gold">{problem.head.gold}</span>
+            {problem.head.mid}
+            <span className="text-alert-d">{problem.head.red}</span>
+            {problem.head.post}
           </h2>
         </Reveal>
 
         <Reveal style={{ transitionDelay: "160ms" }}>
-          <span className="mx-auto mt-7 block h-px w-12 bg-gold" />
+          <span className="mx-auto mt-6 block h-px w-10 bg-gold" />
         </Reveal>
 
+        {/* comms brief (left, two aligned columns) + countdown pulled to the right */}
         <Reveal style={{ transitionDelay: "220ms" }}>
-          <div className="font-mono mx-auto mt-7 max-w-[60ch] text-[12.5px] leading-[2] text-dark-mid">
-            <div>
-              <span className="text-dark-low">FROM</span> · {problem.brief.from}
+          <div className="mx-auto mt-8 flex max-w-3xl flex-col items-start gap-6 text-left sm:flex-row sm:items-center sm:justify-between">
+            <div className="font-mono text-[11px] leading-[1.7] text-dark-mid">
+              <dl className="grid grid-cols-[auto_1fr] gap-x-4">
+                <dt className="text-dark-low">FROM</dt>
+                <dd>{problem.brief.from}</dd>
+                <dt className="text-dark-low">TO</dt>
+                <dd>{problem.brief.to}</dd>
+                <dt className="text-dark-low">SUBJ</dt>
+                <dd>{problem.brief.subj}</dd>
+              </dl>
+              <p className="mt-2.5 text-dark-hi">{problem.brief.objective}</p>
+              <p className="text-dark-low">{problem.brief.req}</p>
             </div>
-            <div>
-              <span className="text-dark-low">TO</span> · {problem.brief.to}
-            </div>
-            <div>
-              <span className="text-dark-low">SUBJ</span> · {problem.brief.subj}
-            </div>
-            <div className="mt-2 text-dark-hi">{problem.brief.objective}</div>
-            <div className="text-dark-low">{problem.brief.req}</div>
-          </div>
-        </Reveal>
-
-        <Reveal style={{ transitionDelay: "300ms" }}>
-          <div className="mt-9">
             <Countdown start={problem.clock.start} label={problem.clock.label} />
           </div>
         </Reveal>
 
         <Reveal style={{ transitionDelay: "380ms" }}>
-          <div className="mt-14 grid grid-cols-2 border-t border-dark-border md:grid-cols-4">
+          <div className="mt-12 grid grid-cols-2 border-t border-dark-border md:grid-cols-4">
             {problem.stats.map((s) => (
               <div
                 key={s.label}
                 className="border-b border-r border-dark-border px-4 py-7 text-center [&:nth-child(2n)]:border-r-0 md:[&:nth-child(2n)]:border-r md:[&:nth-child(4n)]:border-r-0"
               >
-                <div className={`font-mono text-[clamp(32px,4.6vw,52px)] font-bold leading-none tabular-nums ${accentClass[s.accent]}`}>
+                <div className={`font-mono text-[clamp(34px,4.8vw,58px)] font-bold leading-none tabular-nums ${accentClass[s.accent]}`}>
                   <CountUp target={s.value} />
                 </div>
                 <div className="font-display mt-3 text-[11px] font-bold uppercase tracking-[0.18em] text-dark-low">
@@ -143,15 +116,6 @@ export function Problem() {
               </div>
             ))}
           </div>
-        </Reveal>
-
-        {/* punchline → bridges to the Solution section */}
-        <Reveal style={{ transitionDelay: "120ms" }}>
-          <p className="font-display mx-auto mt-16 max-w-[24ch] text-[clamp(26px,3.4vw,42px)] font-bold leading-[1.12] tracking-tight text-dark-hi">
-            {problem.punchPre}
-            <span className="text-alert-d">{problem.punchRed}</span>
-            {problem.punchPost}
-          </p>
         </Reveal>
       </div>
     </Section>
