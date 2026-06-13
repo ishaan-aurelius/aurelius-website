@@ -54,7 +54,7 @@ export const problem = {
   ] as { value: number; label: string; accent: "teal" | "gold" | "hi" }[],
   punchPre: "Hours demanded. ",
   punchRed: "Weeks, months, quarters",
-  punchPost: " delivered.",
+  punchPost: "are currently delivered. Too slow for the modern battlefield",
 };
 
 export const solution = {
