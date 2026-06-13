@@ -21,7 +21,7 @@ function withExponents(text: string): React.ReactNode {
 
 export function WhyUs() {
   return (
-    <Section id="why-us" theme="light">
+    <Section id="why-us" theme="dark">
       <div className="mx-auto max-w-3xl text-center">
         <Kicker>{whyUs.kicker}</Kicker>
         <h2 className="mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold leading-[1.1] tracking-tight text-dark-hi">

@@ -6,7 +6,7 @@ import { pillarIcons } from "@/components/ui/PillarIcons";
 
 export function Solution() {
   return (
-    <Section id="solution" theme="light">
+    <Section id="solution" theme="dark">
       <div className="mx-auto max-w-3xl text-center">
         <Kicker>{solution.kicker}</Kicker>
         <h2 className="mt-5 font-display text-[clamp(34px,4.4vw,56px)] font-bold leading-[1.08] tracking-tight text-dark-hi">

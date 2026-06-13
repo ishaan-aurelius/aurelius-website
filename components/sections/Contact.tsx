@@ -57,7 +57,7 @@ export function Contact() {
   const selectedInterest = interests.find((o) => o.value === form.interest);
 
   return (
-    <Section id="contact" theme="light">
+    <Section id="contact" theme="dark">
       <div className="mx-auto max-w-[640px] text-center">
         <Kicker>{contact.kicker}</Kicker>
         <h2 className="mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold tracking-tight text-dark-hi">{contact.title}</h2>
