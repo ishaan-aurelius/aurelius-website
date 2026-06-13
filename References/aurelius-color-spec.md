@@ -1,6 +1,6 @@
 # Aurelius Website — Color Specification
 
-For the developer. The site alternates dark and light sections as topics change. Dark sections use the brand navy system. For light sections, **do not reuse the old Wix cream (`#EFECE6`-range)** — it's warm-toned and clashes with the cool navy. Use the brand's own light theme (below), which is already part of the Aurelius design system and shares its undertone with the navy.
+For the developer. **The site is uniformly dark — every section uses the navy canvas `#0D1420` (see §4, locked 2026-06-13). There are no light sections.** The light theme tokens in §2 are retained for reference but are not used for section backgrounds. (If light tiles ever appear inside a dark section, **do not reuse the old Wix cream (`#EFECE6`-range)** — it's warm-toned and clashes with the cool navy; use the brand's own light theme below.)
 
 ## 1. Dark sections (primary)
 
@@ -36,28 +36,28 @@ Alternative if you want a touch more warmth than `#F5F6F8`: `#F7F6F3` (a near-ne
 | Data / stats (teal) | `#4AAFB8` | `#0D8B92` | Big numbers only — never body text |
 | Alert / negative (red) | `#D44040` | `#A82828` | Status use only. **Never CTAs, never decoration.** |
 
-## 4. Section alternation
+## 4. Section background — uniform dark (LOCKED 2026-06-13)
 
-Suggested rhythm for the landing page:
+> **The entire site is dark. Every section — Nav through Footer — uses the single dark canvas `#0D1420` (the Hero color).** There are **no light sections** and **no dark/light alternation.** This is a hard user decision and overrides the earlier alternation plan below. Do not flip any section to a light canvas, and do not use `#141E2C` as a section background to fake separation. The light tokens in §2 remain defined but are **unused for section backgrounds.**
 
 | # | Section | Theme |
 |---|---|---|
-| — | Nav | Dark (`#0D1420`, blur/92% opacity) |
-| 1 | Hero | Dark |
-| 2 | The Problem | Dark (`#141E2C`) — keeps the hero's tension |
-| 3 | The Solution | **Light** — the "clarity" turn; the palette shift reinforces the message |
-| 4 | Why Now | Dark |
-| 5 | About | **Light** |
-| 6 | Careers | Dark |
-| 7 | Contact | **Light** |
-| — | Footer | Dark (`#0D1420`) |
+| — | Nav | Dark `#0D1420` (blur/92% opacity) |
+| 1 | Hero | Dark `#0D1420` |
+| 2 | The Problem | Dark `#0D1420` |
+| 3 | Why Now | Dark `#0D1420` |
+| 4 | The Solution | Dark `#0D1420` |
+| 5 | Careers | Dark `#0D1420` |
+| 6 | Contact | Dark `#0D1420` |
+| — | Footer | Dark `#0D1420` |
 
 Rules:
 
-- Never two light sections adjacent; dark-dark is allowed only with the two different dark values (`#0D1420` / `#141E2C`).
-- No transition gradients between sections — hard switch on a 1px border line (`dark/border` leaving dark, `light/border` entering light).
-- Gold kicker labels (small caps, letterspaced) stay gold on both themes.
-- Cards always sit one level lighter than their canvas on dark (`#1A2838` on `#0D1420`), and pure white on light canvas.
+- **One canvas everywhere: `#0D1420`.** No light sections, no alternation, no `#141E2C` section backgrounds.
+- Section separation comes from the 1px `dark/border` hairline at each section top — never a canvas color change.
+- No transition gradients between sections — hard switch on the 1px `dark/border` line.
+- Gold kicker labels (small caps, letterspaced) stay gold.
+- Cards always sit one level lighter than the canvas: `#1A2838` on `#0D1420`. Depth comes from card/panel layering, not a lighter section background.
 
 ## 5. Contrast notes (WCAG)
 

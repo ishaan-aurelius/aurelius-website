@@ -20,7 +20,7 @@ These come from `References/aurelius-color-spec.md` and override any older desig
 - CTAs are **gold** (`#C8A85C`) with dark text — **never red**. Red is status-only.
 - **No cream/beige** (`#EFECE6` family). Use the spec's cool light tokens.
 - No pure black, no opacity-faded text, teal is data-only.
-- Never place two light sections adjacent.
+- **The entire site is dark.** Every section uses the single dark canvas `#0D1420` (the Hero color) — no light sections, no dark/light alternation (user decision 2026-06-13, overrides the older alternation rhythm in the specs). Never flip a section to `light` or use a lighter canvas to separate sections; separation is the 1px `dark/border` hairline only.
 - Never invent a hex value — every color comes from the spec.
 
 ## Source-of-truth lanes (quick reminder)

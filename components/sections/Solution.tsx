@@ -1,6 +1,7 @@
 import { solution } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { SolutionHex } from "@/components/ui/SolutionHex";
 
@@ -12,11 +13,11 @@ export function Solution() {
     <Section id="solution" theme="dark">
       <div className="mx-auto max-w-3xl text-center">
         <Kicker>{solution.kicker}</Kicker>
-        <h2 className="mt-5 font-display text-[clamp(34px,4.4vw,56px)] font-bold leading-[1.08] tracking-tight text-dark-hi">
+        <SectionHeading>
           {solution.headline.pre}
           <span className="text-gold">{solution.headline.gold}</span>
           {solution.headline.post}
-        </h2>
+        </SectionHeading>
         <p className="mt-6 font-body text-[clamp(16px,1.5vw,19px)] leading-relaxed text-dark-mid">{solution.lede}</p>
       </div>
 

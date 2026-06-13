@@ -1,6 +1,7 @@
 import { whyUs } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 
 const MOAT_COLOR = { platform: "#4AAFB8", operational: "#C8A85C" } as const;
@@ -26,11 +27,11 @@ export function WhyUs() {
     <Section id="why-us" theme="dark">
       <div className="mx-auto max-w-3xl text-center">
         <Kicker>{whyUs.kicker}</Kicker>
-        <h2 className="mt-5 font-display text-[clamp(30px,4vw,50px)] font-bold leading-[1.1] tracking-tight text-dark-hi">
+        <SectionHeading>
           {whyUs.headline.pre}
           <span className="text-gold">{whyUs.headline.gold}</span>
           {whyUs.headline.post}
-        </h2>
+        </SectionHeading>
         <p className="mt-6 font-body text-[clamp(15px,1.4vw,18px)] leading-relaxed text-dark-mid">{whyUs.lede}</p>
       </div>
 

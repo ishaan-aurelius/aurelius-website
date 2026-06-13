@@ -12,21 +12,21 @@ export const nav = {
 export const hero = {
   headPre: "Velocity meets clarity in ",
   headGold: "modern conflict",
-  headPost: ".",
-  sub: "Aurelius turns the hardest military planning problems into decision advantage.",
+  headPost: "",
+  sub: "The hardest military planning problems, turned into decision advantage",
   primary: { label: "Request a Demo", href: "#contact" },
   secondary: { label: "Contact Us", href: "#contact" },
 };
 
 export const problem = {
   kicker: "The Problem",
-  // gold = the demand we meet (minutes); red = the slow status quo (weeks/months/quarters).
+  // gold = the demand we meet (minutes); red = the slow status quo (weeks).
   head: {
-    pre: "The live battlefield demands ",
+    pre: "The battlefield demands ",
     gold: "minutes",
-    mid: ", but ",
-    red: "weeks, months, quarters",
-    post: " are currently delivered.",
+    mid: ". Today's planners take ",
+    red: "weeks",
+    post: ".",
   },
   // Generic U.S.-military framing — no named officers, no named adversary/target.
   brief: {
@@ -62,8 +62,8 @@ export const problem = {
 export const solution = {
   kicker: "The Platform",
   // gold = the thing we solve for.
-  headline: { pre: "Solving for ", gold: "complexity & latency", post: "." },
-  lede: "One kill-web-optimized, multi-domain platform that spans mission planning through in-mission execution.",
+  headline: { pre: "Solving for ", gold: "complexity & latency", post: "" },
+  lede: "One platform: kill-web-optimized, multi-domain, planning to in-mission.",
   // The six capabilities of the hexagon. group drives color: platform = teal, operational = gold.
   capabilities: [
     { key: "killweb", title: "Kill-Web Architecture", note: "Tens, hundreds, thousands of kill chains, woven into one kill web.", group: "platform" },
@@ -75,12 +75,12 @@ export const solution = {
   ] as { key: string; title: string; note: string; group: "platform" | "operational" }[],
   methodKicker: "From intent to executable plan",
   steps: [
-    { n: "01", title: "Understand the Mission", body: "LLMs turn commander intent and doctrine into structured planning logic." },
-    { n: "02", title: "Model the Options", body: "Optimization computes courses of action at combinatorial scale, across every domain, asset, and constraint." },
-    { n: "03", title: "Evaluate the Scenarios", body: "Stack-ranked, pareto-optimal options, with trade-offs surfaced in real time." },
-    { n: "04", title: "Empower the Commander", body: "Commanders stay in control, with the clarity and speed to decide before the window closes." },
+    { n: "01", title: "Understand the Mission", body: "Commander intent and doctrine → structured planning logic" },
+    { n: "02", title: "Model the Options", body: "Compute Courses of Action across every domain, asset & constraint" },
+    { n: "03", title: "Evaluate the Scenarios", body: "Stack-ranked, pareto-optimal solutions in real time" },
+    { n: "04", title: "Empower the Commander", body: "The commander has all information to make the decision" },
   ],
-  bridge: "Kill-web optimized and multi-domain, from first plan to live mission.",
+  bridge: "Kill-Web Optimized & Multi Domain from first plan to live mission",
 };
 
 // Two acts: the scale of the data problem, then the macro drivers ("why now").
@@ -89,23 +89,23 @@ export const whyNow = {
   // accent: teal = data only, red = status/threat only, gold = accent, hi = neutral.
   stats: [
     { value: 2000000, comma: true, unit: "GB / Day", caption: "Sensor data, single theater", accent: "teal" },
-    { value: 90, unit: "Seconds", caption: "To react to a Mach-5 threat", accent: "hi" },
-    { value: 10000, comma: true, unit: "Signals / sec", caption: "Scanned by EW jamming suites", accent: "red" },
-    { value: 10000, comma: true, unit: "Data Streams", caption: "Per command post", accent: "gold" },
-  ] as { value: number; comma?: boolean; unit: string; caption: string; accent: "teal" | "hi" | "red" | "gold" }[],
+    { value: 90, unit: "Seconds", caption: "Mach-5 hypersonic reaction window", accent: "red" },
+    { value: 10000, comma: true, unit: "Streams", caption: "Monitored at once by one command center", accent: "teal" },
+    { display: "MONTHS", value: 0, unit: "To Plan", caption: "One mission, in one domain, today", accent: "gold" },
+  ] as { value: number; comma?: boolean; display?: string; unit: string; caption: string; accent: "teal" | "hi" | "red" | "gold" }[],
   punch1: { pre: "Most of it is ", em: "never processed", post: "." },
-  punch2: { pre: "The window of decision advantage is ", em: "narrowing fast.", post: "" },
+  punch2: { pre: "The decision window is ", em: "closing fast", post: "" },
   whyKicker: "Why Now",
   // Rendered as the section's big headline, over the kill-web visual.
-  headline: { pre: "Modern defense has become a giant ", em: "network problem", post: "." },
+  headline: { pre: "The battlefield has become a ", em: "Kill Web", post: ". Military systems still think in chains." },
   // Titles only — rendered as tactical "headline boxes", no subtext.
   drivers: [
-    { n: "01", title: "A New US–China Cold War" },
-    { n: "02", title: "Warfare Shifts to the Multi-Domain Kill Web" },
-    { n: "03", title: "FY26 Budgets Prioritize AI & Autonomy" },
-    { n: "04", title: "The Pentagon Backs Non-Traditional Tech" },
+    { n: "01", title: "Near-peer adversaries already operate at machine speed" },
+    { n: "02", title: "Multi-domain conflict has outpaced human planning" },
+    { n: "03", title: "Legacy systems were built for a different era of warfare" },
+    { n: "04", title: "Decision windows are now measured in seconds" },
   ],
-  bridge: "The Pentagon wants exactly this: kill-web-optimized, multi-domain operations from planning through execution.",
+  bridge: "Exactly what the Pentagon wants: kill-web optimized, multi-domain ops from planning through execution.",
 };
 
 // "Why Aurelius" — the thesis, the moat, the proof.
@@ -153,21 +153,21 @@ export const whyUs = {
 export const careers = {
   kicker: "Careers",
   title: "Build the decision engine",
-  lede: "GenAI, optimization, and real mission logic in software that can change the trajectory of conflict.",
+  lede: "GenAI in software doing the most complex optimization",
   pillars: [
-    { title: "Real-World Impact", body: "What you build may shape future outcomes." },
+    { title: "Real-World Impact", body: "What you build shapes the outcome" },
     { title: "Elite Team", body: "Technologists, military strategists, and product minds at the edge of AI and conflict." },
     { title: "Zero Bureaucracy", body: "Small, fast, high-autonomy teams. No layers." },
     { title: "Dual-Use Future", body: "Pioneer decision intelligence for defense and beyond." },
   ],
-  closing: "No defense experience required. Just intellectual firepower and operational focus.",
+  closing: "",
   cta: { label: "Join Us", href: "#contact" },
 };
 
 export const contact = {
   kicker: "Contact",
   title: "Start the conversation",
-  lede: "Investors, partners, and builders: reach out.",
+  lede: "Government partners, industry, and builders: reach out.",
   email: "contact@aurelius.guru",
 };
 

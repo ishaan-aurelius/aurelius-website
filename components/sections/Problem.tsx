@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { problem } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
 import { useInView } from "@/lib/useInView";
@@ -68,13 +69,13 @@ export function Problem() {
         </Reveal>
 
         <Reveal style={{ transitionDelay: "80ms" }}>
-          <h2 className="wipe-in font-display mx-auto mt-5 max-w-[24ch] text-[clamp(28px,3.8vw,48px)] font-bold leading-[1.1] tracking-tight text-dark-hi">
+          <SectionHeading className="wipe-in mx-auto max-w-[24ch]">
             {problem.head.pre}
             <span className="text-gold">{problem.head.gold}</span>
             {problem.head.mid}
             <span className="text-alert-d">{problem.head.red}</span>
             {problem.head.post}
-          </h2>
+          </SectionHeading>
         </Reveal>
 
         <Reveal style={{ transitionDelay: "160ms" }}>

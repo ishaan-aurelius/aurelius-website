@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { contact } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { validateContact, type ContactErrors } from "@/lib/validation";
 
 const interests = [
@@ -60,7 +61,7 @@ export function Contact() {
     <Section id="contact" theme="dark">
       <div className="mx-auto max-w-[640px] text-center">
         <Kicker>{contact.kicker}</Kicker>
-        <h2 className="mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold tracking-tight text-dark-hi">{contact.title}</h2>
+        <SectionHeading>{contact.title}</SectionHeading>
         <p className="mt-5 font-body text-[clamp(16px,1.5vw,19px)] text-dark-mid">{contact.lede}</p>
       </div>
 

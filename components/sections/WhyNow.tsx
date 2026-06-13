@@ -2,6 +2,7 @@
 import { whyNow } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
 
@@ -23,18 +24,18 @@ export function WhyNow() {
           <Kicker>{whyNow.whyKicker}</Kicker>
         </Reveal>
         <Reveal style={{ transitionDelay: "80ms" }}>
-          <h2 className="mx-auto mt-5 max-w-[16ch] font-display text-[clamp(40px,6vw,68px)] font-bold leading-[1.03] tracking-tight text-dark-hi">
+          <SectionHeading className="mx-auto max-w-3xl">
             {whyNow.headline.pre}
             <span className="text-gold">{whyNow.headline.em}</span>
             {whyNow.headline.post}
-          </h2>
+          </SectionHeading>
         </Reveal>
 
         {/* four tactical headline boxes (titles only) */}
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
           {whyNow.drivers.map((d, i) => (
             <Reveal key={d.n} style={{ transitionDelay: `${i * 80}ms` }} className="h-full">
-              <div className="group relative flex h-full min-h-[152px] flex-col border border-dark-border bg-dark-card p-5 text-left transition-colors duration-300 hover:border-gold">
+              <div className="group relative flex h-full min-h-[112px] flex-col border border-dark-border bg-dark-card p-5 text-left transition-colors duration-300 hover:border-gold sm:min-h-[152px]">
                 {/* HUD corner brackets — inset so they read as a deliberate reticle accent */}
                 <span className="pointer-events-none absolute left-2 top-2 h-4 w-4 border-l-2 border-t-2 border-gold transition-all duration-300 group-hover:h-5 group-hover:w-5" />
                 <span className="pointer-events-none absolute bottom-2 right-2 h-4 w-4 border-b-2 border-r-2 border-gold transition-all duration-300 group-hover:h-5 group-hover:w-5" />
@@ -67,7 +68,7 @@ export function WhyNow() {
               <div
                 className={`font-display text-[clamp(28px,3.6vw,44px)] font-bold leading-none tabular-nums ${accentClass[s.accent]}`}
               >
-                <CountUp target={s.value} format={s.comma ? withCommas : undefined} />
+                <CountUp target={s.value} display={s.display} format={s.comma ? withCommas : undefined} />
               </div>
               <div className="font-display mt-3 text-[11px] font-bold uppercase tracking-[0.16em] text-dark-hi">
                 {s.unit}

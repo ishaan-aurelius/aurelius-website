@@ -28,26 +28,28 @@ Motion is a first-class requirement here, so it gets its own rules.
 
 ---
 
-## 2. Section order & theme rhythm  ⚠️ has an open decision
+## 2. Section order & theme rhythm
 
-**Canonical scroll order (per the latest brief):**
+**Canonical scroll order:**
 
-`Nav → Hero → Solution → Why Now → Why Us → Careers → Contact → Footer`
+`Nav → Hero → Problem → Why Now → Solution → Careers → Contact → Footer`
 
-**Theme rhythm — LOCKED (decided 2026-06-06):**
+**Theme — LOCKED (decided 2026-06-13, overrides the earlier alternation rule):**
 
-| # | Section | Theme | Driven by |
-|---|---|---|---|
-| — | Nav | Dark (navy, blur) | color spec |
-| 1 | Hero | Dark | Wix `image-5`, brief |
-| 2 | Solution | **Light** | inspiration img #1/#2 are light-canvas |
-| 3 | Why Now | Dark | Palantir/Anduril mood |
-| 4 | Why Us | **Light** | decision: flip to light for clean alternation |
-| 5 | Careers | Dark | Wix `image-4` |
-| 6 | Contact | **Light** | color spec |
-| — | Footer | Dark | color spec |
+> **The entire site is dark. Every section uses the single dark canvas `#0D1420` — the Hero color.** There are **no light sections** and **no dark/light alternation.** This is a hard, deliberate user decision: do not reintroduce light sections or alternation, and do not flip any section to `light` or `darkAlt`. One uniform dark background, top to bottom.
 
-Perfect dark/light alternation: dark → light → dark → light → dark → light. **Consequence:** Why Us is now a *light* section, but its reference images (`03-whyus-floating-dashboards.png`, `04-whyus-bento-grid.png`) are dark/blue. They must be re-skinned for a **light canvas** (white/`light/card` tiles, dark text, gold/teal accents) — floating product screenshots and bento grids both work well on light. See §7.
+| # | Section | Theme |
+|---|---|---|
+| — | Nav | Dark `#0D1420` (blur/92%) |
+| 1 | Hero | Dark `#0D1420` |
+| 2 | Problem | Dark `#0D1420` |
+| 3 | Why Now | Dark `#0D1420` |
+| 4 | Solution | Dark `#0D1420` |
+| 5 | Careers | Dark `#0D1420` |
+| 6 | Contact | Dark `#0D1420` |
+| — | Footer | Dark `#0D1420` |
+
+The earlier "perfect dark/light alternation" plan is **retired.** Section separation now comes from the 1px `dark/border` hairline at each section top, not from a canvas color change. Differentiation between sections is achieved through content, motion, and card/panel layering (`dark/card #1A2838` sits one level up from the canvas) — never a lighter section background.
 
 ---
 
@@ -84,7 +86,7 @@ Perfect dark/light alternation: dark → light → dark → light → dark → l
 
 ---
 
-## 5. Section: Solution  — LIGHT
+## 5. Section: Solution  — DARK
 
 - **Purpose:** show *how* Aurelius works — the 01–04 method — plus a tactile, "this is a real product" visual.
 - **Content (from mockup HTML):** the Solution lede + the **four numbered steps** (01 Understand the Mission → 04 Empower the Commander), and the four capability pillars.
@@ -109,7 +111,7 @@ Perfect dark/light alternation: dark → light → dark → light → dark → l
 
 ---
 
-## 7. Section: Why Us (Authority)  — LIGHT
+## 7. Section: Why Us (Authority)  — DARK
 
 - **Purpose:** authority and proof — why Aurelius specifically wins (team pedigree, scale claims, the `10^26 → 4 plans` proof point, credentials). This replaces "About."
 - **Content (from mockup HTML "About"):** the company narrative, the `10^26 / 4 / MINUTES` number strip, and the three credential cards (Silicon Valley DNA, Military Leadership, Prime-Grade Engineering).
@@ -131,7 +133,7 @@ Perfect dark/light alternation: dark → light → dark → light → dark → l
 
 ---
 
-## 9. Section: Contact  — LIGHT
+## 9. Section: Contact  — DARK
 
 - **Purpose:** the conversion point — investors, partners, builders, and (critically) DIU/DoD evaluators.
 - **Content (from mockup HTML):** "Start the conversation" headline + lede + the contact email CTA (`contact@aurelius.guru`).

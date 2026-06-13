@@ -1,6 +1,7 @@
 import { careers } from "@/content/site";
 import { Section } from "@/components/ui/Section";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 
@@ -9,9 +10,7 @@ export function Careers() {
     <Section id="careers" theme="dark">
       <div className="mx-auto max-w-3xl text-center">
         <Kicker>{careers.kicker}</Kicker>
-        <h2 className="mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold leading-[1.1] tracking-tight text-dark-hi">
-          {careers.title}
-        </h2>
+        <SectionHeading>{careers.title}</SectionHeading>
         <p className="mt-6 font-body text-[clamp(16px,1.5vw,19px)] leading-relaxed text-dark-mid">{careers.lede}</p>
       </div>
 
@@ -29,8 +28,10 @@ export function Careers() {
         ))}
       </div>
 
-      <p className="mt-10 text-center font-body text-base text-dark-hi">{careers.closing}</p>
-      <div className="mt-6 text-center">
+      {careers.closing && (
+        <p className="mt-10 text-center font-body text-base text-dark-hi">{careers.closing}</p>
+      )}
+      <div className="mt-10 text-center">
         <Button href={careers.cta.href} variant="primary">
           {careers.cta.label}
         </Button>

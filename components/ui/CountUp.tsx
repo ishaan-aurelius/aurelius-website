@@ -12,14 +12,19 @@ export function CountUp({
   target,
   format = (n) => String(n),
   duration = 1100,
+  display,
 }: {
   target: number;
   format?: (n: number) => string;
   duration?: number;
+  // When set, render this literal string instead of an animated number
+  // (for non-numeric stats like "MONTHS"). Keeps the stat row visually uniform.
+  display?: string;
 }) {
   const { ref, inView } = useInView<HTMLSpanElement>();
   const [val, setVal] = useState(0);
   useEffect(() => {
+    if (display !== undefined) return;
     if (!inView) return;
     if (prefersReduced()) {
       // One-time set when motion is disabled — show the final value, no animation.
@@ -37,6 +42,6 @@ export function CountUp({
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [inView, target, duration]);
-  return <span ref={ref}>{format(val)}</span>;
+  }, [inView, target, duration, display]);
+  return <span ref={ref}>{display !== undefined ? display : format(val)}</span>;
 }

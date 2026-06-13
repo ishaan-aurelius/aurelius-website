@@ -15,7 +15,7 @@ export function Footer() {
           ))}
         </div>
         <div className="font-body text-xs text-dark-low">
-          {footer.copyright} · {footer.tagline}
+          {footer.copyright}
         </div>
       </div>
     </footer>

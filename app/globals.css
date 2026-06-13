@@ -8,7 +8,10 @@
    TODO(prod): self-host license-clean D-DIN .woff2 files and replace the CDN @import. */
 
 html { scroll-behavior: smooth; }
-body { background: #0E141F; -webkit-font-smoothing: antialiased; }
+/* Anchor targets clear the fixed nav (~76px) so a section's kicker isn't hidden
+   under the bar when nav links jump to it. */
+section[id], header[id], [id="contact"] { scroll-margin-top: 88px; }
+body { background: #0D1420; -webkit-font-smoothing: antialiased; }
 
 /* Scroll-reveal: Reveal component toggles .is-in when the element enters the viewport */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
