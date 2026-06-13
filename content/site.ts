@@ -2,7 +2,7 @@
 export const nav = {
   links: [
     { label: "Why Now", href: "#why-now" },
-    { label: "Solution", href: "#solution" },
+    { label: "The Way Forward", href: "#solution" },
     { label: "Careers", href: "#careers" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },
@@ -60,7 +60,7 @@ export const problem = {
 
 // "The Way Forward" — the solution. Hexagon capabilities + the 01–04 method.
 export const solution = {
-  kicker: "The Way Forward",
+  kicker: "Aurelius — The Solution",
   // gold = the thing we solve for.
   headline: { pre: "Solving for ", gold: "complexity & latency", post: "." },
   lede: "One kill-web-optimized, multi-domain platform — from mission planning to in-mission execution.",
@@ -100,10 +100,10 @@ export const whyNow = {
   headline: { pre: "Modern defense has become a giant ", em: "network problem", post: "." },
   // Titles only — rendered as tactical "headline boxes", no subtext.
   drivers: [
-    { n: "01", title: "The New Cold War" },
-    { n: "02", title: "Multi-Domain Kill Web" },
-    { n: "03", title: "DoD Is Funding AI" },
-    { n: "04", title: "Non-Traditional Tech Wins" },
+    { n: "01", title: "A New US–China Cold War" },
+    { n: "02", title: "Warfare Shifts to the Multi-Domain Kill Web" },
+    { n: "03", title: "FY26 Budgets Prioritize AI & Autonomy" },
+    { n: "04", title: "The Pentagon Backs Non-Traditional Tech" },
   ],
   bridge: "The Pentagon wants kill-web-optimized, multi-domain ops — mission planning to in-mission.",
 };

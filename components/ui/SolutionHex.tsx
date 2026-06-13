@@ -1,22 +1,21 @@
-"use client";
-import { useState } from "react";
+import Image from "next/image";
 import { solution } from "@/content/site";
 import { hexIcons } from "@/components/ui/HexIcons";
-import { BrandMark } from "@/components/ui/BrandMark";
 import { Reveal } from "@/components/ui/Reveal";
 
-// Center coords (% of the square box) per capability — a hex flower around the brand mark.
+// Symmetric hex-flower: six capabilities evenly ringed (60° apart) around the
+// center logo hex. Center coords as % of the square box.
 const POS: Record<string, { x: number; y: number }> = {
-  killweb: { x: 50, y: 15 },
-  multidomain: { x: 80, y: 32 },
-  interop: { x: 80, y: 68 },
-  clarity: { x: 50, y: 85 },
-  strategic: { x: 20, y: 68 },
-  speed: { x: 20, y: 32 },
+  killweb: { x: 50, y: 20 },
+  multidomain: { x: 76, y: 35 },
+  interop: { x: 76, y: 65 },
+  clarity: { x: 50, y: 80 },
+  strategic: { x: 24, y: 65 },
+  speed: { x: 24, y: 35 },
 };
 
 const COLOR = { platform: "#4AAFB8", operational: "#C8A85C" } as const;
-const HEX_POINTS = "25,5 75,5 97,50 75,95 25,95 3,50";
+const HEX = "25,2 75,2 98,50 75,98 25,98 2,50"; // flat-top hexagon
 
 function rgba(hex: string, a: number) {
   const n = parseInt(hex.slice(1), 16);
@@ -25,14 +24,11 @@ function rgba(hex: string, a: number) {
 
 export function SolutionHex() {
   const caps = solution.capabilities;
-  const [active, setActive] = useState<string>(caps[0].key);
-  const activeCap = caps.find((c) => c.key === active) ?? caps[0];
-  const activeColor = COLOR[activeCap.group];
 
   return (
-    <div className="mt-12">
-      {/* legend */}
-      <div className="flex items-center justify-center gap-7 font-display text-[11px] font-bold uppercase tracking-[0.18em]">
+    <div>
+      {/* legend — keys the hex color coding, anchored to the cluster */}
+      <div className="flex items-center justify-center gap-6 font-display text-[11px] font-bold uppercase tracking-[0.18em] lg:justify-start">
         <span className="flex items-center gap-2 text-teal-d">
           <span className="h-2.5 w-2.5" style={{ background: COLOR.platform }} /> Platform
         </span>
@@ -41,95 +37,55 @@ export function SolutionHex() {
         </span>
       </div>
 
-      {/* DESKTOP — interactive hex flower */}
-      <Reveal className="relative mx-auto mt-8 hidden aspect-square w-full max-w-[600px] md:block">
-        {/* dashed connectors from the center mark to each capability */}
-        <svg
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-0 h-full w-full"
-          aria-hidden="true"
-        >
-          {caps.map((c) => (
-            <line
-              key={c.key}
-              x1="50"
-              y1="50"
-              x2={POS[c.key].x}
-              y2={POS[c.key].y}
-              stroke="#2A3E55"
-              strokeWidth="0.35"
-              strokeDasharray="1.4 1.4"
-            />
-          ))}
-        </svg>
-
-        {/* center brand mark hex */}
-        <div className="absolute left-1/2 top-1/2 z-10 h-[24%] w-[24%] -translate-x-1/2 -translate-y-1/2">
-          <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
-            <polygon points={HEX_POINTS} fill="#141E2C" stroke="#C8A85C" strokeWidth="1.5" />
-          </svg>
-          <BrandMark className="absolute left-1/2 top-1/2 h-[42%] w-[42%] -translate-x-1/2 -translate-y-1/2 text-gold" />
-        </div>
-
-        {/* the six capability hexes */}
+      {/* static hex flower (md+) */}
+      <Reveal className="relative mx-auto mt-7 hidden aspect-square w-full max-w-[460px] md:block">
         {caps.map((c) => {
           const Icon = hexIcons[c.key];
           const color = COLOR[c.group];
-          const isActive = c.key === active;
           return (
-            <button
+            <div
               key={c.key}
-              type="button"
-              onMouseEnter={() => setActive(c.key)}
-              onFocus={() => setActive(c.key)}
-              aria-pressed={isActive}
-              aria-label={`${c.title}: ${c.note}`}
-              className="group absolute h-[31%] w-[31%] -translate-x-1/2 -translate-y-1/2 cursor-pointer outline-none"
+              className="absolute h-[33%] w-[33%] -translate-x-1/2 -translate-y-1/2"
               style={{ left: `${POS[c.key].x}%`, top: `${POS[c.key].y}%` }}
             >
-              <svg
-                viewBox="0 0 100 100"
-                className="absolute inset-0 h-full w-full transition-[filter] duration-300"
-                style={{ filter: isActive ? `drop-shadow(0 0 9px ${rgba(color, 0.55)})` : "none" }}
-                aria-hidden="true"
-              >
-                <polygon
-                  points={HEX_POINTS}
-                  fill={rgba(color, isActive ? 0.16 : 0.06)}
-                  stroke={color}
-                  strokeWidth={isActive ? 2.2 : 1.2}
-                  className="transition-all duration-300"
-                />
+              <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full" aria-hidden="true">
+                <polygon points={HEX} fill={rgba(color, 0.08)} stroke={color} strokeWidth={1.25} />
               </svg>
               <span
-                className="absolute left-1/2 top-1/2 flex w-[78%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2 text-center"
+                className="absolute left-1/2 top-1/2 flex w-[80%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1.5 text-center"
                 style={{ color }}
               >
-                {Icon ? <Icon className="h-6 w-6" /> : null}
-                <span className="font-display text-[11px] font-bold uppercase leading-[1.15] tracking-[0.08em]">
+                {Icon ? <Icon className="h-7 w-7" /> : null}
+                <span className="font-display text-[10px] font-bold uppercase leading-[1.2] tracking-[0.06em]">
                   {c.title}
                 </span>
               </span>
-            </button>
+            </div>
           );
         })}
+
+        {/* center logo hex — the "core" the capabilities ring */}
+        <div className="absolute left-1/2 top-1/2 z-10 h-[26%] w-[26%] -translate-x-1/2 -translate-y-1/2">
+          <svg
+            viewBox="0 0 100 100"
+            className="absolute inset-0 h-full w-full"
+            aria-hidden="true"
+            style={{ filter: `drop-shadow(0 0 10px ${rgba("#C8A85C", 0.35)})` }}
+          >
+            <polygon points={HEX} fill="#141E2C" stroke="#C8A85C" strokeWidth={1.5} />
+          </svg>
+          <Image
+            src="/aurelius-website/logo-mark.png"
+            alt="Aurelius"
+            width={56}
+            height={47}
+            className="absolute left-1/2 top-1/2 h-auto w-[46%] -translate-x-1/2 -translate-y-1/2"
+          />
+        </div>
       </Reveal>
 
-      {/* DESKTOP — caption bar (updates on hover/focus) */}
-      <div
-        aria-live="polite"
-        className="mx-auto mt-8 hidden min-h-[52px] max-w-2xl items-center justify-center gap-3 border-t border-dark-border pt-5 text-center md:flex"
-      >
-        <span className="font-display text-sm font-bold uppercase tracking-wide" style={{ color: activeColor }}>
-          {activeCap.title}
-        </span>
-        <span className="text-dark-border">—</span>
-        <span className="font-body text-[15px] leading-snug text-dark-mid">{activeCap.note}</span>
-      </div>
-
-      {/* MOBILE — stacked card grid (no absolute flower) */}
-      <div className="mt-8 grid grid-cols-2 gap-3 md:hidden">
+      {/* mobile fallback — capability cards (the absolute flower needs room) */}
+      <div className="mt-6 grid grid-cols-2 gap-3 md:hidden">
         {caps.map((c, i) => {
           const Icon = hexIcons[c.key];
           const color = COLOR[c.group];
@@ -137,13 +93,16 @@ export function SolutionHex() {
             <Reveal
               key={c.key}
               style={{ transitionDelay: `${i * 60}ms`, borderTopColor: color }}
-              className="border border-t-2 border-dark-border bg-dark-card p-4"
+              className="border border-t-2 border-dark-border bg-dark-card p-4 text-center"
             >
-              {Icon ? <span style={{ color }}><Icon className="h-5 w-5" /></span> : null}
+              {Icon ? (
+                <span className="inline-flex" style={{ color }}>
+                  <Icon className="h-5 w-5" />
+                </span>
+              ) : null}
               <h4 className="mt-3 font-display text-[12px] font-bold uppercase leading-tight tracking-wide" style={{ color }}>
                 {c.title}
               </h4>
-              <p className="mt-2 font-body text-[12px] leading-relaxed text-dark-mid">{c.note}</p>
             </Reveal>
           );
         })}
