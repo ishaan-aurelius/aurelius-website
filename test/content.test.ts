@@ -8,7 +8,6 @@ describe("site content", () => {
   it("each grouping has exactly four items", () => {
     expect(solution.steps).toHaveLength(4);
     expect(solution.pillars).toHaveLength(4);
-    expect(whyNow.stats).toHaveLength(4);
     expect(whyNow.points).toHaveLength(4);
     expect(careers.pillars).toHaveLength(4);
   });

@@ -11,7 +11,6 @@ export const nav = {
 };
 
 export const hero = {
-  kicker: "AI-Native Mission Engineering",
   headPre: "Velocity meets clarity in ",
   headGold: "modern conflict",
   headPost: ".",
@@ -42,12 +41,6 @@ export const whyNow = {
   kicker: "Why Now",
   title: "Advantage belongs to the fastest decider",
   lede: "The side that decides and acts faster than the fight unfolds wins.",
-  stats: [
-    { value: 2000000, suffix: "", unit: "GB / DAY", caption: "Sensor data per theater, per day" },
-    { value: 90, suffix: "", unit: "SECONDS", caption: "Mach 5 hypersonic reaction window" },
-    { value: 10000, suffix: "", unit: "STREAMS", caption: "Monitored at once by a command center" },
-    { value: null, text: "MONTHS", unit: "", caption: "To plan one mission, in one domain, today" },
-  ] as { value: number | null; suffix?: string; text?: string; unit: string; caption: string }[],
   points: [
     { title: "Multi-Domain Warfare", body: "Land, sea, air, space, cyber — decisions must span every domain at once." },
     { title: "The Kill Web", body: "The kill chain is now a kill web — distributed warfighting demands AI-native C2." },

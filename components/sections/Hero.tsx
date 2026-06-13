@@ -1,6 +1,5 @@
 import { hero } from "@/content/site";
 import { Button } from "@/components/ui/Button";
-import { Kicker } from "@/components/ui/Kicker";
 import { SignalNetwork } from "@/components/ui/SignalNetwork";
 import { worldMapSvg, landPoints, mapViewBox } from "@/lib/worldMap";
 
@@ -27,8 +26,7 @@ export function Hero() {
       {/* abstract signal network — decorative, animated; nodes pinned to real land dots */}
       <SignalNetwork points={landPoints} mapAspect={mapViewBox.width / mapViewBox.height} />
       <div className="relative mx-auto w-full max-w-container px-6 pt-24 text-center md:px-12">
-        <Kicker>{hero.kicker}</Kicker>
-        <h1 className="mx-auto mt-7 max-w-[24ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
+        <h1 className="mx-auto max-w-[24ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
           {hero.headPre}
           <span className="text-gold">{hero.headGold}</span>
           {hero.headPost}

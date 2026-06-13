@@ -6,8 +6,8 @@ const config: Config = {
     extend: {
       colors: {
         dark: {
-          canvas: "#0D1420",
-          canvasAlt: "#141E2C",
+          canvas: "#0E141F",
+          canvasAlt: "#0E141F",
           card: "#1A2838",
           border: "#2A3E55",
           hi: "#C8D4DE",
@@ -15,7 +15,7 @@ const config: Config = {
           low: "#6A859A",
         },
         light: {
-          canvas: "#F5F6F8",
+          canvas: "#1D2937",
           card: "#FFFFFF",
           border: "#E4E7EC",
           hi: "#1A1F2A",

@@ -21,7 +21,7 @@ function withExponents(text: string): React.ReactNode {
 
 export function WhyUs() {
   return (
-    <Section id="why-us" theme="dark">
+    <Section id="why-us" theme="light">
       <div className="mx-auto max-w-3xl text-center">
         <Kicker>{whyUs.kicker}</Kicker>
         <h2 className="mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold leading-[1.1] tracking-tight text-dark-hi">
@@ -29,22 +29,13 @@ export function WhyUs() {
         </h2>
       </div>
 
-      {/* narrative + supporting image */}
-      <div className="mt-12 grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.4fr_1fr]">
-        <div className="space-y-5">
-          {whyUs.narrative.map((para, i) => (
-            <p key={i} className="font-body text-[15.5px] leading-relaxed text-dark-mid">
-              {withExponents(para)}
-            </p>
-          ))}
-        </div>
-        {/* TODO: real image — command-center / mission-planning photo */}
-        <div
-          className="flex aspect-[4/3] items-center justify-center self-start overflow-hidden rounded border border-dashed border-dark-border bg-dark-card text-dark-low"
-          aria-hidden="true"
-        >
-          <span className="font-body text-sm">Image placeholder</span>
-        </div>
+      {/* narrative */}
+      <div className="mx-auto mt-12 max-w-3xl space-y-5">
+        {whyUs.narrative.map((para, i) => (
+          <p key={i} className="font-body text-[15.5px] leading-relaxed text-dark-hi">
+            {withExponents(para)}
+          </p>
+        ))}
       </div>
 
       {/* credentials */}
