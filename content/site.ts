@@ -1,12 +1,13 @@
 // All site copy. Edit text here — never in layout.
 export const nav = {
   links: [
+    { label: "Scale", href: "#scale" },
     { label: "Why Now", href: "#why-now" },
-    { label: "Platform", href: "#solution" },
+    { label: "Product Overview", href: "#solution" },
     { label: "Careers", href: "#careers" },
+    { label: "Contact", href: "#contact" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },
-  secondary: { label: "Contact Us", href: "#contact" },
 };
 
 export const hero = {
@@ -21,17 +22,17 @@ export const hero = {
 export const problem = {
   // gold = the demand we meet (minutes); red = the slow status quo (weeks).
   head: {
-    pre: "Warfare demands reacting within ",
+    pre: "Warfare now demands reacting within ",
     gold: "minutes",
     mid: ". Today's planners take ",
     red: "months, quarters and even years",
-    post: ".",
+    post: "",
   },
   // follow-on line: gold = the solution we provide.
   sub: {
-    pre: "No human can search this space. ",
-    em: "An optimizer can.",
-    post: "",
+    pre: "Constantly changing parameters at massive scale make this ",
+    em: "super combinatorial explosion",
+    post: " problem — even modern computers struggle to solve",
   },
   // Generic U.S.-military framing — no named officers, no named adversary/target.
   brief: {
@@ -65,7 +66,7 @@ export const problem = {
 
 // "The Platform" — the product. Hexagon capabilities + the 01–04 method.
 export const solution = {
-  kicker: "Platform",
+  kicker: "Product Overview",
   // gold = the thing we solve for.
   headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: " — powered by proprietary Gen AI optimizer" },
   lede: "One platform: kill-web-optimized, multi-domain, planning to in-mission.",

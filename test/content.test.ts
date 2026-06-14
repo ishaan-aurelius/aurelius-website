@@ -3,7 +3,7 @@ import { nav, solution, whyNow, whyUs, careers } from "@/content/site";
 
 describe("site content", () => {
   it("nav has the expected links", () => {
-    expect(nav.links.map((l) => l.label)).toEqual(["Why Now", "The Platform", "Careers"]);
+    expect(nav.links.map((l) => l.label)).toEqual(["Scale", "Why Now", "Product Overview", "Careers", "Contact"]);
   });
   it("each grouping has the expected item count", () => {
     expect(solution.steps).toHaveLength(4);

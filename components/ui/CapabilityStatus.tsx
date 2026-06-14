@@ -2,24 +2,25 @@
 import { useInView } from "@/lib/useInView";
 import { whyNow } from "@/content/site";
 
-// Tactical "capability status" board: the four gaps as a failing-systems readout. On
-// scroll-in each row's status light ignites, its severity bar fills segment-by-segment to
-// the red threshold, and the status tag drops in — staggered per row so it reads like a
-// diagnostic boot sequence. Red is used as a *status* color here (failing capabilities),
-// which the color spec permits. A single inView trigger drives the whole sequence; under
-// reduced motion inView resolves true immediately, so the final degraded state shows at once.
+// Tactical "capability status" board: the six gaps as a failing-systems readout, laid out as a
+// 3x2 grid of diagnostic cards. On scroll-in each card's status light ignites, its severity bar
+// fills segment-by-segment to the red threshold, and the status tag drops in — staggered per card
+// so it reads like a diagnostic boot sequence sweeping across the panel. Red is used as a *status*
+// color here (failing capabilities), which the color spec permits. A single inView trigger drives
+// the whole sequence; under reduced motion inView resolves true immediately, so the final degraded
+// state shows at once.
 
 const SEGMENTS = 10;
-const ROW_STEP = 130; // ms between rows
-const SEG_STEP = 45; // ms between segments lighting up within a row
+const CARD_STEP = 110; // ms between cards igniting
+const SEG_STEP = 40; // ms between segments lighting up within a card
 
 export function CapabilityStatus() {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.3 });
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
   return (
-    <div ref={ref} className="mx-auto mt-16 max-w-3xl border border-dark-border bg-dark-card/30 text-left">
-      {/* header strip — frames the rows as an instrument readout, not another card */}
-      <div className="flex items-center justify-between border-b border-dark-border px-4 py-2.5 sm:px-5">
+    <div ref={ref} className="mx-auto mt-10 max-w-5xl text-left">
+      {/* header label — frames the grid as one instrument readout, not six loose cards */}
+      <div className="flex items-center justify-between border-b border-dark-border px-1 pb-2.5">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-dark-low">
           Key Pain Points
         </span>
@@ -29,49 +30,56 @@ export function CapabilityStatus() {
         </span>
       </div>
 
-      <div className="divide-y divide-dark-border">
+      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {whyNow.gaps.map((g, r) => {
-          const rowDelay = r * ROW_STEP;
-          const tagDelay = rowDelay + SEGMENTS * SEG_STEP;
+          const cardDelay = r * CARD_STEP;
+          const tagDelay = cardDelay + SEGMENTS * SEG_STEP;
+          const index = String(r + 1).padStart(2, "0");
           return (
             <div
               key={g.em}
-              className="flex flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:gap-5 sm:px-5"
+              className="flex flex-col border border-dark-border bg-dark-card/30 p-4 sm:p-5"
             >
-              {/* status light + terse copy */}
-              <div className="flex items-start gap-3 sm:flex-1">
+              {/* index + status light */}
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-dark-low">
+                  {index}
+                </span>
                 <span
-                  className={`mt-[0.4em] h-2 w-2 shrink-0 rounded-full bg-alert-d motion-reduce:animate-none ${
+                  className={`h-2 w-2 shrink-0 rounded-full bg-alert-d motion-reduce:animate-none ${
                     inView ? "animate-pulse opacity-100" : "opacity-0"
                   }`}
                   style={{
                     boxShadow: "0 0 8px 1px rgba(212,64,64,.7)",
-                    transitionDelay: `${rowDelay}ms`,
+                    transition: "opacity .3s ease",
+                    transitionDelay: `${cardDelay}ms`,
                   }}
                   aria-hidden="true"
                 />
-                <p className="font-display text-base leading-relaxed text-dark-mid sm:text-[17px]">
-                  {g.pre}
-                  <span className="font-bold text-dark-hi">{g.em}</span>
-                  {g.post}
-                </p>
               </div>
 
+              {/* terse copy — flex-1 pushes the readout to the card's bottom edge */}
+              <p className="mt-3 flex-1 font-display text-[15px] leading-relaxed text-dark-mid sm:text-base">
+                {g.pre}
+                <span className="font-bold text-dark-hi">{g.em}</span>
+                {g.post}
+              </p>
+
               {/* severity bar + status tag */}
-              <div className="flex items-center gap-3 pl-5 sm:pl-0">
+              <div className="mt-4 flex items-center justify-between gap-3">
                 <div className="flex gap-[3px]" aria-hidden="true">
                   {Array.from({ length: SEGMENTS }).map((_, i) => {
                     const lit = i < g.fill;
                     return (
                       <span
                         key={i}
-                        className={`h-3.5 w-[5px] sm:w-[7px] ${lit ? "bg-alert-d" : "bg-dark-border/60"}`}
+                        className={`h-3.5 w-[5px] ${lit ? "bg-alert-d" : "bg-dark-border/60"}`}
                         style={{
                           opacity: lit ? (inView ? 1 : 0) : 1,
                           transform: lit && !inView ? "scaleY(0.25)" : "scaleY(1)",
                           transformOrigin: "bottom",
                           transition: "opacity .3s ease, transform .3s ease",
-                          transitionDelay: `${rowDelay + i * SEG_STEP}ms`,
+                          transitionDelay: `${cardDelay + i * SEG_STEP}ms`,
                           boxShadow: lit && inView ? "0 0 6px rgba(212,64,64,.55)" : "none",
                         }}
                       />
@@ -79,7 +87,7 @@ export function CapabilityStatus() {
                   })}
                 </div>
                 <span
-                  className="w-[108px] font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-alert-d transition-opacity duration-500 motion-reduce:transition-none"
+                  className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-alert-d transition-opacity duration-500 motion-reduce:transition-none"
                   style={{ opacity: inView ? 1 : 0, transitionDelay: `${tagDelay}ms` }}
                 >
                   {g.status}

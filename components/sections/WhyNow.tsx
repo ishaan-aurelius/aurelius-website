@@ -24,11 +24,20 @@ export function WhyNow() {
 
         {/* six key pain points — merged driver boxes + status readout into one board */}
         <CapabilityStatus />
+
+        {/* payoff caption under the pain-points board — the scale of what must be solved */}
+        <Reveal className="mt-10 md:mt-12" style={{ transitionDelay: "80ms" }}>
+          <p className="mx-auto max-w-[44ch] font-display text-base font-bold leading-snug tracking-tight text-dark-hi sm:text-xl md:text-2xl">
+            {problem.sub.pre}
+            <span className="text-gold">{problem.sub.em}</span>
+            {problem.sub.post}
+          </p>
+        </Reveal>
       </div>
 
       {/* ===== ACT 2 — THE PROBLEM: merged into this section (no dividing border) ===== */}
       {/* own relative/overflow context so the telemetry stays pinned behind the problem block, not WhyNow */}
-      <div className="relative mt-24 overflow-hidden md:mt-32">
+      <div className="relative mt-16 overflow-hidden md:mt-20">
         {/* ambient telemetry — very faint live-feed texture drifting behind the top of the block */}
         <div
           aria-hidden="true"
@@ -48,18 +57,6 @@ export function WhyNow() {
               <span className="text-alert-d">{problem.head.red}</span>
               {problem.head.post}
             </SectionHeading>
-          </Reveal>
-
-          <Reveal style={{ transitionDelay: "80ms" }}>
-            <p className="mx-auto mt-6 max-w-[42ch] font-display text-lg leading-relaxed text-dark-mid">
-              {problem.sub.pre}
-              <span className="font-bold text-gold">{problem.sub.em}</span>
-              {problem.sub.post}
-            </p>
-          </Reveal>
-
-          <Reveal style={{ transitionDelay: "160ms" }}>
-            <span className="mx-auto mt-6 block h-px w-10 bg-gold" />
           </Reveal>
         </div>
       </div>
