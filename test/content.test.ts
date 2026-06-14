@@ -8,7 +8,7 @@ describe("site content", () => {
   it("each grouping has the expected item count", () => {
     expect(solution.steps).toHaveLength(4);
     expect(solution.capabilities).toHaveLength(6);
-    expect(whyNow.stats).toHaveLength(4);
+    expect(whyNow.explosion.factors).toHaveLength(4);
     expect(whyNow.drivers).toHaveLength(4);
     expect(careers.pillars).toHaveLength(4);
   });

@@ -1,35 +1,23 @@
 import { hero } from "@/content/site";
-import { KillWeb } from "@/components/ui/KillWeb";
-import { worldMapSvg } from "@/lib/worldMap";
+import { WorldPlexus } from "@/components/ui/WorldPlexus";
+import { landPoints, mapViewBox } from "@/lib/worldMap";
 
 export function Hero() {
   return (
     <header className="relative flex min-h-screen items-center overflow-hidden bg-dark-canvas">
-      {/* dotted world map — decorative, masked + dimmed; weighted to the right so the
-          left (behind the headline) stays plain */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.26] [mask-image:radial-gradient(ellipse_at_72%_42%,black_0%,black_28%,transparent_70%)] [-webkit-mask-image:radial-gradient(ellipse_at_72%_42%,black_0%,black_28%,transparent_70%)]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml;utf8,${encodeURIComponent(worldMapSvg)}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        aria-hidden="true"
+      {/* living world plexus — continents formed purely by a dense edge mesh (no dots).
+          Shimmers, slowly flows within continental bounds, and carries signal pulses.
+          Fades out below the fold so it reads as the hero's own backdrop. */}
+      <WorldPlexus
+        points={landPoints}
+        mapAspect={mapViewBox.width / mapViewBox.height}
+        className="[mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_60%,transparent_94%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_60%,transparent_94%)]"
       />
-      {/* radial glow — base depth; opaque navy at the edges focuses the eye on the upper-right */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse at 72% 32%, rgba(26,40,56,.7) 0%, rgba(13,20,32,1) 62%)" }}
-        aria-hidden="true"
-      />
-      {/* kill-web — decorative, animated; same living-network treatment as the Why Now
-          section, masked to the upper-right so the headline stays clean */}
-      <KillWeb className="opacity-70 [mask-image:radial-gradient(ellipse_at_72%_42%,black_0%,black_34%,transparent_72%)] [-webkit-mask-image:radial-gradient(ellipse_at_72%_42%,black_0%,black_34%,transparent_72%)]" />
-      {/* legibility scrim — washes the canvas navy back in around the headline so the
+      {/* legibility scrim — washes the canvas navy back in behind the headline so the
           network reads as backdrop, not competition. Strongest behind the text, gone by the edges. */}
       <div
         className="pointer-events-none absolute inset-0"
-        style={{ background: "radial-gradient(ellipse 72% 56% at 50% 50%, rgba(14,20,31,0.85) 0%, rgba(14,20,31,0.5) 42%, rgba(14,20,31,0) 76%)" }}
+        style={{ background: "radial-gradient(ellipse 64% 50% at 50% 48%, rgba(14,20,31,0.88) 0%, rgba(14,20,31,0.55) 44%, rgba(14,20,31,0) 78%)" }}
         aria-hidden="true"
       />
       <div className="relative mx-auto w-full max-w-container px-6 pt-24 text-center md:px-12">

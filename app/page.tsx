@@ -1,7 +1,6 @@
 import { Nav } from "@/components/sections/Nav";
 import { Hero } from "@/components/sections/Hero";
 import { Scale } from "@/components/sections/Scale";
-import { Problem } from "@/components/sections/Problem";
 import { Solution } from "@/components/sections/Solution";
 import { WhyNow } from "@/components/sections/WhyNow";
 import { Careers } from "@/components/sections/Careers";
@@ -16,7 +15,6 @@ export default function Home() {
         <Hero />
         <Scale />
         <WhyNow />
-        <Problem />
         <Solution />
         <Careers />
         <Contact />

@@ -147,7 +147,7 @@ export function KillWeb({
     }
 
     function resize() {
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const rect = canvas.getBoundingClientRect();
       W = rect.width;
       H = rect.height;
@@ -236,11 +236,28 @@ export function KillWeb({
     resize();
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
-    if (!reduced) raf = requestAnimationFrame(frame);
+
+    // Only animate while this section is on-screen.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !reduced) {
+          if (!raf) {
+            last = 0; // avoid a large dt jump after being paused
+            raf = requestAnimationFrame(frame);
+          }
+        } else if (raf) {
+          cancelAnimationFrame(raf);
+          raf = 0;
+        }
+      },
+      { threshold: 0 },
+    );
+    io.observe(canvas);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      io.disconnect();
     };
   }, [anchors, density]);
 

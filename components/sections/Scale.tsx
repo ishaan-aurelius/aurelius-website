@@ -5,6 +5,7 @@ import { scale } from "@/content/site";
 import { KillWeb } from "@/components/ui/KillWeb";
 import { AssetField, ASSETS } from "@/components/ui/AssetField";
 import { CountUp } from "@/components/ui/CountUp";
+import { Kicker } from "@/components/ui/Kicker";
 import { Reveal } from "@/components/ui/Reveal";
 import { worldMapSvg } from "@/lib/worldMap";
 
@@ -86,9 +87,13 @@ export function Scale() {
       <Reticle />
 
       <div className="relative mx-auto w-full max-w-container px-6 md:px-12">
-        {/* headline — left-aligned, soft blue, wide-tracked uppercase */}
-        <Reveal>
-          <h2 className="max-w-5xl font-display text-[clamp(22px,3.2vw,40px)] font-bold uppercase leading-[1.18] tracking-[0.06em] text-dark-mid">
+        {/* centered title block — kicker + headline, matching every other section */}
+        <Reveal className="text-center">
+          <Kicker>{scale.kicker}</Kicker>
+        </Reveal>
+        {/* headline — soft blue, wide-tracked uppercase */}
+        <Reveal style={{ transitionDelay: "60ms" }}>
+          <h2 className="mx-auto mt-4 max-w-5xl text-center font-display text-[clamp(22px,3.2vw,40px)] font-bold uppercase leading-[1.18] tracking-[0.06em] text-dark-mid">
             {scale.headline}
           </h2>
         </Reveal>

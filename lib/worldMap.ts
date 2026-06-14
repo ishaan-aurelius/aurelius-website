@@ -14,13 +14,11 @@ export const worldMapSvg = map.getSVG({
 // The SVG renders inside this viewBox; nodes placed on the map use the same space.
 export const mapViewBox = { width: 119, height: 60 };
 
-// Land-dot coordinates (normalized to 0..1 of the viewBox), sampled down from the
-// full ~3000 dots to keep the client bundle light. The hero network picks a random
-// subset of these so its nodes always sit on actual landmasses.
-export const landPoints: { x: number; y: number }[] = (() => {
-  const all = map.getPoints();
-  const stride = Math.ceil(all.length / 500);
-  return all
-    .filter((_, i) => i % stride === 0)
-    .map((p) => ({ x: p.x / mapViewBox.width, y: p.y / mapViewBox.height }));
-})();
+// Every land-dot coordinate (normalized to 0..1 of the viewBox), rounded to 4 dp to
+// trim bytes. The hero plexus meshes ALL of these into a dense edge network — the
+// continents are formed by edge density, not by the dots themselves — so we keep the
+// full ~3000-point cloud rather than sampling it down.
+export const landPoints: { x: number; y: number }[] = map.getPoints().map((p) => ({
+  x: Math.round((p.x / mapViewBox.width) * 1e4) / 1e4,
+  y: Math.round((p.y / mapViewBox.height) * 1e4) / 1e4,
+}));

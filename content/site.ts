@@ -19,13 +19,18 @@ export const hero = {
 };
 
 export const problem = {
-  kicker: "The Problem",
   // gold = the demand we meet (minutes); red = the slow status quo (weeks).
   head: {
-    pre: "Battlefield demands ",
+    pre: "Warfare demands reacting within ",
     gold: "minutes",
     mid: ". Today's planners take ",
     red: "months, quarters and even years",
+    post: ".",
+  },
+  // follow-on line: gold = the solution we provide.
+  sub: {
+    pre: "No human can search this space. ",
+    em: "An optimizer can.",
     post: "",
   },
   // Generic U.S.-military framing — no named officers, no named adversary/target.
@@ -80,48 +85,72 @@ export const solution = {
     { n: "03", title: "Evaluate Scenarios", body: "Pareto Optimal solutions in real time" },
     { n: "04", title: "Empower Commander", body: "Commander has all information to make decisions" },
   ],
-  bridge: "Aurelius is interoperable, scalable solution optimizing kill webs on prem, in cloud or on edge",
+  bridge: "Aurelius is the data fabric and optimization layer solving kill webs for multi-domain operations",
 };
 
 // Two acts: the scale of the data problem, then the macro drivers ("why now").
+// One continuous narrative, picking up where Scale left off (drowning in data):
+// Beat 1 interconnection → Beat 2 the explosion that data creates → Beat 3 urgency.
 export const whyNow = {
-  scaleKicker: "The Scale",
-  // accent: teal = data only, red = status/threat only, gold = accent, hi = neutral.
-  stats: [
-    { value: 2000000, comma: true, unit: "GB / Day", caption: "Sensor data, single theater", accent: "teal" },
-    { value: 90, unit: "Seconds", caption: "Mach-5 hypersonic reaction window", accent: "red" },
-    { value: 10000, comma: true, unit: "Streams", caption: "Monitored at once by one command center", accent: "teal" },
-    { display: "MONTHS", value: 0, unit: "To Plan", caption: "One mission, in one domain, today", accent: "gold" },
-  ] as { value: number; comma?: boolean; display?: string; unit: string; caption: string; accent: "teal" | "hi" | "red" | "gold" }[],
-  punch1: { pre: "Most of it is ", em: "never processed", post: "." },
-  punch2: { pre: "The decision window is ", em: "closing fast", post: "" },
   whyKicker: "Why Now",
-  // Rendered as the section's big headline, over the kill-web visual.
-  headline: { pre: "Modern Battlefield Is a Complex, Interconnected Network — a ", em: "Kill Web", post: "" },
-  // Titles only — rendered as tactical "headline boxes", no subtext.
+  // Beat 1 — interconnection. The section's big headline, over the kill-web visual.
+  headline: { pre: "The Modern Battlefield Is a Complex, Interconnected Network — a ", em: "Kill Web", post: "" },
+  // Beat 2 — the combinatorial explosion. Each input MULTIPLIES the decision space (not
+  // adds), so the web detonates and the count races to 10^26 — the bridge from "too much
+  // data" (Scale) to "too many possible plans no human can solve". The 10^26 → 4 COAs
+  // *solution* payoff lands later in Why Aurelius.
+  explosion: {
+    lead: { pre: "In a connected web, each new asset, domain, and threat doesn't add to the problem — it ", em: "multiplies", post: " it." },
+    // The factors that multiply — data inputs (rendered teal). Displays are evocative,
+    // not literal; the point is the runaway product, not the arithmetic.
+    factors: [
+      { label: "Assets", display: "100s" },
+      { label: "Domains", display: "5" },
+      { label: "Threats", display: "10s" },
+      { label: "Windows", display: "secs" },
+    ],
+    // The detonation payoff. resultExp animates 0→26 as the exponent of 10.
+    resultExp: 26,
+    resultLabel: "possible plans",
+    resultLine: { pre: "A ", em: "super combinatorial explosion", post: " no human can solve." },
+  },
+  // Beat 3 — urgency. Titles only, rendered as tactical "headline boxes", no subtext.
   drivers: [
     { n: "01", title: "Near-peer adversaries already operate at machine speed" },
     { n: "02", title: "Multi-domain conflict has outpaced human planning" },
     { n: "03", title: "Legacy systems were built for a different era of warfare" },
     { n: "04", title: "Decision windows are now measured in seconds" },
   ],
-  bridge: "Exactly what the Pentagon wants: kill-web optimized, multi-domain ops from planning through execution.",
-  // After the four driver boxes: a scroll-triggered kill-web that "explodes" into a dense
-  // network, captioned with the combinatorial-explosion framing (the *problem*; the 10^26 →
-  // 4 COAs *solution* payoff lands later in Why Aurelius).
+  // The six key pain points — terse, presentation-style (no "the"/"and"; "&" for "and").
+  // Merges the old driver boxes + capability gaps into one tactical "status board": em = the
+  // bold key phrase, status = the red HUD tag, fill = lit segments (of 10) on the severity
+  // bar. fill is high where the problem is runaway, near-zero where capability is unused.
+  gaps: [
+    { pre: "", em: "Decision timelines too long", post: " — measured in seconds", status: "CRITICAL", fill: 9 },
+    { pre: "Data ", em: "siloed & fragmented", post: " across service lines", status: "FRAGMENTED", fill: 5 },
+    { pre: "Commanders ", em: "overwhelmed by complexity, info overload", post: "", status: "SATURATED", fill: 9 },
+    { pre: "Can't ", em: "leverage modern Gen AI", post: " effectively", status: "DORMANT", fill: 0 },
+    { pre: "", em: "Multi-domain conflict", post: " outpaced human planning", status: "OUTPACED", fill: 8 },
+    { pre: "", em: "Near-peer adversaries", post: " operate at machine speed", status: "ESCALATING", fill: 9 },
+  ] as { pre: string; em: string; post: string; status: string; fill: number }[],
+  // Beat 4 — the combinatorial payoff caption under the kill-web visual: the decision
+  // space detonates to 10^26 possible plans no human can hold. Recomposes the approved
+  // `explosion` phrasing above into the single line the current layout renders.
   network: {
     caption: {
-      pre: "Modern warfare — a ",
-      em: "super combinatorial explosion",
-      mid: " of 10",
+      pre: "In a connected web, each new asset, domain, and threat doesn't add to the problem — it ",
+      em: "multiplies",
+      mid: " it — a super combinatorial explosion to 10",
       exp: "26",
-      post: " possible plans that no human can solve.",
+      post: " possible plans no human can solve.",
     },
   },
+  bridge: "Exactly what the Pentagon wants: kill-web optimized, multi-domain ops from planning through execution.",
 };
 
 // "The Scale" — recreates the cognitive-overload slide 1:1 (copy, stat colors, icons).
 export const scale = {
+  kicker: "Scale",
   headline: "Commanders face cognitive overload from volume of data bombarding them constantly....",
   // accent maps to the slide's per-column color; icon names map to react-icons/fa glyphs.
   stats: [
