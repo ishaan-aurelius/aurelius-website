@@ -14,7 +14,7 @@ export function WhyNow() {
           <Kicker>{whyNow.whyKicker}</Kicker>
         </Reveal>
         <Reveal style={{ transitionDelay: "80ms" }}>
-          <SectionHeading className="mx-auto md:whitespace-nowrap">
+          <SectionHeading className="mx-auto">
             {whyNow.headline.pre}
             <span className="text-gold">{whyNow.headline.em}</span>
             {whyNow.headline.post}
@@ -37,6 +37,17 @@ export function WhyNow() {
             </Reveal>
           ))}
         </div>
+
+        {/* combinatorial problem space no human can hold */}
+        <Reveal>
+          <p className="mx-auto mt-16 max-w-2xl text-balance font-display text-base font-medium leading-relaxed tracking-[0.01em] text-dark-hi sm:text-lg">
+            {whyNow.network.caption.pre}
+            <span className="text-gold">{whyNow.network.caption.em}</span>
+            {whyNow.network.caption.mid}
+            <sup className="text-[0.65em] font-bold tabular-nums">{whyNow.network.caption.exp}</sup>
+            {whyNow.network.caption.post}
+          </p>
+        </Reveal>
 
       </div>
     </Section>

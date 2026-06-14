@@ -3,6 +3,7 @@ import { FaBolt, FaGlobeAmericas, FaDragon, FaLandmark } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { scale } from "@/content/site";
 import { KillWeb } from "@/components/ui/KillWeb";
+import { AssetField, ASSETS } from "@/components/ui/AssetField";
 import { CountUp } from "@/components/ui/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
 import { worldMapSvg } from "@/lib/worldMap";
@@ -77,8 +78,10 @@ export function Scale() {
         style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(26,40,56,.55) 0%, rgba(13,20,32,1) 72%)" }}
         aria-hidden="true"
       />
-      {/* living network — the data-deluge backdrop */}
-      <KillWeb className="opacity-60" />
+      {/* living network — edges meet at the military-asset icons (shared anchors) */}
+      <KillWeb className="opacity-60" anchors={ASSETS} density={2.6} />
+      {/* military-asset silhouettes — drawn ON the network nodes, above the edges */}
+      <AssetField />
       {/* central radar dial */}
       <Reticle />
 
@@ -91,14 +94,14 @@ export function Scale() {
         </Reveal>
 
         {/* four stat columns */}
-        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-x-4">
+        <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-12 md:grid-cols-4 md:gap-x-10">
           {scale.stats.map((s, i) => {
             const Icon = iconFor[s.icon];
             const color = accentClass[s.accent];
             return (
               <Reveal key={s.unit} style={{ transitionDelay: `${i * 90}ms` }} className="text-center">
                 <Icon className={`mx-auto mb-4 h-7 w-7 ${color}`} aria-hidden="true" />
-                <div className={`font-display text-[clamp(40px,6vw,84px)] font-extrabold leading-none tabular-nums ${color}`}>
+                <div className={`font-display text-[clamp(40px,6vw,64px)] font-extrabold leading-none tabular-nums ${color}`}>
                   <CountUp target={s.value} />
                 </div>
                 <div className="mt-5 font-display text-[clamp(14px,1.4vw,19px)] font-bold tracking-[0.08em] text-dark-hi">

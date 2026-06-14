@@ -2,7 +2,7 @@
 export const nav = {
   links: [
     { label: "Why Now", href: "#why-now" },
-    { label: "The Platform", href: "#solution" },
+    { label: "Platform", href: "#solution" },
     { label: "Careers", href: "#careers" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },
@@ -60,9 +60,9 @@ export const problem = {
 
 // "The Platform" — the product. Hexagon capabilities + the 01–04 method.
 export const solution = {
-  kicker: "The Platform",
+  kicker: "Platform",
   // gold = the thing we solve for.
-  headline: { pre: "Solving for ", gold: "complexity & latency", post: "" },
+  headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: " — powered by proprietary Gen AI optimizer" },
   lede: "One platform: kill-web-optimized, multi-domain, planning to in-mission.",
   // The six capabilities of the hexagon. group drives color: platform = teal, operational = gold.
   capabilities: [
@@ -80,7 +80,7 @@ export const solution = {
     { n: "03", title: "Evaluate Scenarios", body: "Pareto Optimal solutions in real time" },
     { n: "04", title: "Empower Commander", body: "Commander has all information to make decisions" },
   ],
-  bridge: "Kill-Web Optimized & Multi Domain from first plan to live mission",
+  bridge: "Aurelius is interoperable, scalable solution optimizing kill webs on prem, in cloud or on edge",
 };
 
 // Two acts: the scale of the data problem, then the macro drivers ("why now").
@@ -97,7 +97,7 @@ export const whyNow = {
   punch2: { pre: "The decision window is ", em: "closing fast", post: "" },
   whyKicker: "Why Now",
   // Rendered as the section's big headline, over the kill-web visual.
-  headline: { pre: "The Battlefield Has Become a ", em: "Kill Web", post: "" },
+  headline: { pre: "Modern Battlefield Is a Complex, Interconnected Network — a ", em: "Kill Web", post: "" },
   // Titles only — rendered as tactical "headline boxes", no subtext.
   drivers: [
     { n: "01", title: "Near-peer adversaries already operate at machine speed" },
@@ -106,6 +106,18 @@ export const whyNow = {
     { n: "04", title: "Decision windows are now measured in seconds" },
   ],
   bridge: "Exactly what the Pentagon wants: kill-web optimized, multi-domain ops from planning through execution.",
+  // After the four driver boxes: a scroll-triggered kill-web that "explodes" into a dense
+  // network, captioned with the combinatorial-explosion framing (the *problem*; the 10^26 →
+  // 4 COAs *solution* payoff lands later in Why Aurelius).
+  network: {
+    caption: {
+      pre: "Modern warfare — a ",
+      em: "super combinatorial explosion",
+      mid: " of 10",
+      exp: "26",
+      post: " possible plans that no human can solve.",
+    },
+  },
 };
 
 // "The Scale" — recreates the cognitive-overload slide 1:1 (copy, stat colors, icons).

@@ -19,8 +19,11 @@ const COLOR = {
   red: "#D44040",
 };
 
-type Kind = "node" | "teal" | "gold" | "red";
+type Kind = "node" | "teal" | "gold" | "red" | "anchor";
 type Node = { x: number; y: number; r: number; phase: number; kind: Kind };
+// A fixed network node, positioned as a fraction (0..1) of the canvas box. Used so an
+// overlaid DOM icon can sit exactly where the network's edges terminate.
+type Anchor = { x: number; y: number };
 type Edge = { a: number; b: number; len: number };
 type Pulse = { edge: number; t: number; speed: number; col: string };
 
@@ -37,7 +40,17 @@ function pickKind(): Kind {
   return "node";
 }
 
-export function KillWeb({ className = "" }: { className?: string }) {
+export function KillWeb({
+  className = "",
+  anchors = [],
+  density = 1,
+}: {
+  className?: string;
+  // Fixed nodes (0..1 fractions) that overlaid icons sit on; edges terminate here.
+  anchors?: Anchor[];
+  // Multiplier on the background random-node count — >1 packs the web denser.
+  density?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -61,12 +74,40 @@ export function KillWeb({ className = "" }: { className?: string }) {
       k === "red" ? COLOR.red : k === "gold" ? COLOR.gold : k === "teal" ? COLOR.teal : COLOR.node;
 
     function buildGraph() {
-      // Dense scatter with a minimum spacing — more nodes than the hero, packed tight.
-      const count = Math.max(28, Math.min(64, Math.round((W * H) / 9000)));
       const minSpace = Math.min(W, H) / 12;
       nodes = [];
+
+      // Fixed anchor nodes — an overlaid icon sits on each. Not drawn (the icon is the
+      // visible node); they exist so edges and packets terminate exactly on the icons.
+      anchors.forEach((a) => {
+        nodes.push({ x: a.x * W, y: a.y * H, r: 2, phase: Math.random() * Math.PI * 2, kind: "anchor" });
+      });
+
+      // Dot-swarms hugging each anchor — recreates the source slide's clustered nodes
+      // radiating from the assets, rather than a uniform field.
+      const clusterR = minSpace * 1.3;
+      anchors.forEach((a) => {
+        const cx = a.x * W;
+        const cy = a.y * H;
+        const k = 2 + Math.floor(Math.random() * 3);
+        for (let c = 0; c < k; c++) {
+          const ang = Math.random() * Math.PI * 2;
+          const rad = clusterR * (0.4 + Math.random() * 0.9);
+          nodes.push({
+            x: cx + Math.cos(ang) * rad,
+            y: cy + Math.sin(ang) * rad,
+            r: 1.2 + Math.random() * 1.4,
+            phase: Math.random() * Math.PI * 2,
+            kind: pickKind(),
+          });
+        }
+      });
+
+      // Background random scatter with a minimum spacing — `density` packs it tighter.
+      const count = Math.round(Math.max(28, Math.min(64, Math.round((W * H) / 9000))) * density);
       let guard = 0;
-      while (nodes.length < count && guard < count * 40) {
+      const target = nodes.length + count;
+      while (nodes.length < target && guard < count * 40) {
         guard++;
         const x = Math.random() * W;
         const y = Math.random() * H;
@@ -93,7 +134,7 @@ export function KillWeb({ className = "" }: { className?: string }) {
       });
 
       // Lots of packets — one per ~2 edges — so the web reads as frantic, not calm.
-      const pulseCount = Math.min(40, Math.max(10, Math.round(edges.length / 2)));
+      const pulseCount = Math.min(60, Math.max(10, Math.round(edges.length / 2)));
       pulses = Array.from({ length: pulseCount }, spawnPulse);
     }
 
@@ -134,6 +175,8 @@ export function KillWeb({ className = "" }: { className?: string }) {
 
       // Nodes — threat reds pulse hard; others twinkle.
       nodes.forEach((n) => {
+        // Anchors are invisible — the overlaid DOM icon is what the eye reads as the node.
+        if (n.kind === "anchor") return;
         const base = colorFor(n.kind);
         const beat = reduced ? 0.85 : 0.5 + 0.5 * Math.sin(time * (n.kind === "red" ? 0.004 : 0.0009) + n.phase);
         if (n.kind === "red") {
@@ -199,7 +242,7 @@ export function KillWeb({ className = "" }: { className?: string }) {
       cancelAnimationFrame(raf);
       ro.disconnect();
     };
-  }, []);
+  }, [anchors, density]);
 
   return (
     <canvas
