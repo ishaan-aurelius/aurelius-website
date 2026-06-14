@@ -4,7 +4,7 @@ import { whyNow } from "@/content/site";
 
 // Tactical "capability status" board: the six gaps as a failing-systems readout, laid out as a
 // 3x2 grid of diagnostic cards. On scroll-in each card's status light ignites, its severity bar
-// fills segment-by-segment to the red threshold, and the status tag drops in — staggered per card
+// fills segment-by-segment to the red threshold, and the status tag drops in, staggered per card
 // so it reads like a diagnostic boot sequence sweeping across the panel. Red is used as a *status*
 // color here (failing capabilities), which the color spec permits. A single inView trigger drives
 // the whole sequence; under reduced motion inView resolves true immediately, so the final degraded
@@ -14,19 +14,23 @@ const SEGMENTS = 10;
 const CARD_STEP = 110; // ms between cards igniting
 const SEG_STEP = 40; // ms between segments lighting up within a card
 
+// Per-card status tone. Red (`alert`) = runaway/critical; amber (`caution`) = partial/mid-severity
+// (below the red threshold). Both are spec status colors. Full class strings (not interpolated) so
+// Tailwind's JIT keeps them; `rgb` feeds the inline glow box-shadows.
+const TONE = {
+  alert: { dot: "bg-alert-d", bar: "bg-alert-d", tag: "text-alert-d", rgb: "212,64,64" },
+  caution: { dot: "bg-caution-d", bar: "bg-caution-d", tag: "text-caution-d", rgb: "224,160,48" },
+} as const;
+
 export function CapabilityStatus() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
   return (
     <div ref={ref} className="mx-auto mt-10 max-w-5xl text-left">
-      {/* header label — frames the grid as one instrument readout, not six loose cards */}
+      {/* header label, frames the grid as one instrument readout, not six loose cards */}
       <div className="flex items-center justify-between border-b border-dark-border px-1 pb-2.5">
         <span className="font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-dark-low">
           Key Pain Points
-        </span>
-        <span className="flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.22em] text-alert-d">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-alert-d" />
-          Degraded
         </span>
       </div>
 
@@ -35,6 +39,7 @@ export function CapabilityStatus() {
           const cardDelay = r * CARD_STEP;
           const tagDelay = cardDelay + SEGMENTS * SEG_STEP;
           const index = String(r + 1).padStart(2, "0");
+          const tone = TONE[g.tone ?? "alert"];
           return (
             <div
               key={g.em}
@@ -46,11 +51,11 @@ export function CapabilityStatus() {
                   {index}
                 </span>
                 <span
-                  className={`h-2 w-2 shrink-0 rounded-full bg-alert-d motion-reduce:animate-none ${
+                  className={`h-2 w-2 shrink-0 rounded-full ${tone.dot} motion-reduce:animate-none ${
                     inView ? "animate-pulse opacity-100" : "opacity-0"
                   }`}
                   style={{
-                    boxShadow: "0 0 8px 1px rgba(212,64,64,.7)",
+                    boxShadow: `0 0 8px 1px rgba(${tone.rgb},.7)`,
                     transition: "opacity .3s ease",
                     transitionDelay: `${cardDelay}ms`,
                   }}
@@ -58,7 +63,7 @@ export function CapabilityStatus() {
                 />
               </div>
 
-              {/* terse copy — flex-1 pushes the readout to the card's bottom edge */}
+              {/* terse copy, flex-1 pushes the readout to the card's bottom edge */}
               <p className="mt-3 flex-1 font-display text-[15px] leading-relaxed text-dark-mid sm:text-base">
                 {g.pre}
                 <span className="font-bold text-dark-hi">{g.em}</span>
@@ -73,21 +78,21 @@ export function CapabilityStatus() {
                     return (
                       <span
                         key={i}
-                        className={`h-3.5 w-[5px] ${lit ? "bg-alert-d" : "bg-dark-border/60"}`}
+                        className={`h-3.5 w-[5px] ${lit ? tone.bar : "bg-dark-border/60"}`}
                         style={{
                           opacity: lit ? (inView ? 1 : 0) : 1,
                           transform: lit && !inView ? "scaleY(0.25)" : "scaleY(1)",
                           transformOrigin: "bottom",
                           transition: "opacity .3s ease, transform .3s ease",
                           transitionDelay: `${cardDelay + i * SEG_STEP}ms`,
-                          boxShadow: lit && inView ? "0 0 6px rgba(212,64,64,.55)" : "none",
+                          boxShadow: lit && inView ? `0 0 6px rgba(${tone.rgb},.55)` : "none",
                         }}
                       />
                     );
                   })}
                 </div>
                 <span
-                  className="shrink-0 font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-alert-d transition-opacity duration-500 motion-reduce:transition-none"
+                  className={`shrink-0 font-mono text-[10px] font-bold uppercase tracking-[0.15em] ${tone.tag} transition-opacity duration-500 motion-reduce:transition-none`}
                   style={{ opacity: inView ? 1 : 0, transitionDelay: `${tagDelay}ms` }}
                 >
                   {g.status}

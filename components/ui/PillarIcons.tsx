@@ -1,6 +1,6 @@
 import type { ComponentType } from "react";
 
-// Distinct line icons for the four Solution pillars — stroke-based, currentColor,
+// Distinct line icons for the four Solution pillars, stroke-based, currentColor,
 // matching the BrandMark weight so they read as one set. Decorative only.
 type IconProps = { className?: string };
 
@@ -14,7 +14,7 @@ const base = {
   "aria-hidden": true,
 };
 
-// Kill-Web Architected — central hub wired to a ring of nodes (the network problem)
+// Kill-Web Architected, central hub wired to a ring of nodes (the network problem)
 function KillWebIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -29,7 +29,7 @@ function KillWebIcon({ className = "" }: IconProps) {
   );
 }
 
-// Zero Legacy, AI-First — stacked layers (on-prem / cloud / edge data architecture)
+// Zero Legacy, AI-First, stacked layers (on-prem / cloud / edge data architecture)
 function LayersIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -40,7 +40,7 @@ function LayersIcon({ className = "" }: IconProps) {
   );
 }
 
-// Human-in-the-Loop — a figure held inside a closed decision loop
+// Human-in-the-Loop, a figure held inside a closed decision loop
 function HumanLoopIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -52,7 +52,7 @@ function HumanLoopIcon({ className = "" }: IconProps) {
   );
 }
 
-// Strategic to Operational — tiered scale, theater-level down to in-mission
+// Strategic to Operational, tiered scale, theater-level down to in-mission
 function TiersIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>

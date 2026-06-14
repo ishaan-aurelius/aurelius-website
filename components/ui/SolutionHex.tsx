@@ -27,7 +27,7 @@ export function SolutionHex() {
 
   return (
     <div>
-      {/* legend — keys the hex color coding, anchored to the cluster */}
+      {/* legend, keys the hex color coding, anchored to the cluster */}
       <div className="flex items-center justify-center gap-6 font-display text-[11px] font-bold uppercase tracking-[0.18em] lg:justify-start">
         <span className="flex items-center gap-2 text-teal-d">
           <span className="h-2.5 w-2.5" style={{ background: COLOR.platform }} /> Platform
@@ -64,7 +64,7 @@ export function SolutionHex() {
           );
         })}
 
-        {/* center logo hex — the "core" the capabilities ring */}
+        {/* center logo hex, the "core" the capabilities ring */}
         <div className="absolute left-1/2 top-1/2 z-10 h-[26%] w-[26%] -translate-x-1/2 -translate-y-1/2">
           <svg
             viewBox="0 0 100 100"
@@ -84,7 +84,7 @@ export function SolutionHex() {
         </div>
       </Reveal>
 
-      {/* mobile fallback — capability cards (the absolute flower needs room) */}
+      {/* mobile fallback, capability cards (the absolute flower needs room) */}
       <div className="mt-6 grid grid-cols-2 gap-3 md:hidden">
         {caps.map((c, i) => {
           const Icon = hexIcons[c.key];

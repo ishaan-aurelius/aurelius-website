@@ -11,7 +11,7 @@ export function SectionHeading({
 }) {
   return (
     <h2
-      className={`mt-5 font-display text-[clamp(32px,4.2vw,52px)] font-bold leading-[1.1] tracking-tight text-dark-hi ${className}`}
+      className={`mt-5 font-display text-[clamp(32px,4.2vw,42px)] font-bold leading-[1.1] tracking-tight text-dark-hi ${className}`}
     >
       {children}
     </h2>

@@ -30,6 +30,7 @@ const config: Config = {
         },
         teal: { d: "#4AAFB8", l: "#0D8B92" },
         alert: { d: "#D44040", l: "#A82828" },
+        caution: { d: "#E0A030", l: "#B8791E" },
       },
       fontFamily: {
         display: ['"D-DIN Exp"', '"D-DIN"', "system-ui", "sans-serif"],

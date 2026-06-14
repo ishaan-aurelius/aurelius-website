@@ -8,7 +8,7 @@ const { lead, factors, resultExp, resultLabel, resultLine } = whyNow.explosion;
 
 // Beat 2 of Why Now: the bridge from "drowning in data" (Scale) to "too many possible
 // plans". On scroll-in, the inherited kill-web detonates (blooms sparse→dense), the input
-// factors multiply in one-by-one, and the count races to 10^26 — the decision space no
+// factors multiply in one-by-one, and the count races to 10^26, the decision space no
 // human can hold. Sequencing is driven off a single inView trigger with staggered delays,
 // mirroring the Reveal pattern used across the site. Reduced motion: inView resolves true
 // immediately and CountUp jumps to its target, so the final state shows with no animation.
@@ -19,7 +19,7 @@ export function CombinatorialExplosion() {
 
   return (
     <div ref={ref} className="relative mt-20 overflow-hidden py-16 sm:py-24">
-      {/* detonating web — inherited from Scale, blooms from sparse+dim to dense+bright */}
+      {/* detonating web, inherited from Scale, blooms from sparse+dim to dense+bright */}
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute inset-0 transition-all duration-[1400ms] ease-out motion-reduce:transition-none ${
@@ -29,7 +29,7 @@ export function CombinatorialExplosion() {
         <KillWeb density={3.2} />
       </div>
 
-      {/* shockwave ring — one-shot expand + fade as the web detonates */}
+      {/* shockwave ring, one-shot expand + fade as the web detonates */}
       <div
         aria-hidden="true"
         className={`pointer-events-none absolute left-1/2 top-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/40 transition-all duration-[1200ms] ease-out motion-reduce:hidden ${
@@ -48,7 +48,7 @@ export function CombinatorialExplosion() {
       />
 
       <div className="relative mx-auto max-w-3xl text-center">
-        {/* lead — the multiplication insight */}
+        {/* lead, the multiplication insight */}
         <p
           className={`mx-auto max-w-2xl text-balance font-display text-base font-medium leading-relaxed text-dark-hi transition-all duration-700 motion-reduce:transition-none sm:text-lg ${
             inView ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
@@ -59,7 +59,7 @@ export function CombinatorialExplosion() {
           {lead.post}
         </p>
 
-        {/* factor row — data inputs multiply in, staggered, then "=" */}
+        {/* factor row, data inputs multiply in, staggered, then "=" */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-4">
           {factors.map((f, i) => (
             <div key={f.label} className="flex items-center gap-x-3">
@@ -98,7 +98,7 @@ export function CombinatorialExplosion() {
           </span>
         </div>
 
-        {/* detonation payoff — giant 10^26, exponent counts 0→26 */}
+        {/* detonation payoff, giant 10^26, exponent counts 0→26 */}
         <div
           className={`mt-12 transition-all duration-700 motion-reduce:transition-none ${
             inView ? "scale-100 opacity-100" : "scale-90 opacity-0"

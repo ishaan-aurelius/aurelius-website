@@ -21,17 +21,17 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-container items-center justify-between px-6 py-4 md:px-12">
-        <Link href="#" className="flex items-center gap-3" aria-label="Aurelius — home">
-          <Image src="/aurelius-website/logo-mark.png" alt="" width={56} height={47} priority />
-          <Image src="/aurelius-website/logo-wordmark.png" alt="Aurelius" width={182} height={47} priority />
+        <Link href="#" className="flex items-center gap-3" aria-label="Aurelius home">
+          <Image src="/aurelius-website/logo-mark.png" alt="" width={56} height={47} priority className="h-[36px] w-auto" />
+          <Image src="/aurelius-website/logo-wordmark.png" alt="Aurelius" width={182} height={47} priority className="h-[60px] w-auto" />
         </Link>
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {nav.links.map((l) => (
-            <Link key={l.href} href={l.href} className="font-body text-sm text-dark-mid transition-colors hover:text-dark-hi">
+            <Link key={l.href} href={l.href} className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.15em] text-dark-mid transition-colors hover:text-dark-hi">
               {l.label}
             </Link>
           ))}
-          <Button href={nav.primary.href} variant="primary">
+          <Button href={nav.primary.href} variant="primary" size="sm">
             {nav.primary.label}
           </Button>
         </div>
@@ -42,12 +42,12 @@ export function Nav() {
       {open && (
         <div className="border-t border-dark-border bg-dark-canvas px-6 py-4 lg:hidden">
           {nav.links.map((l) => (
-            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-2 font-body text-dark-mid">
+            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-2 font-display text-sm font-bold uppercase tracking-[0.15em] text-dark-mid">
               {l.label}
             </Link>
           ))}
           <div className="mt-3">
-            <Button href={nav.primary.href} variant="primary">
+            <Button href={nav.primary.href} variant="primary" size="sm">
               {nav.primary.label}
             </Button>
           </div>

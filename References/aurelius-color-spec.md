@@ -35,6 +35,7 @@ Alternative if you want a touch more warmth than `#F5F6F8`: `#F7F6F3` (a near-ne
 | Gold hover | `#DFC87C` | `#B8983C` | Lighten on dark, darken on light |
 | Data / stats (teal) | `#4AAFB8` | `#0D8B92` | Big numbers only — never body text |
 | Alert / negative (red) | `#D44040` | `#A82828` | Status use only. **Never CTAs, never decoration.** |
+| Caution / mid-severity (amber) | `#E0A030` | `#B8791E` | Status use only — partial/degraded states below the red threshold. **Never CTAs, never decoration.** (added 2026-06-14) |
 
 ## 4. Section background — uniform dark (LOCKED 2026-06-13)
 

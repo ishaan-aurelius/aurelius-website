@@ -1,5 +1,5 @@
 export function BrandMark({ className = "" }: { className?: string }) {
-  // Rounded triangular "A" peak from the logo geometry — decorative accent only.
+  // Rounded triangular "A" peak from the logo geometry, decorative accent only.
   return (
     <svg viewBox="0 0 64 56" fill="none" className={className} aria-hidden="true">
       <path

@@ -14,7 +14,7 @@ const base = {
   "aria-hidden": true,
 };
 
-// Kill-Web Architecture — a hub wired into a web of nodes.
+// Kill-Web Architecture, a hub wired into a web of nodes.
 function KillWebIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -29,7 +29,7 @@ function KillWebIcon({ className = "" }: IconProps) {
   );
 }
 
-// Multi-Domain & Scalable — four arrows expanding outward (all domains at once).
+// Multi-Domain & Scalable, four arrows expanding outward (all domains at once).
 function ExpandIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -39,7 +39,7 @@ function ExpandIcon({ className = "" }: IconProps) {
   );
 }
 
-// Inter-Operable — two plug prongs joining (legacy + next-gen).
+// Inter-Operable, two plug prongs joining (legacy + next-gen).
 function InteropIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -50,7 +50,7 @@ function InteropIcon({ className = "" }: IconProps) {
   );
 }
 
-// Speed of Decisions — a lightning bolt (months/days → minutes).
+// Speed of Decisions, a lightning bolt (months/days → minutes).
 function BoltIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -59,7 +59,7 @@ function BoltIcon({ className = "" }: IconProps) {
   );
 }
 
-// Strategic to Operational — a command tree, top tier down to execution.
+// Strategic to Operational, a command tree, top tier down to execution.
 function TreeIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>
@@ -71,7 +71,7 @@ function TreeIcon({ className = "" }: IconProps) {
   );
 }
 
-// Cross-Domain Clarity — an eye (commanders see what matters).
+// Cross-Domain Clarity, an eye (commanders see what matters).
 function EyeIcon({ className = "" }: IconProps) {
   return (
     <svg {...base} className={className}>

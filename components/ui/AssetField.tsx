@@ -11,15 +11,15 @@ import {
 } from "react-icons/fa";
 import type { IconType } from "react-icons";
 
-// Ambient military-asset silhouettes scattered behind the Scale stats — ships, jets,
-// missiles, a satellite, a radar mast — echoing the source slide. Decorative texture
+// Ambient military-asset silhouettes scattered behind the Scale stats, ships, jets,
+// missiles, a satellite, a radar mast, echoing the source slide. Decorative texture
 // only (aria-hidden, pointer-events none). Tinted teal / faint red per user decision
 // 2026-06-14 (overrides the spec's teal=data / red=status rule for this layer).
 //
 // These double as the NODES of the KillWeb network: each asset's `x`/`y` (fractions of
 // the section box, 0..1) is also fed to <KillWeb anchors={...}> so the network's edges
 // terminate ON the icons. AssetField and KillWeb share this one list as the single
-// source of truth for positions — same fraction → same pixel in both layers.
+// source of truth for positions, same fraction → same pixel in both layers.
 const TEAL = "#4AAFB8";
 const RED = "#D44040";
 
@@ -34,10 +34,10 @@ export type Asset = {
 };
 
 // Clustered like the source slide: a dense air swarm across the top, naval columns down
-// the left, a right flank, and corner groups — not an even scatter. Kept off the exact
+// the left, a right flank, and corner groups, not an even scatter. Kept off the exact
 // center (the gold reticle) and away from sitting squarely on the big numbers.
 export const ASSETS: Asset[] = [
-  // upper-left air swarm — jets / planes / missiles
+  // upper-left air swarm, jets / planes / missiles
   { Icon: FaFighterJet, x: 0.05, y: 0.03, size: 24, rot: 18, color: TEAL, opacity: 0.34 },
   { Icon: FaPlane, x: 0.12, y: 0.02, size: 18, rot: 10, color: TEAL, opacity: 0.28 },
   { Icon: FaFighterJet, x: 0.18, y: 0.06, size: 22, rot: 28, color: TEAL, opacity: 0.32 },
@@ -51,7 +51,7 @@ export const ASSETS: Asset[] = [
   { Icon: FaFighterJet, x: 0.33, y: 0.06, size: 20, rot: 24, color: TEAL, opacity: 0.28 },
   { Icon: FaRocket, x: 0.39, y: 0.03, size: 18, rot: -50, color: RED, opacity: 0.24 },
   { Icon: FaPlane, x: 0.41, y: 0.11, size: 16, rot: 10, color: TEAL, opacity: 0.22 },
-  // upper-right — radar mast, satellite, air
+  // upper-right, radar mast, satellite, air
   { Icon: FaSatelliteDish, x: 0.6, y: 0.04, size: 20, rot: 0, color: TEAL, opacity: 0.26 },
   { Icon: FaPlane, x: 0.66, y: 0.09, size: 16, rot: -8, color: TEAL, opacity: 0.24 },
   { Icon: FaFighterJet, x: 0.71, y: 0.05, size: 20, rot: -22, color: TEAL, opacity: 0.3 },
@@ -84,7 +84,7 @@ export const ASSETS: Asset[] = [
   { Icon: FaFighterJet, x: 0.79, y: 0.91, size: 18, rot: 26, color: TEAL, opacity: 0.24 },
   { Icon: FaRocket, x: 0.95, y: 0.92, size: 20, rot: -28, color: RED, opacity: 0.24 },
   { Icon: FaCrosshairs, x: 0.72, y: 0.88, size: 20, rot: 0, color: RED, opacity: 0.2 },
-  // central body — woven through the numbers / captions / punch lines (lower opacity so
+  // central body, woven through the numbers / captions / punch lines (lower opacity so
   // the copy stays legible). Skirts the exact center where the gold reticle sits.
   { Icon: FaPlane, x: 0.28, y: 0.3, size: 16, rot: 8, color: TEAL, opacity: 0.2 },
   { Icon: FaFighterJet, x: 0.47, y: 0.25, size: 18, rot: 26, color: TEAL, opacity: 0.2 },

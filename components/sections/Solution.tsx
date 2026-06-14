@@ -31,7 +31,7 @@ export function Solution() {
   const last = solution.steps.length - 1;
   return (
     <Section id="solution" theme="dark">
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-5xl text-center">
         <Kicker>{solution.kicker}</Kicker>
         <SectionHeading>
           {solution.headline.pre}
@@ -40,9 +40,9 @@ export function Solution() {
         </SectionHeading>
       </div>
 
-      {/* two columns — the hexagon (left, native 483px) and the vertical method flow (right) */}
+      {/* two columns, the hexagon (left, native 483px) and the vertical method flow (right) */}
       <div className="mt-16 grid grid-cols-1 items-center gap-12 lg:grid-cols-[483px_minmax(0,1fr)] lg:gap-16">
-        {/* LEFT — exact screenshot, fixed 483×452 (never stretched/shrunk on desktop) */}
+        {/* LEFT, exact screenshot, fixed 483×452 (never stretched/shrunk on desktop) */}
         <Reveal className="flex justify-center lg:justify-start">
           <Image
             src="/aurelius-website/platform-hexagon.png"
@@ -53,7 +53,7 @@ export function Solution() {
           />
         </Reveal>
 
-        {/* RIGHT — the connected 01→04 flow, stacked vertically */}
+        {/* RIGHT, the connected 01→04 flow, stacked vertically */}
         <div>
           <Reveal>
             <span className="font-display block text-center text-[13px] font-bold uppercase tracking-[0.14em] text-gold">

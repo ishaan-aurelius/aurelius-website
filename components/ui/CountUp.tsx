@@ -27,7 +27,7 @@ export function CountUp({
     if (display !== undefined) return;
     if (!inView) return;
     if (prefersReduced()) {
-      // One-time set when motion is disabled — show the final value, no animation.
+      // One-time set when motion is disabled, show the final value, no animation.
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setVal(target);
       return;
@@ -36,7 +36,7 @@ export function CountUp({
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic — weighted, no overshoot
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic, weighted, no overshoot
       setVal(Math.round(target * eased));
       if (p < 1) raf = requestAnimationFrame(tick);
     };

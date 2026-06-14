@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Full-map living plexus for the hero background — EDGES ONLY.
+ * Full-map living plexus for the hero background, EDGES ONLY.
  *
  * The continents are formed by edge DENSITY, not by dots: every land point is meshed to
  * its nearest neighbours with thin additive lines, so dense interiors fill in as bright
@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
  *
  * Motion (subtle, ambient, no cursor):
  *  - SHIMMER: each edge twinkles independently between its own trough and peak brightness,
- *    at its own slow random frequency / phase / intensity — like scattered glinting light.
+ *    at its own slow random frequency / phase / intensity, like scattered glinting light.
  *  - FLOAT: each node drifts on a tiny, slow, random orbit (small bound) so the mesh
  *    wanders organically without the whole map sliding.
  *
@@ -23,9 +23,9 @@ import { useEffect, useRef } from "react";
  */
 
 const COLOR = {
-  line: "#6A859A", // dark.low — dim edges
-  glow: "#A0B8C8", // dark.mid — brighter edges + soft halo
-  hi: "#C8D4DE", // dark.hi — the brightest glints
+  line: "#6A859A", // dark.low, dim edges
+  glow: "#A0B8C8", // dark.mid, brighter edges + soft halo
+  hi: "#C8D4DE", // dark.hi, the brightest glints
 };
 
 const NB = 18; // brightness buckets
@@ -66,7 +66,7 @@ function smoothstep(a: number, b: number, x: number) {
 type Props = {
   /** Land-dot coordinates, normalized to 0..1 of the map viewBox. */
   points: { x: number; y: number }[];
-  /** Map aspect ratio (viewBox width / height) — needed to match `cover`. */
+  /** Map aspect ratio (viewBox width / height), needed to match `cover`. */
   mapAspect: number;
   className?: string;
 };
@@ -162,7 +162,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
         n.hy += (Math.random() - 0.5) * jitter;
         n.x = n.hx;
         n.y = n.hy;
-        // Per-node float — small bounded orbit, slow, fully desynced.
+        // Per-node float, small bounded orbit, slow, fully desynced.
         n.ax = floatAmp * (0.5 + Math.random() * 0.9);
         n.ay = floatAmp * (0.5 + Math.random() * 0.9);
         n.fx = (2 * Math.PI) / (5000 + Math.random() * 9000);
@@ -214,8 +214,8 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
           seen.add(ek);
           const nb = nodes[j];
           // Wider, more random shimmer: peak intensity, rate, and twinkle depth all vary.
-          const peak = 0.18 + Math.random() * 0.42; // 0.18–0.60
-          const period = 2200 + Math.random() * 12000; // 2.2s–14.2s
+          const peak = 0.18 + Math.random() * 0.42; // 0.18-0.60
+          const period = 2200 + Math.random() * 12000; // 2.2s-14.2s
           const depth = 0.1 + Math.random() * 0.45; // how deep the trough goes
           edges.push({
             a: i,
@@ -231,7 +231,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
     }
 
     function resize() {
-      // Cap DPR — at native 2× retina the canvas has 4× the pixels to stroke, which
+      // Cap DPR, at native 2× retina the canvas has 4× the pixels to stroke, which
       // dominates the cost of a dense edge mesh. 1.5 is plenty for a faint backdrop.
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const rect = canvas.getBoundingClientRect();
@@ -275,12 +275,12 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
         p.lineTo(nb.x, nb.y);
       }
 
-      // Soft continental halo — faint + wide, also dimmed centrally via the bucket dim.
+      // Soft continental halo, faint + wide, also dimmed centrally via the bucket dim.
       ctx.lineWidth = 1.7;
       ctx.strokeStyle = rgba(COLOR.glow, 0.05);
       ctx.stroke(halo);
 
-      // Crisp shimmering core — one stroke per brightness bucket.
+      // Crisp shimmering core, one stroke per brightness bucket.
       ctx.lineWidth = 0.7;
       for (let b = 0; b < NB; b++) {
         ctx.strokeStyle = bucketStyle[b];
@@ -290,7 +290,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
       ctx.globalCompositeOperation = "source-over";
     }
 
-    // Throttle to ~30fps — the shimmer/float are slow enough that 60fps is wasted work.
+    // Throttle to ~30fps, the shimmer/float are slow enough that 60fps is wasted work.
     const FRAME_MS = 1000 / 30;
     let lastDraw = 0;
     function frame(time: number) {
@@ -304,7 +304,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
 
-    // Only animate while the hero is actually on-screen — frees the CPU once the user
+    // Only animate while the hero is actually on-screen, frees the CPU once the user
     // scrolls past it instead of running a heavy rAF loop for the whole page.
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -330,7 +330,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-0 h-full w-full ${className}`}
+      className={`pointer-events-none absolute inset-0 h-full w-full opacity-[0.92] ${className}`}
     />
   );
 }

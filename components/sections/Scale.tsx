@@ -6,6 +6,7 @@ import { KillWeb } from "@/components/ui/KillWeb";
 import { AssetField, ASSETS } from "@/components/ui/AssetField";
 import { CountUp } from "@/components/ui/CountUp";
 import { Kicker } from "@/components/ui/Kicker";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { worldMapSvg } from "@/lib/worldMap";
 
@@ -23,7 +24,7 @@ const iconFor: Record<string, IconType> = {
   landmark: FaLandmark,
 };
 
-// Central radar reticle — concentric gold arcs + hexagon with a soft glow,
+// Central radar reticle, concentric gold arcs + hexagon with a soft glow,
 // sitting behind the middle of the stat row like the slide's dial. Decorative.
 function Reticle() {
   return (
@@ -63,7 +64,7 @@ export function Scale() {
       id="scale"
       className="relative overflow-hidden border-t border-dark-border bg-dark-canvas py-20 md:py-28"
     >
-      {/* dotted world map — decorative, dimmed */}
+      {/* dotted world map, decorative, dimmed */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.18]"
         style={{
@@ -79,23 +80,25 @@ export function Scale() {
         style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(26,40,56,.55) 0%, rgba(13,20,32,1) 72%)" }}
         aria-hidden="true"
       />
-      {/* living network — edges meet at the military-asset icons (shared anchors) */}
+      {/* living network, edges meet at the military-asset icons (shared anchors) */}
       <KillWeb className="opacity-60" anchors={ASSETS} density={2.6} />
-      {/* military-asset silhouettes — drawn ON the network nodes, above the edges */}
+      {/* military-asset silhouettes, drawn ON the network nodes, above the edges */}
       <AssetField />
       {/* central radar dial */}
       <Reticle />
 
       <div className="relative mx-auto w-full max-w-container px-6 md:px-12">
-        {/* centered title block — kicker + headline, matching every other section */}
+        {/* centered title block, kicker + headline, matching every other section */}
         <Reveal className="text-center">
           <Kicker>{scale.kicker}</Kicker>
         </Reveal>
-        {/* headline — soft blue, wide-tracked uppercase */}
+        {/* headline, sentence case, matches every other section's SectionHeading */}
         <Reveal style={{ transitionDelay: "60ms" }}>
-          <h2 className="mx-auto mt-4 max-w-5xl text-center font-display text-[clamp(22px,3.2vw,40px)] font-bold uppercase leading-[1.18] tracking-[0.06em] text-dark-mid">
-            {scale.headline}
-          </h2>
+          <SectionHeading className="mx-auto max-w-5xl text-center">
+            {scale.headline.pre}
+            <span className="text-gold">{scale.headline.gold}</span>
+            {scale.headline.post}
+          </SectionHeading>
         </Reveal>
 
         {/* four stat columns */}

@@ -5,7 +5,7 @@ import { landPoints, mapViewBox } from "@/lib/worldMap";
 export function Hero() {
   return (
     <header className="relative flex min-h-screen items-center overflow-hidden bg-dark-canvas">
-      {/* living world plexus — continents formed purely by a dense edge mesh (no dots).
+      {/* living world plexus, continents formed purely by a dense edge mesh (no dots).
           Shimmers, slowly flows within continental bounds, and carries signal pulses.
           Fades out below the fold so it reads as the hero's own backdrop. */}
       <WorldPlexus
@@ -13,7 +13,7 @@ export function Hero() {
         mapAspect={mapViewBox.width / mapViewBox.height}
         className="[mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_60%,transparent_94%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,black_14%,black_60%,transparent_94%)]"
       />
-      {/* legibility scrim — washes the canvas navy back in behind the headline so the
+      {/* legibility scrim, washes the canvas navy back in behind the headline so the
           network reads as backdrop, not competition. Strongest behind the text, gone by the edges. */}
       <div
         className="pointer-events-none absolute inset-0"
@@ -26,7 +26,7 @@ export function Hero() {
           <span className="text-gold">{hero.headGold}</span>
           {hero.headPost}
         </h1>
-        <p className="mx-auto mt-7 max-w-[60ch] font-body text-[clamp(17px,1.7vw,21px)] leading-relaxed text-dark-mid">{hero.sub}</p>
+        <p className="mx-auto mt-7 max-w-[60ch] font-body text-[clamp(19px,1.9vw,24px)] leading-relaxed text-dark-mid">{hero.sub}</p>
       </div>
     </header>
   );

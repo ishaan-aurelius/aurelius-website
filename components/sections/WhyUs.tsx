@@ -35,7 +35,7 @@ export function WhyUs() {
         <p className="mt-6 font-body text-[clamp(15px,1.4vw,18px)] leading-relaxed text-dark-mid">{whyUs.lede}</p>
       </div>
 
-      {/* the moat — four structural advantages (teal = platform, gold = operational) */}
+      {/* the moat, four structural advantages (teal = platform, gold = operational) */}
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {whyUs.moat.map((m, i) => {
           const color = MOAT_COLOR[m.group];
@@ -62,7 +62,7 @@ export function WhyUs() {
         })}
       </div>
 
-      {/* proof strip — the scale claim */}
+      {/* proof strip, the scale claim */}
       <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden border border-dark-border bg-dark-border sm:grid-cols-3">
         {whyUs.proof.map((p) => {
           const numeric = /^\d/.test(p.big);
@@ -89,7 +89,7 @@ export function WhyUs() {
         </p>
       </Reveal>
 
-      {/* credentials — who the team is */}
+      {/* credentials, who the team is */}
       <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3">
         {whyUs.credentials.map((c, i) => (
           <Reveal

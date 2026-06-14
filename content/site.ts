@@ -1,4 +1,4 @@
-// All site copy. Edit text here — never in layout.
+// All site copy. Edit text here, never in layout.
 export const nav = {
   links: [
     { label: "Scale", href: "#scale" },
@@ -14,7 +14,7 @@ export const hero = {
   headPre: "Velocity meets clarity in ",
   headGold: "modern conflict",
   headPost: "",
-  sub: "Aurelius - Mission Planning & In Mission for US Decision Superiority",
+  sub: "Mission Planning & In-Mission for Decision Superiority",
   primary: { label: "Request a Demo", href: "#contact" },
   secondary: { label: "Contact Us", href: "#contact" },
 };
@@ -24,17 +24,18 @@ export const problem = {
   head: {
     pre: "Warfare now demands reacting within ",
     gold: "minutes",
-    mid: ". Today's planners take ",
+    mid: ". ",
+    mid2: "Today's planners take ",
     red: "months, quarters and even years",
     post: "",
   },
   // follow-on line: gold = the solution we provide.
   sub: {
-    pre: "Constantly changing parameters at massive scale make this ",
+    pre: "Constantly changing parameters at massive scale make this a ",
     em: "super combinatorial explosion",
-    post: " problem — even modern computers struggle to solve",
+    post: " problem that modern computers struggle to solve",
   },
-  // Generic U.S.-military framing — no named officers, no named adversary/target.
+  // Generic U.S.-military framing, no named officers, no named adversary/target.
   brief: {
     from: "U.S. Department of War HQ",
     to: "A U.S. Combatant Command",
@@ -64,11 +65,11 @@ export const problem = {
   ] as { value: number; label: string; accent: "teal" | "gold" | "hi" }[],
 };
 
-// "The Platform" — the product. Hexagon capabilities + the 01–04 method.
+// "The Platform", the product. Hexagon capabilities + the 01-04 method.
 export const solution = {
   kicker: "Product Overview",
   // gold = the thing we solve for.
-  headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: " — powered by proprietary Gen AI optimizer" },
+  headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: ", powered by proprietary Gen AI optimizer" },
   lede: "One platform: kill-web-optimized, multi-domain, planning to in-mission.",
   // The six capabilities of the hexagon. group drives color: platform = teal, operational = gold.
   capabilities: [
@@ -94,15 +95,15 @@ export const solution = {
 // Beat 1 interconnection → Beat 2 the explosion that data creates → Beat 3 urgency.
 export const whyNow = {
   whyKicker: "Why Now",
-  // Beat 1 — interconnection. The section's big headline, over the kill-web visual.
-  headline: { pre: "The Modern Battlefield Is a Complex, Interconnected Network — a ", em: "Kill Web", post: "" },
-  // Beat 2 — the combinatorial explosion. Each input MULTIPLIES the decision space (not
-  // adds), so the web detonates and the count races to 10^26 — the bridge from "too much
+  // Beat 1, interconnection. The section's big headline, over the kill-web visual.
+  headline: { pre: "Modern Battlefield is a ", em: "Kill Web", post: ": a Complex, Interconnected Network" },
+  // Beat 2, the combinatorial explosion. Each input MULTIPLIES the decision space (not
+  // adds), so the web detonates and the count races to 10^26, the bridge from "too much
   // data" (Scale) to "too many possible plans no human can solve". The 10^26 → 4 COAs
   // *solution* payoff lands later in Why Aurelius.
   explosion: {
-    lead: { pre: "In a connected web, each new asset, domain, and threat doesn't add to the problem — it ", em: "multiplies", post: " it." },
-    // The factors that multiply — data inputs (rendered teal). Displays are evocative,
+    lead: { pre: "In a connected web, each new asset, domain, and threat doesn't add to the problem, it ", em: "multiplies", post: " it." },
+    // The factors that multiply, data inputs (rendered teal). Displays are evocative,
     // not literal; the point is the runaway product, not the arithmetic.
     factors: [
       { label: "Assets", display: "100s" },
@@ -115,33 +116,33 @@ export const whyNow = {
     resultLabel: "possible plans",
     resultLine: { pre: "A ", em: "super combinatorial explosion", post: " no human can solve." },
   },
-  // Beat 3 — urgency. Titles only, rendered as tactical "headline boxes", no subtext.
+  // Beat 3, urgency. Titles only, rendered as tactical "headline boxes", no subtext.
   drivers: [
     { n: "01", title: "Near-peer adversaries already operate at machine speed" },
     { n: "02", title: "Multi-domain conflict has outpaced human planning" },
     { n: "03", title: "Legacy systems were built for a different era of warfare" },
     { n: "04", title: "Decision windows are now measured in seconds" },
   ],
-  // The six key pain points — terse, presentation-style (no "the"/"and"; "&" for "and").
+  // The six key pain points, terse, presentation-style (no "the"/"and"; "&" for "and").
   // Merges the old driver boxes + capability gaps into one tactical "status board": em = the
   // bold key phrase, status = the red HUD tag, fill = lit segments (of 10) on the severity
   // bar. fill is high where the problem is runaway, near-zero where capability is unused.
   gaps: [
-    { pre: "", em: "Decision timelines too long", post: " — measured in seconds", status: "CRITICAL", fill: 9 },
-    { pre: "Data ", em: "siloed & fragmented", post: " across service lines", status: "FRAGMENTED", fill: 5 },
+    { pre: "", em: "Decision timelines too long", post: ", measured in seconds", status: "CRITICAL", fill: 9 },
+    { pre: "Data ", em: "siloed & fragmented", post: " across service lines, no unifying data fabric", status: "FRAGMENTED", fill: 5, tone: "caution" },
     { pre: "Commanders ", em: "overwhelmed by complexity, info overload", post: "", status: "SATURATED", fill: 9 },
-    { pre: "Can't ", em: "leverage modern Gen AI", post: " effectively", status: "DORMANT", fill: 0 },
+    { pre: "Can't ", em: "leverage modern Gen AI", post: " effectively", status: "URGENT", fill: 10 },
     { pre: "", em: "Multi-domain conflict", post: " outpaced human planning", status: "OUTPACED", fill: 8 },
     { pre: "", em: "Near-peer adversaries", post: " operate at machine speed", status: "ESCALATING", fill: 9 },
-  ] as { pre: string; em: string; post: string; status: string; fill: number }[],
-  // Beat 4 — the combinatorial payoff caption under the kill-web visual: the decision
+  ] as { pre: string; em: string; post: string; status: string; fill: number; tone?: "alert" | "caution" }[],
+  // Beat 4, the combinatorial payoff caption under the kill-web visual: the decision
   // space detonates to 10^26 possible plans no human can hold. Recomposes the approved
   // `explosion` phrasing above into the single line the current layout renders.
   network: {
     caption: {
-      pre: "In a connected web, each new asset, domain, and threat doesn't add to the problem — it ",
+      pre: "In a connected web, each new asset, domain, and threat doesn't add to the problem, it ",
       em: "multiplies",
-      mid: " it — a super combinatorial explosion to 10",
+      mid: " it, a super combinatorial explosion to 10",
       exp: "26",
       post: " possible plans no human can solve.",
     },
@@ -149,10 +150,11 @@ export const whyNow = {
   bridge: "Exactly what the Pentagon wants: kill-web optimized, multi-domain ops from planning through execution.",
 };
 
-// "The Scale" — recreates the cognitive-overload slide 1:1 (copy, stat colors, icons).
+// "The Scale", recreates the cognitive-overload slide 1:1 (copy, stat colors, icons).
 export const scale = {
   kicker: "Scale",
-  headline: "Commanders face cognitive overload from volume of data bombarding them constantly....",
+  // gold = the key pain point, matching the gold-accent pattern of every other headline.
+  headline: { pre: "Commanders face ", gold: "cognitive overload", post: " from volume of data bombarding them constantly..." },
   // accent maps to the slide's per-column color; icon names map to react-icons/fa glyphs.
   stats: [
     { icon: "bolt", value: 2000000, unit: "GB / Day", caption: "Aggregate Daily projected data from advanced sensor arrays in a theatre", accent: "red" },
@@ -161,10 +163,10 @@ export const scale = {
     { icon: "landmark", value: 10000, unit: "Data Streams", caption: "Being Monitored on average by US Command Post", accent: "gold" },
   ] as { icon: "bolt" | "globe" | "dragon" | "landmark"; value: number; unit: string; caption: string; accent: "teal" | "red" | "gold" }[],
   punch: "Majority of digital data generated by US military assets go un-processed",
-  bottomLine: "Window of American decision advantage in contested environments is narrowing. Fast.",
+  bottomLine: "Window of American decision advantage in contested environments is narrowing fast.",
 };
 
-// "Why Aurelius" — the thesis, the moat, the proof.
+// "Why Aurelius", the thesis, the moat, the proof.
 export const whyUs = {
   kicker: "Why Aurelius",
   // The technical thesis (the one point worth keeping from the "GenAI isn't enough" slide).

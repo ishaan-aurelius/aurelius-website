@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
  * Abstract signal network for the hero background.
  *
  * Design intent (DESIGN_SPEC.md §1): purposeful, "earned" motion that reads as a
- * live sensing / decision network over the world map — NOT a generic particle field.
+ * live sensing / decision network over the world map, NOT a generic particle field.
  * Nodes are pinned to real land dots of the dotted world map, linked by a proximity
  * graph, and faint signal pulses travel along the edges toward the hero's focal point.
  * Slow + low-contrast so the headline stays dominant.
@@ -37,7 +37,7 @@ function rgba(hex: string, a: number) {
 type Props = {
   /** Land-dot coordinates, normalized to 0..1 of the map viewBox. */
   points: { x: number; y: number }[];
-  /** Map aspect ratio (viewBox width / height) — needed to match `cover`. */
+  /** Map aspect ratio (viewBox width / height), needed to match `cover`. */
   mapAspect: number;
 };
 
@@ -81,7 +81,7 @@ export function SignalNetwork({ points, mapAspect }: Props) {
         const x = offX + p.x * mapAspect * s;
         const y = offY + p.y * s;
         if (x < 0 || x > W || y < 0 || y > H) continue;
-        // Keep the left half (behind the headline) plain — no nodes or edges there.
+        // Keep the left half (behind the headline) plain, no nodes or edges there.
         if (x < W * 0.5) continue;
         // Weight selection toward the focal point so nodes land where the map is visible.
         const w = Math.max(0.05, 1 - Math.hypot(x - f.x, y - f.y) / maxR);
@@ -162,7 +162,7 @@ export function SignalNetwork({ points, mapAspect }: Props) {
     function draw(time: number) {
       ctx.clearRect(0, 0, W, H);
 
-      // Edges — faint, static structure.
+      // Edges, faint, static structure.
       ctx.lineWidth = 1;
       ctx.strokeStyle = rgba(COLOR.edge, 0.32);
       edges.forEach((e) => {
@@ -174,7 +174,7 @@ export function SignalNetwork({ points, mapAspect }: Props) {
         ctx.stroke();
       });
 
-      // Nodes — gentle twinkle, hubs a touch brighter. Pinned to the map dots.
+      // Nodes, gentle twinkle, hubs a touch brighter. Pinned to the map dots.
       nodes.forEach((n) => {
         const tw = reduced ? 0.8 : 0.7 + 0.3 * (0.5 + 0.5 * Math.sin(time * 0.0004 + n.phase));
         ctx.fillStyle = rgba(n.hub ? COLOR.hub : COLOR.node, (n.hub ? 0.7 : 0.5) * tw);
@@ -183,7 +183,7 @@ export function SignalNetwork({ points, mapAspect }: Props) {
         ctx.fill();
       });
 
-      // Pulses — a faint short packet drifting along the edge toward the focal point.
+      // Pulses, a faint short packet drifting along the edge toward the focal point.
       pulses.forEach((p) => {
         const e = edges[p.edge];
         if (!e) return;

@@ -16,7 +16,7 @@ export function Careers() {
         )}
       </div>
 
-      {/* uniform 4-up cards — the one intentionally consistent grid */}
+      {/* uniform 4-up cards, the one intentionally consistent grid */}
       <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {careers.pillars.map((p, i) => (
           <Reveal

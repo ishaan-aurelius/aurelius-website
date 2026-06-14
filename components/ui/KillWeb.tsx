@@ -2,11 +2,11 @@
 import { useEffect, useRef } from "react";
 
 /**
- * Visceral "kill web" — a dense, alive network used behind the Why Now headline.
+ * Visceral "kill web", a dense, alive network used behind the Why Now headline.
  *
  * Unlike the hero's SignalNetwork (faint, sparse, pinned to map dots), this is meant
  * to feel OVERWHELMING: many nodes, a thick proximity graph, threat-red nodes that
- * pulse, and packets racing along every edge. The eye can't find the exit — that
+ * pulse, and packets racing along every edge. The eye can't find the exit, that
  * illegibility IS the argument. Colors are Aurelius tokens only; aria-hidden.
  */
 
@@ -48,7 +48,7 @@ export function KillWeb({
   className?: string;
   // Fixed nodes (0..1 fractions) that overlaid icons sit on; edges terminate here.
   anchors?: Anchor[];
-  // Multiplier on the background random-node count — >1 packs the web denser.
+  // Multiplier on the background random-node count, >1 packs the web denser.
   density?: number;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -77,13 +77,13 @@ export function KillWeb({
       const minSpace = Math.min(W, H) / 12;
       nodes = [];
 
-      // Fixed anchor nodes — an overlaid icon sits on each. Not drawn (the icon is the
+      // Fixed anchor nodes, an overlaid icon sits on each. Not drawn (the icon is the
       // visible node); they exist so edges and packets terminate exactly on the icons.
       anchors.forEach((a) => {
         nodes.push({ x: a.x * W, y: a.y * H, r: 2, phase: Math.random() * Math.PI * 2, kind: "anchor" });
       });
 
-      // Dot-swarms hugging each anchor — recreates the source slide's clustered nodes
+      // Dot-swarms hugging each anchor, recreates the source slide's clustered nodes
       // radiating from the assets, rather than a uniform field.
       const clusterR = minSpace * 1.3;
       anchors.forEach((a) => {
@@ -103,7 +103,7 @@ export function KillWeb({
         }
       });
 
-      // Background random scatter with a minimum spacing — `density` packs it tighter.
+      // Background random scatter with a minimum spacing, `density` packs it tighter.
       const count = Math.round(Math.max(28, Math.min(64, Math.round((W * H) / 9000))) * density);
       let guard = 0;
       const target = nodes.length + count;
@@ -133,7 +133,7 @@ export function KillWeb({
           });
       });
 
-      // Lots of packets — one per ~2 edges — so the web reads as frantic, not calm.
+      // Lots of packets, one per ~2 edges, so the web reads as frantic, not calm.
       const pulseCount = Math.min(60, Math.max(10, Math.round(edges.length / 2)));
       pulses = Array.from({ length: pulseCount }, spawnPulse);
     }
@@ -161,7 +161,7 @@ export function KillWeb({
     function draw(time: number) {
       ctx.clearRect(0, 0, W, H);
 
-      // Edges — the tangled structure. Brighter than the hero so it reads as dense.
+      // Edges, the tangled structure. Brighter than the hero so it reads as dense.
       ctx.lineWidth = 1;
       ctx.strokeStyle = rgba(COLOR.edge, 0.5);
       edges.forEach((e) => {
@@ -173,9 +173,9 @@ export function KillWeb({
         ctx.stroke();
       });
 
-      // Nodes — threat reds pulse hard; others twinkle.
+      // Nodes, threat reds pulse hard; others twinkle.
       nodes.forEach((n) => {
-        // Anchors are invisible — the overlaid DOM icon is what the eye reads as the node.
+        // Anchors are invisible, the overlaid DOM icon is what the eye reads as the node.
         if (n.kind === "anchor") return;
         const base = colorFor(n.kind);
         const beat = reduced ? 0.85 : 0.5 + 0.5 * Math.sin(time * (n.kind === "red" ? 0.004 : 0.0009) + n.phase);
@@ -193,7 +193,7 @@ export function KillWeb({
         ctx.fill();
       });
 
-      // Packets — short bright streaks racing along edges.
+      // Packets, short bright streaks racing along edges.
       pulses.forEach((p) => {
         const e = edges[p.edge];
         if (!e) return;
