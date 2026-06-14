@@ -45,7 +45,7 @@ export function Solution() {
         {/* LEFT, exact screenshot, fixed 483×452 (never stretched/shrunk on desktop) */}
         <Reveal className="flex justify-center lg:justify-start">
           <Image
-            src="/aurelius-website/platform-hexagon.png"
+            src="/platform-hexagon.png"
             alt="Aurelius platform capabilities: kill-web architecture, multi-domain & scalable, inter-operable, cross-domain clarity, strategic to operational, speed of decisions"
             width={483}
             height={452}

@@ -75,7 +75,7 @@ export function SolutionHex() {
             <polygon points={HEX} fill="#141E2C" stroke="#C8A85C" strokeWidth={1.5} />
           </svg>
           <Image
-            src="/aurelius-website/logo-mark.png"
+            src="/logo-mark.png"
             alt="Aurelius"
             width={56}
             height={47}
