@@ -38,6 +38,7 @@ export function Hero() {
           <span className="text-gold">{hero.headGold}</span>
           {hero.headPost}
         </h1>
+        <p className="mx-auto mt-7 max-w-[60ch] font-body text-[clamp(17px,1.7vw,21px)] leading-relaxed text-dark-mid">{hero.sub}</p>
       </div>
     </header>
   );
