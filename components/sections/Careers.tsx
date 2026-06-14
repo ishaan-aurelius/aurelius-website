@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/Button";
 export function Careers() {
   return (
     <Section id="careers" theme="dark">
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-5xl text-center">
         <Kicker>{careers.kicker}</Kicker>
         <SectionHeading>{careers.title}</SectionHeading>
-        <p className="mt-6 font-body text-[clamp(16px,1.5vw,19px)] leading-relaxed text-dark-mid">{careers.lede}</p>
+        {careers.lede && (
+          <p className="mt-6 font-body text-[clamp(16px,1.5vw,19px)] leading-relaxed text-dark-mid">{careers.lede}</p>
+        )}
       </div>
 
       {/* uniform 4-up cards — the one intentionally consistent grid */}

@@ -13,7 +13,7 @@ export const hero = {
   headPre: "Velocity meets clarity in ",
   headGold: "modern conflict",
   headPost: "",
-  sub: "The hardest military planning problems, turned into decision advantage",
+  sub: "Aurelius Is a Mission Planning & In-Mission Tool Enabling the US Military to Achieve Absolute Decision Superiority",
   primary: { label: "Request a Demo", href: "#contact" },
   secondary: { label: "Contact Us", href: "#contact" },
 };
@@ -152,8 +152,8 @@ export const whyUs = {
 
 export const careers = {
   kicker: "Careers",
-  title: "Build the decision engine",
-  lede: "GenAI in software doing the most complex optimization",
+  title: "Build the Decision Engine for the Ages",
+  lede: "",
   pillars: [
     { title: "Real-World Impact", body: "What you build shapes the outcome" },
     { title: "Elite Team", body: "Technologists, military strategists, and product minds at the edge of AI and conflict." },
