@@ -96,7 +96,7 @@ export function Solution() {
 
       {/* gold bridge bar → hands off into Why Aurelius */}
       <Reveal style={{ transitionDelay: "120ms" }}>
-        <div className="mx-auto mt-16 max-w-5xl bg-gold px-6 py-4 text-center font-display text-sm font-bold uppercase tracking-wide text-[#0D1420] sm:text-[15px]">
+        <div className="mx-auto mt-16 text-center font-display text-[clamp(16px,2vw,24px)] font-bold tracking-[0.04em] text-gold">
           {solution.bridge}
         </div>
       </Reveal>

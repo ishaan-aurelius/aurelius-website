@@ -125,14 +125,14 @@ export function Scale() {
 
         {/* gold punch line */}
         <Reveal style={{ transitionDelay: "120ms" }}>
-          <p className="mt-20 text-center font-display text-[clamp(16px,2vw,24px)] font-bold uppercase tracking-[0.04em] text-gold">
+          <p className="mt-20 text-center font-display text-[clamp(16px,2vw,24px)] font-bold tracking-[0.04em] text-gold">
             {scale.punch}
           </p>
         </Reveal>
 
         {/* gold bottom line */}
         <Reveal style={{ transitionDelay: "160ms" }}>
-          <p className="mt-10 text-center font-display text-[clamp(16px,2vw,24px)] font-bold uppercase tracking-[0.04em] text-gold">
+          <p className="mt-10 text-center font-display text-[clamp(16px,2vw,24px)] font-bold tracking-[0.04em] text-gold">
             {scale.bottomLine}
           </p>
         </Reveal>

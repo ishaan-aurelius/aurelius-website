@@ -21,7 +21,7 @@ export function Nav() {
       }`}
     >
       <div className="mx-auto flex max-w-container items-center justify-between px-6 py-4 md:px-12">
-        <Link href="#" className="flex items-center gap-3" aria-label="Aurelius home">
+        <Link href="#" className="flex items-center gap-1" aria-label="Aurelius home">
           <Image src="/aurelius-website/logo-mark.png" alt="" width={56} height={47} priority className="h-[36px] w-auto" />
           <Image src="/aurelius-website/logo-wordmark.png" alt="Aurelius" width={182} height={47} priority className="h-[60px] w-auto" />
         </Link>

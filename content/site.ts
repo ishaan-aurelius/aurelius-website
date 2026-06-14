@@ -24,7 +24,7 @@ export const problem = {
   head: {
     pre: "Warfare now demands reacting within ",
     gold: "minutes",
-    mid: ". ",
+    mid: " ",
     mid2: "Today's planners take ",
     red: "months, quarters and even years",
     post: "",
@@ -69,7 +69,7 @@ export const problem = {
 export const solution = {
   kicker: "Product Overview",
   // gold = the thing we solve for.
-  headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: ", powered by proprietary Gen AI optimizer" },
+  headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: ", powered by proprietary GenAI optimizer" },
   lede: "One platform: kill-web-optimized, multi-domain, planning to in-mission.",
   // The six capabilities of the hexagon. group drives color: platform = teal, operational = gold.
   capabilities: [
@@ -131,7 +131,7 @@ export const whyNow = {
     { pre: "", em: "Decision timelines too long", post: ", measured in seconds", status: "CRITICAL", fill: 9 },
     { pre: "Data ", em: "siloed & fragmented", post: " across service lines, no unifying data fabric", status: "FRAGMENTED", fill: 5, tone: "caution" },
     { pre: "Commanders ", em: "overwhelmed by complexity, info overload", post: "", status: "SATURATED", fill: 9 },
-    { pre: "Can't ", em: "leverage modern Gen AI", post: " effectively", status: "URGENT", fill: 10 },
+    { pre: "Can't ", em: "leverage modern GenAI", post: " effectively", status: "URGENT", fill: 10 },
     { pre: "", em: "Multi-domain conflict", post: " outpaced human planning", status: "OUTPACED", fill: 8 },
     { pre: "", em: "Near-peer adversaries", post: " operate at machine speed", status: "ESCALATING", fill: 9 },
   ] as { pre: string; em: string; post: string; status: string; fill: number; tone?: "alert" | "caution" }[],
