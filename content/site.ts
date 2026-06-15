@@ -87,7 +87,6 @@ export const solution = {
     { n: "03", title: "Evaluate Scenarios", body: "Pareto Optimal solutions in real time" },
     { n: "04", title: "Empower Commander", body: "Commander has all information to make decisions" },
   ],
-  bridge: "Aurelius is the data fabric and optimization layer solving kill webs for multi-domain operations",
 };
 
 // Two acts: the scale of the data problem, then the macro drivers ("why now").
