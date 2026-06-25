@@ -33,15 +33,31 @@ export function CountUp({
       return;
     }
     let raf = 0;
+    let jitter: ReturnType<typeof setInterval> | undefined;
+    // Once settled, twitch slightly around the target forever, like a live sensor
+    // feed. Amplitude scales with magnitude (with a floor of 1) so big numbers wobble
+    // proportionally and small ones still move.
+    const amp = Math.max(1, Math.round(target * 0.0008));
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min(1, (now - start) / duration);
       const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic, weighted, no overshoot
       setVal(Math.round(target * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
+      if (p < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        // Hand off from the count-up to the perpetual jitter.
+        jitter = setInterval(() => {
+          const offset = Math.round((Math.random() * 2 - 1) * amp);
+          setVal(target + offset);
+        }, 150);
+      }
     };
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      if (jitter !== undefined) clearInterval(jitter);
+    };
   }, [inView, target, duration, display]);
   return <span ref={ref}>{display !== undefined ? display : format(val)}</span>;
 }

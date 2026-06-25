@@ -11,10 +11,11 @@ export const nav = {
 };
 
 export const hero = {
-  headPre: "Velocity meets clarity in ",
-  headGold: "modern conflict",
+  headPre: "Velocity meets Clarity in ",
+  headGold: "Modern Conflict",
   headPost: "",
-  sub: "Mission Planning & In-Mission for Decision Superiority",
+  sub: "Mission Planning & In-Mission for Decision Superiority in Contested Environments",
+  sub2: "In Minutes - Not Months, Not Quarters, Not Years!",
   primary: { label: "Request a Demo", href: "#contact" },
   secondary: { label: "Contact Us", href: "#contact" },
 };
@@ -69,8 +70,8 @@ export const problem = {
 export const solution = {
   kicker: "Product Overview",
   // gold = the thing we solve for.
-  headline: { pre: "Multi-domain, pareto-optimal mission plans ", gold: "in minutes", post: ", powered by proprietary GenAI optimizer" },
-  lede: "One platform: kill-web-optimized, multi-domain, planning to in-mission.",
+  headline: { pre: "Multi-Domain, Pareto-Optimal Mission Plans ", gold: "in minutes", post: ", powered by proprietary GenAI optimizer" },
+  lede: "One platform: Kill-Web-optimized, multi-domain, planning to in-mission.",
   // The six capabilities of the hexagon. group drives color: platform = teal, operational = gold.
   capabilities: [
     { key: "killweb", title: "Kill-Web Architecture", note: "Tens, hundreds, thousands of kill chains, woven into one kill web.", group: "platform" },
@@ -87,7 +88,10 @@ export const solution = {
     { n: "03", title: "Evaluate Scenarios", body: "Pareto Optimal solutions in real time" },
     { n: "04", title: "Empower Commander", body: "Commander has all information to make decisions" },
   ],
-  bridge: "Aurelius is the data fabric and optimization layer solving kill webs for multi-domain operations",
+  bridge: {
+    lead: "Aurelius is the data fabric and optimization layer",
+    tail: "solving Kill Webs for Multi-Domain Operations",
+  },
 };
 
 // Two acts: the scale of the data problem, then the macro drivers ("why now").
@@ -96,7 +100,7 @@ export const solution = {
 export const whyNow = {
   whyKicker: "Why Now",
   // Beat 1, interconnection. The section's big headline, over the kill-web visual.
-  headline: { pre: "Modern Battlefield is a ", em: "Kill Web", post: ": a Complex, Interconnected Network" },
+  headline: { pre: "Modern Battlefield is a ", em: "Kill Web", post: ": Complex, Interconnected Networks" },
   // Beat 2, the combinatorial explosion. Each input MULTIPLIES the decision space (not
   // adds), so the web detonates and the count races to 10^26, the bridge from "too much
   // data" (Scale) to "too many possible plans no human can solve". The 10^26 → 4 COAs
@@ -147,7 +151,7 @@ export const whyNow = {
       post: " possible plans no human can solve.",
     },
   },
-  bridge: "Exactly what the Pentagon wants: kill-web optimized, multi-domain ops from planning through execution.",
+  bridge: "Exactly what the Pentagon wants: Kill-Web optimized, multi-domain ops from planning through execution.",
 };
 
 // "The Scale", recreates the cognitive-overload slide 1:1 (copy, stat colors, icons).

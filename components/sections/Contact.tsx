@@ -16,9 +16,12 @@ const interests = [
 export function Contact() {
   const [form, setForm] = useState({ name: "", org: "", email: "", interest: "", message: "" });
   const [errors, setErrors] = useState<ContactErrors>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [interestOpen, setInterestOpen] = useState(false);
   const interestRef = useRef<HTMLDivElement>(null);
+  // Honeypot: a hidden checkbox no human sees. Bots that auto-fill forms tick it,
+  // and Web3Forms then silently drops the submission as spam.
+  const botRef = useRef<HTMLInputElement>(null);
 
   // Close the custom dropdown on outside-click or Escape (native <select> would handle
   // this for us, but we replaced it to control the open-state styling).
@@ -38,14 +41,33 @@ export function Contact() {
     };
   }, [interestOpen]);
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validateContact(form);
     setErrors(errs);
     if (Object.keys(errs).length) return;
-    // TODO(deploy): POST to a form service (Formspree/Resend) once hosting is chosen.
-    console.log("contact submission", form);
-    setSent(true);
+
+    setStatus("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: "New contact form submission — Aurelius",
+          name: form.name,
+          organization: form.org,
+          email: form.email,
+          interest: form.interest,
+          message: form.message,
+          botcheck: botRef.current?.checked ? "true" : "",
+        }),
+      });
+      const data = await res.json();
+      setStatus(data.success ? "sent" : "error");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const field =
@@ -65,10 +87,12 @@ export function Contact() {
         <p className="mt-5 font-body text-[clamp(16px,1.5vw,19px)] text-dark-mid">{contact.lede}</p>
       </div>
 
-      {sent ? (
+      {status === "sent" ? (
         <p className="mx-auto mt-10 max-w-[640px] text-center font-body text-dark-hi">Thanks. We&apos;ll be in touch shortly.</p>
       ) : (
         <form onSubmit={submit} noValidate className="mx-auto mt-10 max-w-[640px] space-y-5 text-left">
+          {/* Honeypot — hidden from humans, off the tab order and the a11y tree. */}
+          <input ref={botRef} type="checkbox" name="botcheck" className="hidden" tabIndex={-1} aria-hidden="true" />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <div>
               <label htmlFor="c-name" className={labelCls}>Name</label>
@@ -141,10 +165,16 @@ export function Contact() {
           </div>
           <button
             type="submit"
-            className="w-full bg-gold px-8 py-4 font-display text-sm font-bold uppercase tracking-[0.15em] text-dark-canvas transition-colors hover:bg-gold-hoverD"
+            disabled={status === "sending"}
+            className="w-full bg-gold px-8 py-4 font-display text-sm font-bold uppercase tracking-[0.15em] text-dark-canvas transition-colors hover:bg-gold-hoverD disabled:cursor-not-allowed disabled:opacity-60"
           >
-            Send
+            {status === "sending" ? "Sending…" : "Send"}
           </button>
+          {status === "error" && (
+            <p className="text-center font-body text-sm text-alert-d">
+              Something went wrong. Please try again or email {contact.email}.
+            </p>
+          )}
         </form>
       )}
     </Section>

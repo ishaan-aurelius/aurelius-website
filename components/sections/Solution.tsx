@@ -46,7 +46,7 @@ export function Solution() {
         <Reveal className="flex justify-center lg:justify-start">
           <Image
             src="/platform-hexagon.png"
-            alt="Aurelius platform capabilities: kill-web architecture, multi-domain & scalable, inter-operable, cross-domain clarity, strategic to operational, speed of decisions"
+            alt="Aurelius platform capabilities: Kill-Web architecture, multi-domain & scalable, inter-operable, cross-domain clarity, strategic to operational, speed of decisions"
             width={483}
             height={452}
             className="h-auto w-full max-w-[483px]"
@@ -96,8 +96,10 @@ export function Solution() {
 
       {/* gold bridge bar → hands off into Why Aurelius */}
       <Reveal style={{ transitionDelay: "120ms" }}>
-        <div className="mx-auto mt-16 text-center font-display text-[clamp(16px,2vw,24px)] font-bold tracking-[0.04em] text-gold">
-          {solution.bridge}
+        <div className="mx-auto mt-16 text-center font-display text-[clamp(32px,4.2vw,42px)] font-bold leading-[1.1] tracking-[0.04em] text-gold">
+          {solution.bridge.lead}
+          <br />
+          {solution.bridge.tail}
         </div>
       </Reveal>
     </Section>

@@ -21,12 +21,12 @@ export function Hero() {
         aria-hidden="true"
       />
       <div className="relative mx-auto w-full max-w-container px-6 pt-24 text-center md:px-12">
-        <h1 className="mx-auto max-w-[24ch] font-display text-[clamp(44px,6vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
+        <h1 className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen px-6 font-display text-[clamp(44px,5vw,76px)] font-bold leading-[1.04] tracking-tight text-dark-hi">
           {hero.headPre}
           <span className="text-gold">{hero.headGold}</span>
           {hero.headPost}
         </h1>
-        <p className="mx-auto mt-7 max-w-[60ch] font-body text-[clamp(19px,1.9vw,24px)] leading-relaxed text-dark-mid">{hero.sub}</p>
+        <p className="mx-auto mt-7 max-w-[80ch] font-body text-[clamp(19px,1.9vw,24px)] leading-relaxed text-dark-mid">{hero.sub}<br />{hero.sub2}</p>
       </div>
     </header>
   );
