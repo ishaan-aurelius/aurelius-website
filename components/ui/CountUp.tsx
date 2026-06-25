@@ -12,7 +12,7 @@ export function CountUp({
   target,
   from = 0,
   format = (n) => String(n),
-  duration = 2500,
+  duration = 4000,
   display,
 }: {
   target: number;

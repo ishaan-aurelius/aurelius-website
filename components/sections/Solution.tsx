@@ -93,15 +93,6 @@ export function Solution() {
           </ol>
         </div>
       </div>
-
-      {/* gold bridge bar → hands off into Why Aurelius */}
-      <Reveal style={{ transitionDelay: "120ms" }}>
-        <div className="mx-auto mt-16 text-center font-display text-[clamp(32px,4.2vw,42px)] font-bold leading-[1.1] tracking-[0.04em] text-gold">
-          {solution.bridge.lead}
-          <br />
-          {solution.bridge.tail}
-        </div>
-      </Reveal>
     </Section>
   );
 }
