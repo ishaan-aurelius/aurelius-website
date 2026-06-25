@@ -11,10 +11,10 @@ const alumni = [
   { name: "Executive Office of the President", file: "executive-office-president.svg", h: "h-16" },
   { name: "U.S. House of Representatives", file: "house-of-representatives.svg", h: "h-16" },
   { name: "U.S. Marine Corps", file: "marine-corps.svg", h: "h-16" },
-  { name: "Google", file: "google.svg", h: "h-10" },
-  { name: "Sabre", file: "sabre.svg", h: "h-8" },
+  { name: "Google", file: "google.svg", h: "h-14" },
+  { name: "Sabre", file: "sabre.svg", h: "h-10" },
   { name: "Shazam", file: "shazam.svg", h: "h-12" },
-  { name: "Oracle", file: "oracle.svg", h: "h-6" },
+  { name: "Oracle", file: "oracle.svg", h: "h-5" },
   { name: "Adobe", file: "adobe.svg", h: "h-12" },
 ];
 
@@ -23,7 +23,7 @@ export function Alumni() {
     <Section id="alumni" theme="dark">
       <div className="text-center">
         <Reveal>
-          <SectionHeading className="mx-auto max-w-4xl">Built by patriots, veterans and technologists.</SectionHeading>
+          <SectionHeading className="mx-auto max-w-4xl">Built by patriots, veterans and technologists</SectionHeading>
         </Reveal>
 
         <Reveal style={{ transitionDelay: "120ms" }}>
