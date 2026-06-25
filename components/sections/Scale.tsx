@@ -110,7 +110,7 @@ export function Scale() {
               <Reveal key={s.unit} style={{ transitionDelay: `${i * 90}ms` }} className="text-center">
                 <Icon className={`mx-auto mb-4 h-7 w-7 ${color}`} aria-hidden="true" />
                 <div className={`font-display text-[clamp(40px,6vw,64px)] font-extrabold leading-none tabular-nums ${color}`}>
-                  <CountUp target={s.value} />
+                  <CountUp from={s.from} target={s.value} />
                 </div>
                 <div className="mt-5 font-display text-[clamp(14px,1.4vw,19px)] font-bold tracking-[0.08em] text-dark-hi">
                   {s.unit}

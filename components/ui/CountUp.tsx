@@ -10,11 +10,15 @@ const prefersReduced = () =>
 // `format` optionally transforms the displayed value (e.g. thousands separators).
 export function CountUp({
   target,
+  from = 0,
   format = (n) => String(n),
-  duration = 1100,
+  duration = 2500,
   display,
 }: {
   target: number;
+  // Starting value of the count-up. Defaults to 0; set higher to climb a smaller
+  // span (e.g. 1,000,000 → 2,000,000) and emphasize the magnitude already in play.
+  from?: number;
   format?: (n: number) => string;
   duration?: number;
   // When set, render this literal string instead of an animated number
@@ -22,7 +26,7 @@ export function CountUp({
   display?: string;
 }) {
   const { ref, inView } = useInView<HTMLSpanElement>();
-  const [val, setVal] = useState(0);
+  const [val, setVal] = useState(from);
   useEffect(() => {
     if (display !== undefined) return;
     if (!inView) return;
@@ -33,31 +37,15 @@ export function CountUp({
       return;
     }
     let raf = 0;
-    let jitter: ReturnType<typeof setInterval> | undefined;
-    // Once settled, twitch slightly around the target forever, like a live sensor
-    // feed. Amplitude scales with magnitude (with a floor of 1) so big numbers wobble
-    // proportionally and small ones still move.
-    const amp = Math.max(1, Math.round(target * 0.0008));
     const start = performance.now();
     const tick = (now: number) => {
       const p = Math.min(1, (now - start) / duration);
       const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic, weighted, no overshoot
-      setVal(Math.round(target * eased));
-      if (p < 1) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        // Hand off from the count-up to the perpetual jitter.
-        jitter = setInterval(() => {
-          const offset = Math.round((Math.random() * 2 - 1) * amp);
-          setVal(target + offset);
-        }, 150);
-      }
+      setVal(Math.round(from + (target - from) * eased));
+      if (p < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => {
-      cancelAnimationFrame(raf);
-      if (jitter !== undefined) clearInterval(jitter);
-    };
-  }, [inView, target, duration, display]);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, from, target, duration, display]);
   return <span ref={ref}>{display !== undefined ? display : format(val)}</span>;
 }
