@@ -8,7 +8,7 @@ import { Reveal } from "@/components/ui/Reveal";
 // square government seals. Order is most-important-first for a defense audience:
 // the U.S. government/military seals lead, then the technology pedigree.
 const alumni = [
-  { name: "Executive Office of the President", file: "executive-office-president.svg", h: "h-16" },
+  { name: "The White House", file: "white-house.svg", h: "h-16" },
   { name: "U.S. House of Representatives", file: "house-of-representatives.svg", h: "h-16" },
   { name: "U.S. Marine Corps", file: "marine-corps.svg", h: "h-16" },
   { name: "Google", file: "google.svg", h: "h-14" },
