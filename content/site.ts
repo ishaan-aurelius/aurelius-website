@@ -1,10 +1,8 @@
 // All site copy. Edit text here, never in layout.
 export const nav = {
   links: [
-    { label: "Scale", href: "#scale" },
-    { label: "Why Now", href: "#why-now" },
-    { label: "Product Overview", href: "#solution" },
     { label: "Careers", href: "#careers" },
+    { label: "Our Team", href: "#alumni" },
     { label: "Contact", href: "#contact" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },

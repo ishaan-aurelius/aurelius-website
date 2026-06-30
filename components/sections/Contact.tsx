@@ -18,6 +18,7 @@ export function Contact() {
   const [errors, setErrors] = useState<ContactErrors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [interestOpen, setInterestOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
   const interestRef = useRef<HTMLDivElement>(null);
   // Honeypot: a hidden checkbox no human sees. Bots that auto-fill forms tick it,
   // and Web3Forms then silently drops the submission as spam.
@@ -89,6 +90,16 @@ export function Contact() {
 
       {status === "sent" ? (
         <p className="mx-auto mt-10 max-w-[640px] text-center font-body text-dark-hi">Thanks. We&apos;ll be in touch shortly.</p>
+      ) : !formOpen ? (
+        <div className="mt-10 text-center">
+          <button
+            type="button"
+            onClick={() => setFormOpen(true)}
+            className="inline-block bg-gold px-8 py-4 font-display text-sm font-bold uppercase tracking-[0.15em] text-dark-canvas transition-colors hover:bg-gold-hoverD"
+          >
+            Contact Us
+          </button>
+        </div>
       ) : (
         <form onSubmit={submit} noValidate className="mx-auto mt-10 max-w-[640px] space-y-5 text-left">
           {/* Honeypot — hidden from humans, off the tab order and the a11y tree. */}
