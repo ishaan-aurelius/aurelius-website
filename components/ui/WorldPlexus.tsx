@@ -23,13 +23,36 @@ import { useEffect, useRef } from "react";
  */
 
 const COLOR = {
-  line: "#6A859A", // dark.low, dim edges
-  glow: "#A0B8C8", // dark.mid, brighter edges + soft halo
-  hi: "#C8D4DE", // dark.hi, the brightest glints
+  line: "#6A859A", // dark.text-muted, dim edges
+  glow: "#A0B8C8", // dark.text-secondary, brighter edges + soft halo
+  hi: "#C8D4DE", // dark.text-primary, the brightest glints
 };
 
 const NB = 18; // brightness buckets
 const MAX_A = 0.75; // alpha of the brightest bucket
+
+// ─── Hero motion knobs — tune these two ─────────────────────────────
+const FLOAT_AMP = 16; // max node drift in px (bigger = wider-swinging edges)
+const FLOAT_SPEED = 2500; // base orbit period in ms (SMALLER = faster motion)
+// ────────────────────────────────────────────────────────────────────
+
+// ─── Rolling-wave knobs — coherent bands of brightness sweeping diagonally ──
+// On top of the per-edge shimmer, edges brighten together in soft bands that
+// roll along the diagonal from the top-right toward the bottom-left. Two summed
+// sines (different spatial freq + speed) keep the crests organic instead of
+// metronomic. Brightness only, no hue shift.
+const WAVE_BANDS = 1.3; // ~how many bands span the diagonal (smaller = wider, more map lit at once)
+const WAVE_SPEED = 14000; // ms for a crest to advance one full phase (SMALLER = faster)
+// The sweep waveform is asymmetric: a wide, bright crest and a brief, shallow trough.
+const WAVE_FLOOR = 0.9; // trough multiplier — darkest the wave dims an edge (higher = never dark)
+const WAVE_PEAK = 1.55; // crest multiplier — brightest the wave lifts an edge (higher = hotter)
+const WAVE_SHAPE = 0.45; // <1 widens the bright crest & shortens the dark trough (1 = plain sine)
+// ────────────────────────────────────────────────────────────────────
+const TAU = Math.PI * 2;
+const WAVE_K1 = WAVE_BANDS * TAU; // primary band spatial frequency
+const WAVE_K2 = WAVE_BANDS * 1.7 * TAU; // secondary, tighter bands
+const WAVE_OMEGA1 = TAU / WAVE_SPEED; // primary roll speed (rad/ms)
+const WAVE_OMEGA2 = TAU / (WAVE_SPEED * 0.68); // secondary, slightly faster
 
 type Node = {
   hx: number; // home x (screen space, post-jitter)
@@ -156,7 +179,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
 
       // Break the regular dotted grid into an organic point cloud.
       const jitter = spacing * 0.95;
-      const floatAmp = Math.min(spacing * 0.6, 7);
+      const floatAmp = Math.min(spacing * 0.9, FLOAT_AMP);
       for (const n of nodes) {
         n.hx += (Math.random() - 0.5) * jitter;
         n.hy += (Math.random() - 0.5) * jitter;
@@ -165,8 +188,8 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
         // Per-node float, small bounded orbit, slow, fully desynced.
         n.ax = floatAmp * (0.5 + Math.random() * 0.9);
         n.ay = floatAmp * (0.5 + Math.random() * 0.9);
-        n.fx = (2 * Math.PI) / (5000 + Math.random() * 9000);
-        n.fy = (2 * Math.PI) / (5000 + Math.random() * 9000);
+        n.fx = (2 * Math.PI) / (FLOAT_SPEED + Math.random() * (FLOAT_SPEED * 1.8));
+        n.fy = (2 * Math.PI) / (FLOAT_SPEED + Math.random() * (FLOAT_SPEED * 1.8));
         n.px = Math.random() * Math.PI * 2;
         n.py = Math.random() * Math.PI * 2;
       }
@@ -257,17 +280,41 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
         n.y = n.hy + move * n.ay * Math.sin(time * n.fy + n.py);
       }
 
+      // SWEEP: precompute the two rolling-band time offsets once per frame. Each edge's
+      // contribution then depends only on where its midpoint falls along the diagonal
+      // axis, so neighbours brighten together in bands that slide from the top-right
+      // toward the bottom-left as `time` advances.
+      const t1 = time * WAVE_OMEGA1;
+      const t2 = time * WAVE_OMEGA2;
+      const invW = W > 0 ? 1 / W : 0;
+      const invH = H > 0 ? 1 / H : 0;
+
       // Build halo + bucket geometry in one pass over live edges.
       const halo = new Path2D();
       for (let b = 0; b < NB; b++) paths[b] = new Path2D();
       for (const e of edges) {
         const wave = reduced ? 0.5 : 0.5 + 0.5 * Math.sin(time * e.freq + e.phase);
-        const alpha = (e.lo + (e.hi - e.lo) * wave) * e.dim;
+        const a = nodes[e.a];
+        const nb = nodes[e.b];
+        // Coherent rolling-wave multiplier. `proj` is the midpoint's distance along the
+        // top-right → bottom-left diagonal (x decreasing + y increasing). The raw sine is
+        // normalized to 0..1, then bent by WAVE_SHAPE (<1) so brightness lingers near the
+        // crest and only briefly dips, and finally mapped onto FLOOR..PEAK. Brightness only.
+        let sweep = 1;
+        if (!reduced) {
+          const mx = (a.x + nb.x) * 0.5 * invW;
+          const my = (a.y + nb.y) * 0.5 * invH;
+          const proj = (my - mx) * 0.7071; // unit diagonal: TR → BL
+          const s =
+            (Math.sin(proj * WAVE_K1 - t1) + 0.6 * Math.sin(proj * WAVE_K2 - t2 + 1.3)) / 1.6;
+          const u = 0.5 + 0.5 * s; // 0..1 sinusoidal
+          const shaped = Math.pow(u < 0 ? 0 : u > 1 ? 1 : u, WAVE_SHAPE);
+          sweep = WAVE_FLOOR + (WAVE_PEAK - WAVE_FLOOR) * shaped;
+        }
+        const alpha = (e.lo + (e.hi - e.lo) * wave) * e.dim * sweep;
         let bi = (alpha / STEP) | 0;
         if (bi < 0) bi = 0;
         else if (bi >= NB) bi = NB - 1;
-        const a = nodes[e.a];
-        const nb = nodes[e.b];
         halo.moveTo(a.x, a.y);
         halo.lineTo(nb.x, nb.y);
         const p = paths[bi];

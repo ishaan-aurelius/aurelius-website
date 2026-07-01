@@ -23,7 +23,7 @@ export function Nav() {
       <div className="mx-auto flex max-w-container items-center justify-between px-6 py-4 md:px-12">
         <Link href="#" className="flex items-center gap-1" aria-label="Aurelius home">
           <Image src="/logo-mark.png" alt="" width={56} height={47} priority className="h-[36px] w-auto" />
-          <Image src="/logo-wordmark.png" alt="Aurelius" width={182} height={47} priority className="h-[60px] w-auto" />
+          <Image src="/logo-wordmark.png" alt="Aurelius" width={182} height={47} priority className="h-[68px] w-auto" />
         </Link>
         <div className="hidden items-center gap-6 lg:flex">
           {nav.links.map((l) => (
