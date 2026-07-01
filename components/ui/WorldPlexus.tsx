@@ -36,23 +36,21 @@ const FLOAT_AMP = 16; // max node drift in px (bigger = wider-swinging edges)
 const FLOAT_SPEED = 2500; // base orbit period in ms (SMALLER = faster motion)
 // ────────────────────────────────────────────────────────────────────
 
-// ─── Rolling-wave knobs — coherent bands of brightness sweeping diagonally ──
-// On top of the per-edge shimmer, edges brighten together in soft bands that
-// roll along the diagonal from the top-right toward the bottom-left. Two summed
-// sines (different spatial freq + speed) keep the crests organic instead of
-// metronomic. Brightness only, no hue shift.
-const WAVE_BANDS = 1.3; // ~how many bands span the diagonal (smaller = wider, more map lit at once)
-const WAVE_SPEED = 14000; // ms for a crest to advance one full phase (SMALLER = faster)
-// The sweep waveform is asymmetric: a wide, bright crest and a brief, shallow trough.
-const WAVE_FLOOR = 0.9; // trough multiplier — darkest the wave dims an edge (higher = never dark)
-const WAVE_PEAK = 1.55; // crest multiplier — brightest the wave lifts an edge (higher = hotter)
-const WAVE_SHAPE = 0.45; // <1 widens the bright crest & shortens the dark trough (1 = plain sine)
+// ─── Rolling-wave knobs — one smooth band of brightness sweeping diagonally ──
+// On top of the per-edge shimmer, edges brighten together in a single broad,
+// smooth band that flows along the diagonal from the top-right toward the
+// bottom-left — like sheen travelling across brushed velvet. A single sine
+// (no second frequency) keeps it one coherent crest, never splitting. Brightness only.
+const WAVE_BANDS = 0.8; // ~how many bands span the diagonal (smaller = one broader, smoother sweep)
+const WAVE_SPEED = 8000; // ms for a crest to advance one full phase (SMALLER = faster)
+// The sweep waveform is gently asymmetric: a broad, soft crest and a shorter trough.
+const WAVE_FLOOR = 0.4; // trough multiplier — darkest the wave dims an edge (higher = never dark)
+const WAVE_PEAK = 1.8; // crest multiplier — brightest the wave lifts an edge (higher = hotter)
+const WAVE_SHAPE = 0.8; // <1 widens the bright crest & shortens the trough (1 = pure smooth sine)
 // ────────────────────────────────────────────────────────────────────
 const TAU = Math.PI * 2;
-const WAVE_K1 = WAVE_BANDS * TAU; // primary band spatial frequency
-const WAVE_K2 = WAVE_BANDS * 1.7 * TAU; // secondary, tighter bands
-const WAVE_OMEGA1 = TAU / WAVE_SPEED; // primary roll speed (rad/ms)
-const WAVE_OMEGA2 = TAU / (WAVE_SPEED * 0.68); // secondary, slightly faster
+const WAVE_K1 = WAVE_BANDS * TAU; // band spatial frequency
+const WAVE_OMEGA1 = TAU / WAVE_SPEED; // roll speed (rad/ms)
 
 type Node = {
   hx: number; // home x (screen space, post-jitter)
@@ -280,12 +278,11 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
         n.y = n.hy + move * n.ay * Math.sin(time * n.fy + n.py);
       }
 
-      // SWEEP: precompute the two rolling-band time offsets once per frame. Each edge's
+      // SWEEP: precompute the rolling-band time offset once per frame. Each edge's
       // contribution then depends only on where its midpoint falls along the diagonal
-      // axis, so neighbours brighten together in bands that slide from the top-right
-      // toward the bottom-left as `time` advances.
+      // axis, so neighbours brighten together in one smooth band that slides from the
+      // top-right toward the bottom-left as `time` advances.
       const t1 = time * WAVE_OMEGA1;
-      const t2 = time * WAVE_OMEGA2;
       const invW = W > 0 ? 1 / W : 0;
       const invH = H > 0 ? 1 / H : 0;
 
@@ -305,8 +302,7 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
           const mx = (a.x + nb.x) * 0.5 * invW;
           const my = (a.y + nb.y) * 0.5 * invH;
           const proj = (my - mx) * 0.7071; // unit diagonal: TR → BL
-          const s =
-            (Math.sin(proj * WAVE_K1 - t1) + 0.6 * Math.sin(proj * WAVE_K2 - t2 + 1.3)) / 1.6;
+          const s = Math.sin(proj * WAVE_K1 - t1); // single smooth travelling wave
           const u = 0.5 + 0.5 * s; // 0..1 sinusoidal
           const shaped = Math.pow(u < 0 ? 0 : u > 1 ? 1 : u, WAVE_SHAPE);
           sweep = WAVE_FLOOR + (WAVE_PEAK - WAVE_FLOOR) * shaped;
