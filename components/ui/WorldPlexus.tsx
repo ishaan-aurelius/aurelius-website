@@ -57,7 +57,7 @@ const WAVE_SHAPE = 0.8; // <1 widens the bright crest & shortens the trough (1 =
 //       pivoting on the vertical centre. Region behind the headline stays dim.
 //   3 = FULL     — mode-2 balance AND the central falloff behind the
 //       headline is lifted, so the whole map (incl. behind the text) is bright.
-const BRIGHT_MODE = 2;
+const BRIGHT_MODE: number = 2;
 // Strength of the north/south swing used in modes 2 & 3
 // (top ×(1-VB), bottom ×(1+VB), mid ×1).
 const VERT_BALANCE = 0.6;
