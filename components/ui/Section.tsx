@@ -13,14 +13,20 @@ export function Section({
   theme,
   children,
   className = "",
+  fullHeight = false,
 }: {
   id?: string;
   theme: Theme;
   children: React.ReactNode;
   className?: string;
+  // When true, the section fills at least the viewport and centers its content
+  // vertically. This makes AnchorLink top-align it (it no longer "fits"), so
+  // jumping here shows only this section — no neighbors peeking at top/bottom.
+  fullHeight?: boolean;
 }) {
+  const heightClass = fullHeight ? "flex min-h-[70vh] flex-col justify-center" : "";
   return (
-    <section id={id} className={`${themeClass[theme]} py-20 md:py-32 ${className}`}>
+    <section id={id} className={`${themeClass[theme]} ${heightClass} py-20 md:py-32 ${className}`}>
       <Container>{children}</Container>
     </section>
   );

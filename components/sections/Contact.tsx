@@ -81,11 +81,11 @@ export function Contact() {
   const selectedInterest = interests.find((o) => o.value === form.interest);
 
   return (
-    <Section id="contact" theme="dark">
+    <Section id="contact" theme="dark" fullHeight>
       <div className="mx-auto max-w-[640px] text-center">
         <Kicker>{contact.kicker}</Kicker>
         <SectionHeading>{contact.title}</SectionHeading>
-        <p className="mt-5 font-body text-[clamp(16px,1.5vw,19px)] text-dark-mid">{contact.lede}</p>
+        <p className="mt-5 whitespace-nowrap font-body text-[clamp(16px,1.5vw,19px)] text-dark-mid">{contact.lede}</p>
       </div>
 
       {status === "sent" ? (

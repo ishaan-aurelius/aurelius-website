@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { nav } from "@/content/site";
 import { Button } from "@/components/ui/Button";
+import { AnchorLink } from "@/components/ui/AnchorLink";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -27,13 +28,10 @@ export function Nav() {
         </Link>
         <div className="hidden items-center gap-6 lg:flex">
           {nav.links.map((l) => (
-            <Link key={l.href} href={l.href} className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.15em] text-dark-mid transition-colors hover:text-dark-hi">
+            <AnchorLink key={l.href} href={l.href} className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.15em] text-dark-mid transition-colors hover:text-dark-hi">
               {l.label}
-            </Link>
+            </AnchorLink>
           ))}
-          <Button href={nav.primary.href} variant="primary" size="sm">
-            {nav.primary.label}
-          </Button>
         </div>
         <button className="text-2xl leading-none text-dark-hi lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>
           ☰
@@ -42,9 +40,9 @@ export function Nav() {
       {open && (
         <div className="border-t border-dark-border bg-dark-canvas px-6 py-4 lg:hidden">
           {nav.links.map((l) => (
-            <Link key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-2 font-display text-sm font-bold uppercase tracking-[0.15em] text-dark-mid">
+            <AnchorLink key={l.href} href={l.href} onClick={() => setOpen(false)} className="block py-2 font-display text-sm font-bold uppercase tracking-[0.15em] text-dark-mid">
               {l.label}
-            </Link>
+            </AnchorLink>
           ))}
           <div className="mt-3">
             <Button href={nav.primary.href} variant="primary" size="sm">

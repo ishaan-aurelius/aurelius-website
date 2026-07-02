@@ -2,7 +2,7 @@
 export const nav = {
   links: [
     { label: "Careers", href: "#careers" },
-    { label: "Our Team", href: "#alumni" },
+    { label: "Team", href: "#alumni" },
     { label: "Contact", href: "#contact" },
   ],
   primary: { label: "Request a Demo", href: "#contact" },
@@ -12,7 +12,7 @@ export const hero = {
   headPre: "Velocity meets Clarity in ",
   headGold: "Modern Conflict",
   headPost: "",
-  sub: "Mission Planning & In-Mission for Decision Superiority in Contested Environments",
+  sub: "Mission Planning & In-Mission Systems for Decision Superiority in Contested Environments",
   sub2: "In Minutes - Not Months, Not Quarters, Not Years!",
   primary: { label: "Request a Demo", href: "#contact" },
   secondary: { label: "Contact Us", href: "#contact" },
@@ -35,7 +35,7 @@ export const careers = {
 export const contact = {
   kicker: "Contact",
   title: "Start the conversation",
-  lede: "Government partners, industry, and builders: reach out.",
+  lede: "Government partners, industry, academics and builders: we want to hear from you",
   email: "contact@aurelius.guru",
 };
 

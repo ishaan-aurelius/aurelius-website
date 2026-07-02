@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { footer, nav } from "@/content/site";
+import { AnchorLink } from "@/components/ui/AnchorLink";
 
 export function Footer() {
   return (
@@ -12,9 +12,9 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap justify-end gap-6">
           {nav.links.map((l) => (
-            <Link key={l.href} href={l.href} className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.15em] text-dark-mid transition-colors hover:text-dark-hi">
+            <AnchorLink key={l.href} href={l.href} className="whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.15em] text-dark-mid transition-colors hover:text-dark-hi">
               {l.label}
-            </Link>
+            </AnchorLink>
           ))}
         </div>
         <div className="font-body text-xs text-dark-low">

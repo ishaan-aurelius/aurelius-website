@@ -32,8 +32,8 @@ const NB = 18; // brightness buckets
 const MAX_A = 0.75; // alpha of the brightest bucket
 
 // ─── Hero motion knobs — tune these two ─────────────────────────────
-const FLOAT_AMP = 16; // max node drift in px (bigger = wider-swinging edges)
-const FLOAT_SPEED = 2500; // base orbit period in ms (SMALLER = faster motion)
+const FLOAT_AMP = 20; // max node drift in px (bigger = wider-swinging edges)
+const FLOAT_SPEED = 1500; // base orbit period in ms (SMALLER = faster motion)
 // ────────────────────────────────────────────────────────────────────
 
 // ─── Rolling-wave knobs — one smooth band of brightness sweeping diagonally ──
@@ -47,6 +47,20 @@ const WAVE_SPEED = 8000; // ms for a crest to advance one full phase (SMALLER = 
 const WAVE_FLOOR = 0.4; // trough multiplier — darkest the wave dims an edge (higher = never dark)
 const WAVE_PEAK = 1.8; // crest multiplier — brightest the wave lifts an edge (higher = hotter)
 const WAVE_SHAPE = 0.8; // <1 widens the bright crest & shortens the trough (1 = pure smooth sine)
+// ────────────────────────────────────────────────────────────────────
+
+// ─── Hero brightness mode — pick 1, 2, or 3 ──────────────────────────
+// The northern hemisphere reads brighter only because it holds far more
+// land — hence far more edges stacking under `lighter` compositing.
+//   1 = ORIGINAL — no correction. North bright, south dim (as it was).
+//   2 = BALANCED — ease the dense north down, lift the sparse south up,
+//       pivoting on the vertical centre. Region behind the headline stays dim.
+//   3 = FULL     — mode-2 balance AND the central falloff behind the
+//       headline is lifted, so the whole map (incl. behind the text) is bright.
+const BRIGHT_MODE = 2;
+// Strength of the north/south swing used in modes 2 & 3
+// (top ×(1-VB), bottom ×(1+VB), mid ×1).
+const VERT_BALANCE = 0.6;
 // ────────────────────────────────────────────────────────────────────
 const TAU = Math.PI * 2;
 const WAVE_K1 = WAVE_BANDS * TAU; // band spatial frequency
@@ -307,7 +321,13 @@ export function WorldPlexus({ points, mapAspect, className = "" }: Props) {
           const shaped = Math.pow(u < 0 ? 0 : u > 1 ? 1 : u, WAVE_SHAPE);
           sweep = WAVE_FLOOR + (WAVE_PEAK - WAVE_FLOOR) * shaped;
         }
-        const alpha = (e.lo + (e.hi - e.lo) * wave) * e.dim * sweep;
+        // Vertical balance (modes 2 & 3): dim the land-heavy north, lift the
+        // sparse south, pivoting on the vertical centre.
+        const midY = (a.y + nb.y) * 0.5 * invH; // 0 top .. 1 bottom
+        const balance = BRIGHT_MODE === 1 ? 1 : 1 + VERT_BALANCE * (midY - 0.5) * 2;
+        // Central falloff behind the headline — applied except in mode 3.
+        const dim = BRIGHT_MODE === 3 ? 1 : e.dim;
+        const alpha = (e.lo + (e.hi - e.lo) * wave) * dim * sweep * balance;
         let bi = (alpha / STEP) | 0;
         if (bi < 0) bi = 0;
         else if (bi >= NB) bi = NB - 1;
