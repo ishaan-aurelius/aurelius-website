@@ -7,12 +7,11 @@ import { Reveal } from "@/components/ui/Reveal";
 // color on the dark canvas; w-auto preserves each logo's intrinsic aspect ratio
 // and per-logo heights balance the wide corporate wordmarks against the dense,
 // square government seals. Order is most-important-first for a defense audience:
-// the U.S. government/military seals lead, then the technology pedigree.
+// the U.S. military seal leads, then the technology pedigree.
 const alumni = [
-  { name: "The White House", file: "white-house.svg", h: "h-14" },
-  { name: "U.S. House of Representatives", file: "house-of-representatives.svg", h: "h-14" },
   { name: "U.S. Marine Corps", file: "marine-corps.svg", h: "h-14" },
   { name: "Google", file: "google.svg", h: "h-14", nudge: "translate-y-[6px]" },
+  { name: "Palantir", file: "palantir.svg", h: "h-8" },
   { name: "Sabre", file: "sabre.svg", h: "h-10", nudge: "translate-y-[3px]" },
   { name: "Shazam", file: "shazam.svg", h: "h-12", nudge: "translate-y-[3px]" },
   { name: "Oracle", file: "oracle.svg", h: "h-6", nudge: "translate-y-[5px]" },
